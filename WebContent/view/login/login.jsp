@@ -26,14 +26,14 @@
         <div class="form row">
             <div class="form-horizontal col-md-offset-2" id="login_form">
                 <h3 class="form-title">请登录</h3>
-                <form class="col-md-10">
+                <form class="col-md-10" action="${rooturl }/LoginServlet" method="post">
                     <div class="form-group">
                         <i class="fa fa-user fa-lg"></i>
                         <input class="form-control required" type="text" placeholder="Username" id="username" name="username" autofocus="autofocus" maxlength="20"/>
                     </div>
                     <div class="form-group">
                             <i class="fa fa-lock fa-lg"></i>
-                            <input class="form-control required" type="password" placeholder="Password" id="password" name="password" maxlength="8"/>
+                            <input class="form-control required" type="password" placeholder="Password" id="password" name="password" maxlength="12"/>
                     </div>
                     <div class="form-group">
                         <label class="checkbox">
@@ -41,7 +41,7 @@
                         </label>
                     </div>
                     <div class="form-group col-md-offset-1">
-                        <button type="submit" class="btn btn-success pull-right" name="submit">登录</button>
+                        <input type="submit" class="btn btn-success pull-right" value="登录">
                     </div>
                 </form>
             </div>

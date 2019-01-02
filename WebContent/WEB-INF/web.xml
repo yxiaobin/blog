@@ -9,4 +9,33 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>UserServlet</display-name>
+    <servlet-name>UserServlet</servlet-name>
+    <servlet-class>sdut.blog.controller.UserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserServlet</servlet-name>
+    <url-pattern>/UserServlet</url-pattern>
+  </servlet-mapping>
+  <filter>
+    <display-name>UserCheck</display-name>
+    <filter-name>UserCheck</filter-name>
+    <filter-class>sdut.blog.filter.UserCheck</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>UserCheck</filter-name>
+    <url-pattern>/UserCheck</url-pattern>
+  </filter-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LoginServlet</display-name>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>sdut.blog.controller.LoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/LoginServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
