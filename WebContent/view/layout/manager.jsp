@@ -16,7 +16,7 @@
     <link rel="stylesheet" type="text/css" href="${rooturl}/resource/assets/css/theme/blue.css">
     <link rel="stylesheet" type="text/css" href="${rooturl}/resource/assets/css/theme/red.css">
     <link rel="stylesheet" type="text/css" href="${rooturl}/resource/assets/css/theme/yellow.css">
-     <style type="text/css">
+    <style type="text/css">
         th::after{
             content: "" !important;
         }
@@ -24,12 +24,14 @@
 </head>
 
 <!-- 内容部分 -->
+
 <!--侧边栏  -->
 <%@include file="slide.jsp" %>
+
 <!-- 顶部，如果反过来会出蜜汁问题 -->
 <%@include file="head.jsp" %>
 
-<!-- 内容 -->
+<!-- 主要的内容  --> 
    <div class="row">
         <div class="col-lg-12">
             <div class="card card-tab">
