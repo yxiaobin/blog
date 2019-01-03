@@ -42,7 +42,16 @@
                     </div> -->
                 </li>
   
-
+  
+				<li class="dropdown">
+                    <a href="../category/index.jsp">
+                        <div class="icon">
+                            <i class="fa fa-sliders" aria-hidden="true"></i>
+                        </div>
+                        <div class="title">分类管理</div>
+                    </a>
+                </li>
+  
             </ul>
         </div>
     </aside>
