@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+    
+    
 <!DOCTYPE html>
 
 <div id="managerslide">
@@ -25,19 +27,19 @@
                 </li>
                
                 <li class="dropdown">
-                    <a href="#">
+                    <a href="${pageContext.request.contextPath}/UserServlet">
                         <div class="icon">
                             <i class="fa fa-sliders" aria-hidden="true"></i>
                         </div>
-                        <div class="title">主页管理</div>
+                        <div class="title">用户管理</div>
                     </a>
-                    <div class="dropdown-menu">
+                   <!--  <div class="dropdown-menu">
                         <ul>
                             <li><a href="#">幻灯片管理</a></li>
                             <li><a href="#">幻灯片管理</a></li>
                             <li><a href="#">幻灯片管理</a></li>
                         </ul>
-                    </div>
+                    </div> -->
                 </li>
   
 

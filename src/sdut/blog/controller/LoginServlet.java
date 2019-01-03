@@ -1,6 +1,8 @@
 package sdut.blog.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -29,28 +31,38 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.setHeader("Content-Type", "text/html;charset=UTF-8");//设置UTF-8的显示页面的类型和字符集
+		PrintWriter out = response.getWriter();
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		//查找数据库中是否存在此用户
-		UserDaoImpl  userop = new UserDaoImpl();
-		User user = userop.SearchUserByUsername(username);
-		if(user.getUsername().equals("")) {
-			System.out.print("不存在此用户");
+		if(username.equals("") || password.equals("")) {
+			out.write("<script>alert('请输入用户名和密码后在尝试登录操作')</script>");
+			out.write("<script>window.location.href=' " +request.getContextPath()+"/view/login/login.jsp ' "+ " </script>");
 		}else {
-			if(user.getPassword().equals(password)) {
-				System.out.print("登陆成功");
-				//添加全局用户session
-				HttpSession session = request.getSession();
-				session.setAttribute("usr_name", user.getName());
-				session.setAttribute("user_id", user.getId());
-				//跳转到后台管理页面
-				String url = request.getContextPath() + "/view/layout/manager.jsp";
-				response.sendRedirect(url);
+			//查找数据库中是否存在此用户
+			UserDaoImpl  userop = new UserDaoImpl();
+			User user = userop.SearchUserByUsername(username);
+			if(user.getUsername().equals("")) {
+				out.write("<script>alert('用户不存在')</script>");
+				out.write("<script>window.location.href=' " +request.getContextPath()+"/view/login/login.jsp ' "+ " </script>");
+			
 			}else {
-				System.out.print("密码错误");
+				if(user.getPassword().equals(password)) {
+					System.out.print("登陆成功");
+					//添加全局用户session
+					HttpSession session = request.getSession();
+					session.setAttribute("usr_name", user.getName());
+					session.setAttribute("user_id", user.getId());
+					//跳转到后台管理页面
+					String url = request.getContextPath() + "/view/layout/manager.jsp";
+					response.sendRedirect(url);
+				}else {
+					out.write("<script>alert('用户名或密码错误')</script>");
+					out.write("<script>window.location.href=' " +request.getContextPath()+"/view/login/login.jsp ' "+ " </script>");
+				}
 			}
 		}
+		
 	}
 
 	/**

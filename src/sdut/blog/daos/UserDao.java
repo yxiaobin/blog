@@ -1,4 +1,6 @@
 package sdut.blog.daos;
+import java.util.List;
+
 import sdut.blog.domain.User;
 
 public interface UserDao {
@@ -12,4 +14,6 @@ public interface UserDao {
 	public User SearchUserByID(int id);
 	//查找用户ByUsername
 	public User SearchUserByUsername(String  username);
+	//查找所有用户
+	public List<User> SearchUsers();
 }
