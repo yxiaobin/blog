@@ -44,7 +44,7 @@
   
   
 				<li class="dropdown">
-                    <a href="../category/index.jsp">
+                    <a href="${pageContext.request.contextPath}/CategoryServlet">
                         <div class="icon">
                             <i class="fa fa-sliders" aria-hidden="true"></i>
                         </div>

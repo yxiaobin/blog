@@ -62,7 +62,7 @@
                           	<c:forEach var="item" items="${list }">
                                 <tr>
                                     <td>${item.getEmail() }</td>
-                                    <td>$item.getName(){ }</td>
+                                    <td>${item.getName() }</td>
                                     <td>${item.getUsername()}</td>
                                     <td>
                                         <a href="#">
