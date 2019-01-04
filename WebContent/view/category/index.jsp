@@ -63,7 +63,9 @@
                                 <tr>
                                 	<td>${item.getNum () }</td>
                                     <td>${item.getName()}</td>
-                                    <td>${item.getShow()}</td>
+                                    <td><c:if test= "${item.getShow()==1}">显示</c:if>
+                                    	<c:if test= "${item.getShow()==0}">不显示</c:if>
+                                    </td>
                                     <td>
                                         <a href="${pageContext.request.contextPath}/CategoryDeleteServlet?id=${item.getId()}">
                                             <input type="button" class="btn btn-xs btn-danger" onclick="return confirm('确认要删除吗？')" value="删除">
