@@ -47,7 +47,8 @@
                  String item = request.getParameter("id");
                  int id =Integer.parseInt(item);
                  CategoryDaoImpl categoryop = new CategoryDaoImpl();
-                 Category category = categoryop.SearchCategoryByID(id);                                      	
+                 Category category = categoryop.SearchCategoryByID(id);  
+                 request.setAttribute("category",category);
                  %>        
                 <div class="card-body no-padding tab-content">
                     <div role="tabpanel" class="tab-pane active" id="tab2">
@@ -75,8 +76,8 @@
                                                         <div class="col-md-9">
                                                        
                                                             <select  class="form-control"  name="show" >
-                                                            	<option <c:if test="${category.getShow()==0}" > selected = "selected" </c:if> value = "0">不显示</option>
-                                                            	<option <c:if test="${category.getShow()==1}" > selected = "selected" </c:if> value = "1">显示</option>
+                                                            	<option <c:if test="${category.getShow()==0}" >selected </c:if> value = "0">不显示</option>
+                                                            	<option <c:if test="${category.getShow()==1}" > selected</c:if> value = "1">显示</option>
                                                             </select>
                                                         </div>
                                                     </div>
