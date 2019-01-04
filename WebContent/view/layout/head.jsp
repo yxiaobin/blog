@@ -24,13 +24,15 @@
                                 </div>
                                 <ul class="action">
                                     <li>
-                                       
-                                        <a href="#">
+                                       <%
+                                       	 String ids = request.getSession().getAttribute("user_id").toString(); 
+                                       %>
+                                        <a href="${rooturl }/view/user/edit.jsp?id=<%=ids %>">
                                            		 信息修改
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#">
+                                        <a href="${pageContext.request.contextPath}/LogoutServlet">
                                             		退出
                                         </a>
                                     </li>

@@ -39,19 +39,20 @@
             <div class="card card-tab">
                 <div class="card-header">
                     <ul class="nav nav-tabs">
-                        <li role="tab1" class="active">
+                        <li role="tab1" <c:if test="${tab == 1}"> class="active" </c:if> >
                             <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">用户列表</a>
                         </li>
-                        <li role="tab2" style="width:160px" class="@if($tab==2){{"active"}}@endif">
+                        <li role="tab2" style="width:160px"  <c:if test="${tab == 2}"> class="active" </c:if> >
                             <a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">添加用户</a>
                         </li>
                     </ul>
                 </div>
                 <div class="card-body no-padding tab-content">
-                    <div role="tabpanel" class="tab-pane active" id="tab1" style="padding-top: 100px">
+                    <div role="tabpanel" class="tab-pane <c:if test="${tab == 1}">  active </c:if>" id="tab1" style="padding-top: 100px">
                         <table class="datatable table" cellspacing="0" width="100%">
                             <thead>
                             <tr>
+                            
                                 <th>邮箱</th>
                                 <th>姓名</th>
                                 <th>账号</th>
@@ -59,16 +60,21 @@
                             </tr>
                             </thead>
                             <tbody>
-                          	<c:forEach var="item" items="${list }">
+                          
+                          	<c:forEach var="item" items="${user_list }">
                                 <tr>
+                                  
                                     <td>${item.getEmail() }</td>
+                                    <td>${item.getName()}</td>
+
                                     <td>${item.getName() }</td>
+
                                     <td>${item.getUsername()}</td>
                                     <td>
-                                        <a href="#">
+                                        <a href="${rooturl }/UserDeleteServlet?id=${item.getId()}">
                                             <input type="button" class="btn btn-xs btn-danger" onclick="return confirm('确认要删除吗？')" value="删除">
                                         </a>
-                                        <a href="#">
+                                        <a href="${rooturl }/view/user/edit.jsp?id=${item.getId()}">
                                             <input type="button" class="btn btn-xs btn-primary"  value="修改">
                                         </a>
                                     </td>
@@ -77,41 +83,25 @@
                             </tbody>
                         </table>
                     </div>
-                    <div role="tabpanel" class="tab-pane @if($tab==2){{"active"}}@endif" id="tab2">
+                    <div role="tabpanel" class="tab-pane <c:if test="${tab == 2}"> active  </c:if>" id="tab2">
                         <div class="row">
-                            @if (count($errors) > 0)
-                                <div class="alert alert-danger">
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endif
                             <div class="col-md-8 col-sm-12">
                                 <div class="section">
                                     <div class="section-title"><i class="icon fa fa-user" aria-hidden="true"></i>请填写信息</div>
                                     <div class="section-body __indent">
-                                        <form class="form form-horizontal" method="post" action="{{route('memberadmin')}}" enctype="multipart/form-data">
-                                            <div class="section">
+                                        <form class="form form-horizontal" method="post" action="${rooturl }/UserAddServlet" >
+                                           
                                                 <div class="section-body">
-                                                    {{csrf_field()}}
-                                                    {{--<div class="form-group">--}}
-                                                    {{--<label class="col-md-3 control-label">选择图片<span class="size">(1920x640)</label>--}}
-                                                    {{--<div class="col-md-9">--}}
-                                                    {{--<input type="file" name="img" accept="image/gif,image/jpeg,image/png,image/webp" class="form-control" placeholder="简体">--}}
-                                                    {{--</div>--}}
-                                                    {{--</div>--}}
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">用户名</label>
                                                         <div class="col-md-9">
-                                                            <input type="text" class="form-control" placeholder="用户名" name="usr_name">
+                                                            <input type="text" class="form-control" placeholder="用户名" name="name">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">账号</label>
                                                         <div class="col-md-9">
-                                                            <input type="text" class="form-control" placeholder="账号" name="name">
+                                                            <input type="text" class="form-control" placeholder="账号" name="username">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -121,29 +111,14 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="col-md-3 control-label">确认密码</label>
+                                                        <label class="col-md-3 control-label">邮箱</label>
                                                         <div class="col-md-9">
-                                                            <input type="text" class="form-control" placeholder="再次输入密码" name="password_confirmation">
+                                                            <input type="text" class="form-control" placeholder="请输入您的邮箱" name="email">
                                                         </div>
                                                     </div>
-                                                    <!--<div class="form-group">
-                                                        <label class="col-md-3 control-label">描述</label>
-                                                        <div class="col-md-9">
-                                                            <input type="text" class="form-control" placeholder="描述" name="description">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-md-3 control-label">链接地址</label>
-                                                        <div class="col-md-9">
-                                                            <input type="text" class="form-control" placeholder="链接地址" name="url">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-md-3 control-label">链接名称</label>
-                                                        <div class="col-md-9">
-                                                            <input type="text" class="form-control" placeholder="链接名称" name="url_title">
-                                                        </div>
-                                                    </div>-->
+                                                    
+                                                   
+                                                    
                                                     <div class="form-footer">
                                                         <div class="form-group">
                                                             <div class="col-md-9 col-md-offset-3">
@@ -153,7 +128,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                          
                                         </form>
                                     </div>
                                 </div>
@@ -167,6 +142,10 @@
     </div>
 <!--补充slide.jsp 的 div  -->
 </div>
+
+<!--引用js  -->
+<script type="text/javascript" src="${rooturl}/resource/assets/js/vendor.js"></script>
+<script type="text/javascript" src="${rooturl}/resource/assets/js/app.js"></script>
 
 </body>
 </html>

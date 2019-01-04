@@ -27,6 +27,10 @@
   <filter-mapping>
     <filter-name>UserCheck</filter-name>
     <url-pattern>/UserCheck</url-pattern>
+    <url-pattern>/view/category/*</url-pattern>
+    <url-pattern>/view/layout/*</url-pattern>
+    <url-pattern>/view/user/*</url-pattern>
+    <url-pattern>/view/article/*</url-pattern>
   </filter-mapping>
   <servlet>
     <description></description>
@@ -34,11 +38,79 @@
     <servlet-name>LoginServlet</servlet-name>
     <servlet-class>sdut.blog.controller.LoginServlet</servlet-class>
   </servlet>
+  
   <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
     <url-pattern>/LoginServlet</url-pattern>
   </servlet-mapping>
+  
   <servlet>
+    <description></description>
+    <display-name>UserAddServlet</display-name>
+    <servlet-name>UserAddServlet</servlet-name>
+    <servlet-class>sdut.blog.controller.UserAddServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>UserAddServlet</servlet-name>
+    <url-pattern>/UserAddServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>UserUpdateServlet</display-name>
+    <servlet-name>UserUpdateServlet</servlet-name>
+    <servlet-class>sdut.blog.controller.UserUpdateServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>UserUpdateServlet</servlet-name>
+    <url-pattern>/UserUpdateServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>UserDeleteServlet</display-name>
+    <servlet-name>UserDeleteServlet</servlet-name>
+    <servlet-class>sdut.blog.controller.UserDeleteServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>UserDeleteServlet</servlet-name>
+    <url-pattern>/UserDeleteServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ArticleServlet</display-name>
+    <servlet-name>ArticleServlet</servlet-name>
+    <servlet-class>sdut.blog.controller.ArticleServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ArticleServlet</servlet-name>
+    <url-pattern>/ArticleServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ArticleAddServlet</display-name>
+    <servlet-name>ArticleAddServlet</servlet-name>
+    <servlet-class>sdut.blog.controller.ArticleAddServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ArticleAddServlet</servlet-name>
+    <url-pattern>/ArticleAddServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LogoutServlet</display-name>
+    <servlet-name>LogoutServlet</servlet-name>
+    <servlet-class>sdut.blog.controller.LogoutServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogoutServlet</servlet-name>
+    <url-pattern>/LogoutServlet</url-pattern>
+  </servlet-mapping>
+  
+	<servlet>
     <description></description>
     <display-name>CategoryServlet</display-name>
     <servlet-name>CategoryServlet</servlet-name>
