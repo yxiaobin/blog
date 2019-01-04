@@ -15,14 +15,19 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown profile">
                             <a href="/html/pages/profile.html" class="dropdown-toggle"  data-toggle="dropdown">
-                                <p>设置</p>
+                               <img class="profile-img" src="${rooturl}/resource/img/001.jpg">
                                 <div class="title">Profile</div>
                             </a>
                             <div class="dropdown-menu">
                                 <div class="profile-info">
-                                    <h4 class="username">管理员您好</h4>
+                                    <h4 class="username"><%=request.getSession().getAttribute("usr_name").toString() %>&nbsp;&nbsp; 您好</h4>
                                 </div>
                                 <ul class="action">
+                                <li>
+                                        <a href="${pageContext.request.contextPath}/view/article/newArticle.jsp">
+                                            		发表新博客
+                                        </a>
+                                    </li>
                                     <li>
                                        <%
                                        	 String ids = request.getSession().getAttribute("user_id").toString(); 

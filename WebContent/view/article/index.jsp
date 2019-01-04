@@ -49,7 +49,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                    
+                    	<c:if test="${article_list.size()>0 }">
                         <c:forEach var="item" items="${article_list }">
                             <tr>
                                 <td>
@@ -68,21 +68,22 @@
                                     <a href="#" target="view_window" class="btn btn-primary btn-xs" role="button">
                                      		   预览
                                     </a>
-                                    <a href="#" class="btn btn-primary btn-xs" role="button">
+                                    <a href="${rooturl }/view/article/edit.jsp?id=${item.getId()}" class="btn btn-primary btn-xs" role="button">
                                       		  编辑
                                     </a>
 
-                                    <a href="#" class="btn btn-danger btn-xs" role="button" onclick="return confirm('确认要删除吗？')">
+                                    <a href="${rooturl }/ArticleDeletServlet?id=${item.getId()}" class="btn btn-danger btn-xs" role="button" onclick="return confirm('确认要删除吗？')">
                                         	删除
                                     </a>
 
                                 </td>
                             </tr>
                        </c:forEach>
+                       </c:if>
                     </table>
                 </div>
                 <div class="card-header">
-                    <a href="{{url("addshow/$id")}}">
+                    <a href="${pageContext.request.contextPath}/view/article/newArticle.jsp">
                         <input type="button" class="btn btn-primary" value="添加">
                     </a>
                 </div>

@@ -1,7 +1,9 @@
 package sdut.blog.controller;
 
 import java.io.IOException;
+
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -24,6 +26,7 @@ public class ArticleServlet extends HttpServlet {
      */
     public ArticleServlet() {
         super();
+        
         // TODO Auto-generated constructor stub
     }
 
@@ -32,11 +35,11 @@ public class ArticleServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
 		ArticleDaoImpl  op = new ArticleDaoImpl();
 		ArrayList<Article> article_list = (ArrayList<Article>) op.SearchArticles();
 		request.setAttribute("article_list", article_list);
 		System.out.println(article_list.size());
-		Article p = article_list.get(0);
 		request.getRequestDispatcher("/view/article/index.jsp").forward(request, response);
 	}
 

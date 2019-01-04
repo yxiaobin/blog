@@ -38,15 +38,19 @@ public class UserCheck implements Filter {
 		// place your code here
 		  HttpServletRequest req = (HttpServletRequest) request;
 	      HttpServletResponse rsp = (HttpServletResponse) response;
+	      System.out.println("222");
 	      HttpSession session = req.getSession();
 	      
 	 
 	      if(session==null || session.getAttribute("user_id")==null) {
 	    	  rsp.sendRedirect(req.getContextPath()+"/view/login/login.jsp");
+	    	  
+	      }else {
+	    	  chain.doFilter(request, response);
 	      }
-		System.out.println("登录后台前请先检测这个");
+		//System.out.println("登录后台前请先检测这个");
 		// pass the request along the filter chain
-		chain.doFilter(request, response);
+		
 	}
 
 	/**

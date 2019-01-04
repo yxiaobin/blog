@@ -16,7 +16,7 @@
         <div class="sidebar-menu">
             <ul class="sidebar-nav">
                 <li >
-                    <a href="#">
+                    <a href="${rooturl }/view/layout/manager.jsp">
                         <div class="icon">
                             <i class="fa fa-tasks" aria-hidden="true"></i>
                         </div>

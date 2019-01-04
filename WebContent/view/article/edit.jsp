@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+    pageEncoding="utf-8" import ="sdut.blog.dao.impl.ArticleDaoImpl, sdut.blog.domain.Article"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
    
@@ -38,16 +38,25 @@
 <%@include file="../layout/head.jsp" %>
 
 <!-- 主要的内容  --> 
+  <%
+                       	String s = request.getParameter("id");
+                       	int id = Integer.parseInt(s);
+                       	ArticleDaoImpl op = new ArticleDaoImpl();
+                       	Article p = op.SearchArticleByID(id);
+                       	request.setAttribute("p", p);
+   %>
    <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">发布新博客</div>
+                <div class="card-header">修改博客</div>
                 <div class="card-body">
-                    <form action="${rooturl }/ArticleAddServlet" method="post">
-                       
+                    <form action="${rooturl }/ArticleUpdateServlet" method="post">
+                     
+                       <input type="text" class="form-control hidden" name="id" value="${p.getId() }">
+                        
                         <div class="form-group">
                             <label>博客标题</label>
-                            <input type="text" class="form-control" name="title">
+                            <input type="text" class="form-control" name="title" value="${p.getTitle() }">
                         </div>
                         <div class="form-group">
                             <label>博客分类</label>
@@ -60,9 +69,9 @@
                             </select>
                         </div>
                       
-						<div class="form-group">
+ 						<div class="form-group">
                             <label>关键字</label>
-                            <input type="text" class="form-control" name="keyword">
+                            <input type="text" class="form-control" name="keyword" value="${p.getKeyword() }">
                         </div>
                         
                         <div class="form-group">
@@ -142,8 +151,8 @@
             ]]});
         ue.ready(function() {
             //设置编辑器的内容
-         
-            ue.execCommand("inserthtml",'请输入内容') ;
+         	//ue.setContent(${p.getContent()});
+            ue.execCommand("inserthtml","${p.getContent()}") ;
 
         });
     </script>

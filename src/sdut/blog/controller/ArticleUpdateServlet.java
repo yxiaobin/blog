@@ -2,7 +2,6 @@ package sdut.blog.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -13,15 +12,15 @@ import sdut.blog.dao.impl.ArticleDaoImpl;
 import sdut.blog.domain.Article;
 
 /**
- * Servlet implementation class ArticleAddServlet
+ * Servlet implementation class ArticleUpdateSerevlet
  */
-public class ArticleAddServlet extends HttpServlet {
+public class ArticleUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ArticleAddServlet() {
+    public ArticleUpdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -48,9 +47,11 @@ public class ArticleAddServlet extends HttpServlet {
 			out.write("<script>window.location.href=' " +request.getContextPath()+"/ArticleServlet' "+ " </script>");
 		}else {
 			Article p = new Article(member_id, category_id, title, content, keyword);
+			p.setId(Integer.parseInt(request.getParameter("id")));
 			ArticleDaoImpl op = new ArticleDaoImpl();
-			op.AddArticle(p);
-			response.sendRedirect(request.getContextPath()+"/ArticleServlet");
+			op.UpdateArticle(p);
+			System.out.println("更新成功");
+			response.sendRedirect(request.getContextPath()+"/UserServlet");
 		}
 	}
 
