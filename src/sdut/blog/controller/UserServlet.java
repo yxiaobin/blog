@@ -34,9 +34,9 @@ public class UserServlet extends HttpServlet {
 		response.setHeader("Content-Type", "text/html;charset=UTF-8");//设置UTF-8的显示页面的类型和字符集
 		PrintWriter out = response.getWriter();
 		UserDaoImpl  userop = new UserDaoImpl();
-		ArrayList<User> list = (ArrayList<User>) userop.SearchUsers();
-		request.setAttribute("list", list);
-		System.out.println(list.size());
+		ArrayList<User> user_list = (ArrayList<User>) userop.SearchUsers();
+		request.setAttribute("user_list", user_list);
+		request.setAttribute("tab",1);
 		request.getRequestDispatcher("/view/user/index.jsp").forward(request, response);
 	}
 

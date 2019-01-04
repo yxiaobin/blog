@@ -51,6 +51,21 @@
                         <div class="title">分类管理</div>
                     </a>
                 </li>
+                
+                <li class="dropdown">
+                    <a href="#">
+                        <div class="icon">
+                            <i class="fa fa-sliders" aria-hidden="true"></i>
+                        </div>
+                        <div class="title">博客管理</div>
+                    </a>
+                    <div class="dropdown-menu">
+                        <ul>
+                            <li><a href="${pageContext.request.contextPath}/ArticleServlet">博客列表</a></li>
+                            <li><a href="${pageContext.request.contextPath}/view/article/newArticle.jsp">更新博客</a></li>
+                        </ul>
+                    </div> 
+                </li>
   
             </ul>
         </div>
