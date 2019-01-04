@@ -51,7 +51,7 @@ public class ArticleUpdateServlet extends HttpServlet {
 			ArticleDaoImpl op = new ArticleDaoImpl();
 			op.UpdateArticle(p);
 			System.out.println("更新成功");
-			response.sendRedirect(request.getContextPath()+"/UserServlet");
+			response.sendRedirect(request.getContextPath()+"/ArticleServlet");
 		}
 	}
 
