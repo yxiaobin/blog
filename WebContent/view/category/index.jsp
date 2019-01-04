@@ -67,7 +67,7 @@
                                     <td>${item.getName()}</td>
                                     <td>${item.getShow()}</td>
                                     <td>
-                                        <a href="#">
+                                        <a href="${pageContext.request.contextPath}/DelCategoryServlet">
                                             <input type="button" class="btn btn-xs btn-danger" onclick="return confirm('确认要删除吗？')" value="删除">
                                         </a>
                                         <a href="#">

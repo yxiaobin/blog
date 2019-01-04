@@ -48,4 +48,14 @@
     <servlet-name>CategoryServlet</servlet-name>
     <url-pattern>/CategoryServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DelCategoryServlet</display-name>
+    <servlet-name>DelCategoryServlet</servlet-name>
+    <servlet-class>sdut.blog.controller.DelCategoryServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DelCategoryServlet</servlet-name>
+    <url-pattern>/DelCategoryServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
