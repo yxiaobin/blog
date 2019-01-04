@@ -38,36 +38,43 @@
     <servlet-name>LoginServlet</servlet-name>
     <servlet-class>sdut.blog.controller.LoginServlet</servlet-class>
   </servlet>
+  
   <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
     <url-pattern>/LoginServlet</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <description></description>
     <display-name>UserAddServlet</display-name>
     <servlet-name>UserAddServlet</servlet-name>
     <servlet-class>sdut.blog.controller.UserAddServlet</servlet-class>
   </servlet>
+  
   <servlet-mapping>
     <servlet-name>UserAddServlet</servlet-name>
     <url-pattern>/UserAddServlet</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <description></description>
     <display-name>UserUpdateServlet</display-name>
     <servlet-name>UserUpdateServlet</servlet-name>
     <servlet-class>sdut.blog.controller.UserUpdateServlet</servlet-class>
   </servlet>
+  
   <servlet-mapping>
     <servlet-name>UserUpdateServlet</servlet-name>
     <url-pattern>/UserUpdateServlet</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <description></description>
     <display-name>UserDeleteServlet</display-name>
     <servlet-name>UserDeleteServlet</servlet-name>
     <servlet-class>sdut.blog.controller.UserDeleteServlet</servlet-class>
   </servlet>
+  
   <servlet-mapping>
     <servlet-name>UserDeleteServlet</servlet-name>
     <url-pattern>/UserDeleteServlet</url-pattern>
@@ -103,6 +110,14 @@
     <url-pattern>/LogoutServlet</url-pattern>
   </servlet-mapping>
   
-  
-  
+	<servlet>
+    <description></description>
+    <display-name>CategoryServlet</display-name>
+    <servlet-name>CategoryServlet</servlet-name>
+    <servlet-class>sdut.blog.controller.CategoryServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CategoryServlet</servlet-name>
+    <url-pattern>/CategoryServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
