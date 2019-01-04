@@ -60,11 +60,12 @@
                             </select>
                         </div>
                       
-						<div class="form-group">
-                            <label>关键字</label>
+
+ 						<div class="form-group">
+                            <label>关键词(用 , 连接)</label>
                             <input type="text" class="form-control" name="keyword">
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="">正文</label>
                             <div id="editor" type="text/plain" style="height: 400px;width: 100%;margin: auto"></div>

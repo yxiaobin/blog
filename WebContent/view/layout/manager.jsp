@@ -82,7 +82,7 @@
                     <ul class="list-group">
                     	<c:forEach var="item" items="${article_list }" end="4" >
                         <li class="list-group-item">
-                            <label> ${item.getTitle() }  </label>    <span style="margin-right:5%;!important"> 作者: ${item.getMemberName()}</span>
+                            <label> ${item.getTitle() }  </label>  <span style="margin-left:45%;"> 作者: ${item.getMemberName()}</span>
                         </li>
                        </c:forEach>
                     </ul>

@@ -55,6 +55,8 @@
     <servlet-name>UserAddServlet</servlet-name>
     <url-pattern>/UserAddServlet</url-pattern>
   </servlet-mapping>
+  
+  
   <servlet>
     <description></description>
     <display-name>UserUpdateServlet</display-name>
@@ -85,6 +87,8 @@
     <servlet-name>ArticleServlet</servlet-name>
     <url-pattern>/ArticleServlet</url-pattern>
   </servlet-mapping>
+  
+  
   <servlet>
     <description></description>
     <display-name>ArticleAddServlet</display-name>
@@ -115,12 +119,16 @@
     <servlet-name>CategoryServlet</servlet-name>
     <url-pattern>/CategoryServlet</url-pattern>
   </servlet-mapping>
+  
+  
   <servlet>
     <description></description>
     <display-name>ArticleDeletServlet</display-name>
     <servlet-name>ArticleDeletServlet</servlet-name>
     <servlet-class>sdut.blog.controller.ArticleDeletServlet</servlet-class>
   </servlet>
+ 
+ 
   <servlet-mapping>
     <servlet-name>ArticleDeletServlet</servlet-name>
     <url-pattern>/ArticleDeletServlet</url-pattern>
@@ -131,8 +139,51 @@
     <servlet-name>ArticleUpdateServlet</servlet-name>
     <servlet-class>sdut.blog.controller.ArticleUpdateServlet</servlet-class>
   </servlet>
+ 
+ 
   <servlet-mapping>
     <servlet-name>ArticleUpdateServlet</servlet-name>
     <url-pattern>/ArticleUpdateServlet</url-pattern>
+   </servlet-mapping>
+   
+  <servlet>
+    <description></description>
+    <display-name>DelCategoryServlet</display-name>
+    <servlet-name>DelCategoryServlet</servlet-name>
+    <servlet-class>sdut.blog.controller.DelCategoryServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DelCategoryServlet</servlet-name>
+    <url-pattern>/DelCategoryServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CategoryDeleteServlet</display-name>
+    <servlet-name>CategoryDeleteServlet</servlet-name>
+    <servlet-class>sdut.blog.controller.CategoryDeleteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CategoryDeleteServlet</servlet-name>
+    <url-pattern>/CategoryDeleteServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CategoryAddServlet</display-name>
+    <servlet-name>CategoryAddServlet</servlet-name>
+    <servlet-class>sdut.blog.controller.CategoryAddServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CategoryAddServlet</servlet-name>
+    <url-pattern>/CategoryAddServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CategoryUpdateServlet</display-name>
+    <servlet-name>CategoryUpdateServlet</servlet-name>
+    <servlet-class>sdut.blog.controller.CategoryUpdateServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CategoryUpdateServlet</servlet-name>
+    <url-pattern>/CategoryUpdateServlet</url-pattern>
   </servlet-mapping>
 </web-app>

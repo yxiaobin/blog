@@ -5,6 +5,9 @@ public class Category {
 	String name;
 	int num;
 	int show;
+	public Category() {
+		this.id = -1;
+	}
 	public int getId() {
 		return id;
 	}
