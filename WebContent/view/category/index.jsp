@@ -53,7 +53,6 @@
                            <thead>
                             <tr>
                                 <th>序号</th>
-                                <th>编号</th>
                                 <th>名称</th>
                                 <th>是否显示</th>
                                 <th>操作</th>
@@ -63,14 +62,13 @@
                             <c:forEach var="item" items="${list }">
                                 <tr>
                                 	<td>${item.getNum () }</td>
-                                    <td>${item.getId () }</td>
                                     <td>${item.getName()}</td>
                                     <td>${item.getShow()}</td>
                                     <td>
-                                        <a href="${pageContext.request.contextPath}/DelCategoryServlet">
+                                        <a href="${pageContext.request.contextPath}/CategoryDeleteServlet?id=${item.getId()}">
                                             <input type="button" class="btn btn-xs btn-danger" onclick="return confirm('确认要删除吗？')" value="删除">
                                         </a>
-                                        <a href="#">
+                                        <a href="${pageContext.request.contextPath}/view/category/edit.jsp?id=${item.getId()}">
                                             <input type="button" class="btn btn-xs btn-primary"  value="修改">
                                         </a>
                                     </td>
@@ -86,34 +84,26 @@
                                 <div class="section">
                                     <div class="section-title"><i class="icon fa fa-user" aria-hidden="true"></i>请填写信息</div>
                                     <div class="section-body __indent">
-                                        <form class="form form-horizontal" method="post" action="{{route('memberadmin')}}" enctype="multipart/form-data">
+                                        <form class="form form-horizontal" method="post" action="${pageContext.request.contextPath}/CategoryAddServlet" >
                                             <div class="section">
                                                 <div class="section-body">
                                                     
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">名称</label>
                                                         <div class="col-md-9">
-                                                            <input type="text" class="form-control" placeholder="用户名" name="usr_name">
+                                                            <input type="text" class="form-control" placeholder="分类名称" name="name">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="col-md-3 control-label">id</label>
+                                                        <label class="col-md-3 control-label">是否显示</label>
                                                         <div class="col-md-9">
-                                                            <input type="text" class="form-control" placeholder="账号" name="name">
+                                                            <select  class="form-control"  name="show" >
+                                                            	<option  selected = "selected"  value = "0">不显示</option>
+                                                            	<option  value = "1">显示</option>
+                                                            </select>
                                                         </div>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label class="col-md-3 control-label">密码</label>
-                                                        <div class="col-md-9">
-                                                            <input type="text" class="form-control" placeholder="密码" name="password">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-md-3 control-label">确认密码</label>
-                                                        <div class="col-md-9">
-                                                            <input type="text" class="form-control" placeholder="再次输入密码" name="password_confirmation">
-                                                        </div>
-                                                    </div>
+                                                     <br/>
                                                     <!--<div class="form-group">
                                                         <label class="col-md-3 control-label">描述</label>
                                                         <div class="col-md-9">
