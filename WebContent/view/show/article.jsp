@@ -51,7 +51,7 @@
         		<td class = "maintd">
                   <h2 class = "mainh2">${p.getTitle()}</h2>
                   <p class = "mainp1">作者：${p.getMemberName()}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;时间:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;&nbsp;&nbsp;浏览量：${p.getCount()}</p>
-                  <p class = "mainp2">${p.getContent() }<br/><br/></p>
+                  <p class = "mainp2" style ="color:white;">${p.getContent() }<br/><br/></p>
                   <br/><br/><br/>
                    <div calss = "pagenext">
             	<ul id="pagination-digg">

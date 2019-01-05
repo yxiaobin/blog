@@ -154,11 +154,18 @@
                 'attachment'
             ]]});
         ue.ready(function() {
+            ue.setContent('<p>${p.getContent()}</p>', true);
+        });
+        function cleardoc() {
+            UE.getEditor('editor').execCommand( "cleardoc" );
+        }
+
+        /* ue.ready(function() {
             //设置编辑器的内容
          	//ue.setContent(${p.getContent()});
             ue.execCommand("inserthtml","${p.getContent()}") ;
 
-        });
+        }); */
     </script>
 </body>
 </html>

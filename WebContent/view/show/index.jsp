@@ -71,11 +71,15 @@
             <br/><br/></br>
                         
             </c:forEach> 
+           <c:if test="${showarticlelist.size()==0 }">
+      			 <p style = "color:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当前分类下没有任何文章！</p>
+      		</c:if>
+           
             <br/><br/>
             
             <div calss = "pagenext">
             	<ul id="pagination-digg">
-            	   	<c:if test="${pagenum==1 }">
+            	   	<c:if test="${pagenum<=1 }">
     				<li class="previous-off">&laquo;Previous</li>
     				</c:if>
     				<c:if test="${pagenum!=1 }">
@@ -87,10 +91,11 @@
       					<c:if test="${i==pagenum}"> ${i}</c:if>
       				</li>
       				</c:forEach>
-      				<c:if test="${pagenum==page.getEndPage()}">
+      				
+      				<c:if test="${pagenum>=page.getEndPage()}">
     				<li class="previous-off">Next &raquo;</li>
     				</c:if>
-    				<c:if test="${pagenum!=page.getEndPage() }">
+    				<c:if test="${pagenum<page.getEndPage() }">
     				<li class="next"><a href="${pageContext.request.contextPath}/ShowArticleListServlet?id=${pagecategoryid }&pagenum=${pagenum+1}">Next &raquo;</a> </li>
     				</c:if>
       			
