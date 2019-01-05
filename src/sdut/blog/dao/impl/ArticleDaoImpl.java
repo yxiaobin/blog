@@ -179,7 +179,38 @@ public class ArticleDaoImpl implements ArticleDao{
 	@Override
 	public ArrayList<Article> SearchArticleByCategoryID(Category p) {
 		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Article> list = new ArrayList<Article>();
+		DButils dbutil = new DButils();
+		try {
+			//1、连接数据库
+			Connection con = dbutil.getCon();
+			//2.查询语句
+			String sql = "select * from article where category_id = ?";
+			PreparedStatement pstmt =con.prepareStatement(sql) ;
+			pstmt.setInt(1, p.getId());
+			ResultSet rs =pstmt.executeQuery();
+			//3.处理结果集
+			
+			while(rs.next()) {
+				Article article = new Article();
+				article.setId(rs.getInt("id"));
+				article.setCategory_id(rs.getInt("category_id"));
+				article.setContent(rs.getString("content"));
+				article.setMember_id(rs.getInt("member_id"));
+				article.setTitle(rs.getString("title"));
+				article.setNowtime(rs.getString("date"));
+				article.setKeyword(rs.getString("keyword"));
+				article.setCount(rs.getInt("count"));
+				list.add(article);
+			}
+			//4.关闭数据库
+			dbutil.closeCon(con);
+			pstmt.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 }

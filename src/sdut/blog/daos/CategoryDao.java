@@ -1,5 +1,5 @@
 package sdut.blog.daos;
-import java.util.List;
+import java.util.ArrayList;
 
 import sdut.blog.domain.Category;
 import sdut.blog.domain.User;
@@ -18,5 +18,5 @@ public interface CategoryDao {
 	public Category SearchCategoryByNum(int Num);
 		
 	//查找所有分类
-	public List<Category> SearchCategorys();
+	public ArrayList<Category> SearchCategorys();
 }
