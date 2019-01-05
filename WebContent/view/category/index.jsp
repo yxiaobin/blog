@@ -73,6 +73,13 @@
                                         <a href="${pageContext.request.contextPath}/view/category/edit.jsp?id=${item.getId()}">
                                             <input type="button" class="btn btn-xs btn-primary"  value="修改">
                                         </a>
+                                        
+                                        <a href="${pageContext.request.contextPath}/CategoryDownServlet?id=${item.getId()}">
+                                            <input type="button"  class="btn btn-xs btn-warning"  value="下移">
+                                        </a>
+                                         <a href="${pageContext.request.contextPath}/CategoryUpServlet?id=${item.getId()}">
+                                            <input type="button" <c:if test="${item.getNum()==1 }">disabled</c:if> class="btn btn-xs btn-success"  value="上移">
+                                        </a>
                                     </td>
                                 </tr>
                          </c:forEach>

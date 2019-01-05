@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8" import ="sdut.blog.dao.impl.ArticleDaoImpl, sdut.blog.domain.Article"%>
+    pageEncoding="utf-8" import ="sdut.blog.dao.impl.ArticleDaoImpl, sdut.blog.domain.Article,sdut.blog.dao.impl.CategoryDaoImpl, java.util.ArrayList, sdut.blog.domain.Category"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
    
@@ -58,14 +58,19 @@
                             <label>博客标题</label>
                             <input type="text" class="form-control" name="title" value="${p.getTitle() }">
                         </div>
-                        <div class="form-group">
+                       <div class="form-group">
                             <label>博客分类</label>
+                            <%
+                            	CategoryDaoImpl op1 = new CategoryDaoImpl();
+                            	ArrayList<Category> list = (ArrayList<Category>) op1.SearchCategorys();
+                            	request.setAttribute("list", list);
+                            %>
                             <select name="category_id" id="" class="select2">
-                               
-                                    <option value="1">
-                                     		额呵呵
+                               		<c:forEach var="item" items="${list}">
+                                    <option <c:if test="${p.getCategory_id()==item.getId() }" > selected</c:if>  value="${item.getId() }">
+                                     		${item.getName() }
                                     </option>
-                                
+                                	</c:forEach>
                             </select>
                         </div>
                       

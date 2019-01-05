@@ -34,7 +34,7 @@
 <!-- 主要的内容  --> 
    <div class="row" style="margin: 10px -15px 30px -15px">
         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-            <a class="card card-banner card-yellow-light" href="#">
+            <a class="card card-banner card-yellow-light" href="${rooturl}/UserServlet">
                 <div class="card-body">
                     <i class="icon fa fa-user-plus fa-4x"></i>
                     <div class="content">
@@ -45,7 +45,7 @@
             </a>
         </div>
         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-            <a class="card card-banner card-blue-light" href="#">
+            <a class="card card-banner card-blue-light" href="${rooturl }/ArticleServlet">
                 <div class="card-body">
                     <i class="icon fa fa-newspaper-o fa-4x"></i>
                     <div class="content">
@@ -56,7 +56,7 @@
             </a>
         </div>
         <div class="col-lg-4 col-md-8col-sm-6 col-xs-12">
-            <a class="card card-banner card-green-light" href="#">
+            <a class="card card-banner card-green-light" href="${rooturl }/CategoryServlet">
                 <div class="card-body">
                     <i class="icon fa fa-star fa-4x"></i>
                     <div class="content">
@@ -82,10 +82,11 @@
                     <ul class="list-group">
                     	<c:forEach var="item" items="${article_list }" end="4" >
                         <li class="list-group-item">
-                            <label> ${item.getTitle() }  </label>  <span style="margin-left:45%;"> 作者: ${item.getMemberName()}</span>
+                            <label style="width=70px;">博客标题: &nbsp;</label>  <span style="margin-left:5%;"> ${item.getTitle() }  </span>
                         </li>
                        </c:forEach>
                     </ul>
+                    
                 </div>
             </div>
         </div>
@@ -128,7 +129,6 @@
             </div>
         </div>
     </div>
-
 <!--补充slide.jsp 的 div  -->
 </div>
 

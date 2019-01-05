@@ -38,7 +38,6 @@ public class UserCheck implements Filter {
 		// place your code here
 		  HttpServletRequest req = (HttpServletRequest) request;
 	      HttpServletResponse rsp = (HttpServletResponse) response;
-	      System.out.println("222");
 	      HttpSession session = req.getSession();
 	      
 	 

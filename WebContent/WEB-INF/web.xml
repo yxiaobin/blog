@@ -32,9 +32,18 @@
     <url-pattern>/view/user/*</url-pattern>
     <url-pattern>/view/article/*</url-pattern>
     <url-pattern>/UserServlet</url-pattern>
+    <url-pattern>/UserAddServlet</url-pattern>
+    <url-pattern>/UserDeleteServlet</url-pattern>
+    <url-pattern>/UserUpdateServlet</url-pattern>
     <url-pattern>/CategoryServlet</url-pattern>
+    <url-pattern>/CategoryAddServlet</url-pattern>
+    <url-pattern>/CategoryDeleteServlet</url-pattern>
+    <url-pattern>/CategoryUpdateServlet</url-pattern>
+    <url-pattern>/ArticleServlet</url-pattern>
+    <url-pattern>/ArticleAddServlet</url-pattern>
+    <url-pattern>/ArticleDeletServlet</url-pattern>
+    <url-pattern>/ArticleUpdateServlet</url-pattern>
   </filter-mapping>
-  
   <servlet>
     <description></description>
     <display-name>LoginServlet</display-name>
@@ -55,8 +64,6 @@
     <servlet-name>UserAddServlet</servlet-name>
     <url-pattern>/UserAddServlet</url-pattern>
   </servlet-mapping>
-  
-  
   <servlet>
     <description></description>
     <display-name>UserUpdateServlet</display-name>
@@ -87,8 +94,6 @@
     <servlet-name>ArticleServlet</servlet-name>
     <url-pattern>/ArticleServlet</url-pattern>
   </servlet-mapping>
-  
-  
   <servlet>
     <description></description>
     <display-name>ArticleAddServlet</display-name>
@@ -119,16 +124,12 @@
     <servlet-name>CategoryServlet</servlet-name>
     <url-pattern>/CategoryServlet</url-pattern>
   </servlet-mapping>
-  
-  
   <servlet>
     <description></description>
     <display-name>ArticleDeletServlet</display-name>
     <servlet-name>ArticleDeletServlet</servlet-name>
     <servlet-class>sdut.blog.controller.ArticleDeletServlet</servlet-class>
   </servlet>
- 
- 
   <servlet-mapping>
     <servlet-name>ArticleDeletServlet</servlet-name>
     <url-pattern>/ArticleDeletServlet</url-pattern>
@@ -139,13 +140,10 @@
     <servlet-name>ArticleUpdateServlet</servlet-name>
     <servlet-class>sdut.blog.controller.ArticleUpdateServlet</servlet-class>
   </servlet>
- 
- 
   <servlet-mapping>
     <servlet-name>ArticleUpdateServlet</servlet-name>
     <url-pattern>/ArticleUpdateServlet</url-pattern>
-   </servlet-mapping>
-   
+  </servlet-mapping>
   <servlet>
     <description></description>
     <display-name>DelCategoryServlet</display-name>
@@ -185,5 +183,65 @@
   <servlet-mapping>
     <servlet-name>CategoryUpdateServlet</servlet-name>
     <url-pattern>/CategoryUpdateServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CategoryUpServlet</display-name>
+    <servlet-name>CategoryUpServlet</servlet-name>
+    <servlet-class>sdut.blog.controller.CategoryUpServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CategoryUpServlet</servlet-name>
+    <url-pattern>/CategoryUpServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CategoryDownServlet</display-name>
+    <servlet-name>CategoryDownServlet</servlet-name>
+    <servlet-class>sdut.blog.controller.CategoryDownServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CategoryDownServlet</servlet-name>
+    <url-pattern>/CategoryDownServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FileUpServlet</display-name>
+    <servlet-name>FileUpServlet</servlet-name>
+    <servlet-class>sdut.blog.controller.FileUpServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FileUpServlet</servlet-name>
+    <url-pattern>/FileUpServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FileDownServlet</display-name>
+    <servlet-name>FileDownServlet</servlet-name>
+    <servlet-class>sdut.blog.controller.FileDownServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FileDownServlet</servlet-name>
+    <url-pattern>/FileDownServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FileServlet</display-name>
+    <servlet-name>FileServlet</servlet-name>
+    <servlet-class>sdut.blog.controller.FileServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FileServlet</servlet-name>
+    <url-pattern>/FileServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FileDeleteServlet</display-name>
+    <servlet-name>FileDeleteServlet</servlet-name>
+    <servlet-class>sdut.blog.controller.FileDeleteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FileDeleteServlet</servlet-name>
+    <url-pattern>/FileDeleteServlet</url-pattern>
   </servlet-mapping>
 </web-app>

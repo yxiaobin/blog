@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+    pageEncoding="utf-8" import="sdut.blog.dao.impl.CategoryDaoImpl, java.util.ArrayList, sdut.blog.domain.Category"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
    
@@ -51,12 +51,17 @@
                         </div>
                         <div class="form-group">
                             <label>博客分类</label>
+                            <%
+                            	CategoryDaoImpl op = new CategoryDaoImpl();
+                            	ArrayList<Category> list = (ArrayList<Category>) op.SearchCategorys();
+                            	request.setAttribute("list", list);
+                            %>
                             <select name="category_id" id="" class="select2">
-                               
-                                    <option value="1">
-                                     		额呵呵
+                               		<c:forEach var="item" items="${list}">
+                                    <option value="${item.getId() }">
+                                     		${item.getName() }
                                     </option>
-                                
+                                	</c:forEach>
                             </select>
                         </div>
                       

@@ -66,9 +66,6 @@
                                   
                                     <td>${item.getEmail() }</td>
                                     <td>${item.getName()}</td>
-
-                                    <td>${item.getUserName() }</td>
-
                                     <td>${item.getUsername()}</td>
                                     <td>
                                         <a href="${rooturl }/UserDeleteServlet?id=${item.getId()}">

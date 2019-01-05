@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class DButils {
 	private String name = "root";
-	private String password = "1";
+	private String password = "";
 	private String url = "jdbc:mysql://localhost:3306/myblog?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8";
 	private String jdbcname = "com.mysql.cj.jdbc.Driver";
 	

@@ -14,6 +14,9 @@ public interface CategoryDao {
 	public Category SearchCategoryByID(int id);
 	//查找分类ByName
 	public Category SearchCategoryByName(String name);
+	//查找分类ByNum
+	public Category SearchCategoryByNum(int Num);
+		
 	//查找所有分类
 	public List<Category> SearchCategorys();
 }

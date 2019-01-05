@@ -63,11 +63,12 @@ public class CategoryDaoImpl implements CategoryDao{
 			//1、连接数据库
 			Connection con = dbutil.getCon();
 			//2.查询语句
-			String sql = "Update category set name = ? ,isshow = ? where id = ?";
+			String sql = "Update category set name = ? ,isshow = ? , num = ? where id = ?";
 			PreparedStatement pstmt =con.prepareStatement(sql) ;
 			pstmt.setString(1, category.getName());
 			pstmt.setInt(2, category.getShow());
-			pstmt.setInt(3, category.getId());
+			pstmt.setInt(3, category.getNum());
+			pstmt.setInt(4, category.getId());
 			pstmt.executeUpdate();
 			//4.关闭数据库
 			dbutil.closeCon(con);
@@ -179,7 +180,7 @@ public class CategoryDaoImpl implements CategoryDao{
 			//1、连接数据库
 			Connection con = dbutil.getCon();
 			//2.查询语句
-			String sql = "select * from category";
+			String sql = "select * from category order by num ";
 			PreparedStatement pstmt =con.prepareStatement(sql) ;
 			ResultSet rs =pstmt.executeQuery();
 			//3.处理结果集
@@ -201,6 +202,38 @@ public class CategoryDaoImpl implements CategoryDao{
 		}
 		//返回
 		return list;
+	}
+
+	@Override
+	public Category SearchCategoryByNum(int Num) {
+		// TODO Auto-generated method stub
+		Category category = new Category();
+		DButils dbutil = new DButils();
+		try {
+			//1、连接数据库
+			Connection con = dbutil.getCon();
+			//2.查询语句
+			String sql = "select * from category where num = ?";
+			PreparedStatement pstmt =con.prepareStatement(sql) ;
+			pstmt.setInt(1, Num);
+			ResultSet rs =pstmt.executeQuery();
+			//3.处理结果集
+			
+			while(rs.next()) {
+				category.setId(rs.getInt("id"));
+				category.setName(rs.getString("name"));
+				category.setNum(rs.getInt("num"));
+				category.setShow(rs.getInt("isshow"));
+			}
+			//4.关闭数据库
+			dbutil.closeCon(con);
+			pstmt.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//返回
+		return category;
 	}
 
 
