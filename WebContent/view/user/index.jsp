@@ -67,9 +67,7 @@
                                     <td>${item.getEmail() }</td>
                                     <td>${item.getName()}</td>
 
-                                    <td>${item.getUserName() }</td>
-
-                                    <td>${item.getUsername()}</td>
+                                    <td>${item.getUsername() }</td>
                                     <td>
                                         <a href="${rooturl }/UserDeleteServlet?id=${item.getId()}">
                                             <input type="button" class="btn btn-xs btn-danger" onclick="return confirm('确认要删除吗？')" value="删除">

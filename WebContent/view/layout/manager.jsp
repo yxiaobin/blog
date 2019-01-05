@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8" import ="java.text.SimpleDateFormat, java.util.Date, sdut.blog.dao.impl.ArticleDaoImpl, java.util.ArrayList, sdut.blog.domain.Article"%>
+    pageEncoding="utf-8" import ="java.text.SimpleDateFormat, java.util.Date, sdut.blog.dao.impl.ArticleDaoImpl, java.util.ArrayList, sdut.blog.domain.Article, sdut.blog.utils.DButils,java.sql.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <c:set var="rooturl" value="${pageContext.request.contextPath}"></c:set>
 
 <!DOCTYPE html>
@@ -39,7 +40,26 @@
                     <i class="icon fa fa-user-plus fa-4x"></i>
                     <div class="content">
                         <div class="title"> 用户管理</div>
-                        <div class="value"><span class="sign"></span>2</div>
+                        <%
+                        DButils dbutil = new DButils();
+            			try {
+            				int usercount = 0; 
+            				int categorycount = 0;
+            				int articlecount = 0;
+            				//1、连接数据库
+            				Connection con = dbutil.getCon();
+            				//2.查询语句
+            				String sql1 = "select count(*) as usercount from user";
+            				PreparedStatement pstmt =con.prepareStatement(sql1) ;
+            				ResultSet rs = pstmt.executeQuery();
+            				
+            				//3.处理结果集
+            				rs.next();
+            				usercount = rs.getInt("usercount");
+            				request.setAttribute("usercount",usercount);
+            				
+                        %>
+                        <div class="value"><span class="sign"></span>${usercount}</div>
                     </div>
                 </div>
             </a>
@@ -50,7 +70,18 @@
                     <i class="icon fa fa-newspaper-o fa-4x"></i>
                     <div class="content">
                         <div class="title"> 我的文章</div>
-                        <div class="value"><span class="sign"></span>432</div>
+                        <%
+            			    sql1 = "select count(*) as articlecount from article";
+            				pstmt =con.prepareStatement(sql1) ;
+            				rs = pstmt.executeQuery();
+            				
+            				//3.处理结果集
+            				rs.next();
+            				articlecount = rs.getInt("articlecount");
+            				request.setAttribute("articlecount",articlecount);
+            				
+                        %>
+                        <div class="value"><span class="sign"></span>${articlecount}</div>
                     </div>
                 </div>
             </a>
@@ -61,7 +92,24 @@
                     <i class="icon fa fa-star fa-4x"></i>
                     <div class="content">
                         <div class="title">我的分类</div>
-                        <div class="value"><span class="sign"></span>7</div>
+                         <% 
+                         sql1 = "select count(*) as categorycount from category";
+            				pstmt =con.prepareStatement(sql1) ;
+            				rs = pstmt.executeQuery();
+            				
+            				//3.处理结果集
+            				rs.next();
+            				categorycount = rs.getInt("categorycount");
+            				request.setAttribute("categorycount",categorycount);
+            				//4.关闭数据库
+            				dbutil.closeCon(con);
+            				pstmt.close();
+            			} catch (Exception e) {
+            				// TODO Auto-generated catch block
+            				e.printStackTrace();
+            			}
+                        %>
+            				<div class="value"><span class="sign"></span>${categorycount }</div>
                     </div>
                 </div>
             </a>
