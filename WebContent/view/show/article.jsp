@@ -18,11 +18,10 @@
    </div>
    
     
-    <div class = "top1">
-    
-      <div id="nav">
+     <div class = "top1">
+    <div id="nav">
     	<ul>
-        	<li><a class="home" href="${pageContext.request.contextPath}/ShowArticleListServlet?id">首页</a></li>
+        	<li><a class="home" href="${pageContext.request.contextPath}/ShowArticleListServlet?id=-1&pagenum=1">首页</a></li>
         	<% 
         	ArrayList<Category> list1 = new ArrayList<Category>();
             CategoryServiceImpl categoryopp = new CategoryServiceImpl();
@@ -30,11 +29,10 @@
             request.setAttribute("categorylist1", list1);
             %>
             <c:forEach var="item" items="${categorylist1 }">
-    			<li ><a href="${pageContext.request.contextPath}/ShowArticleListServlet?id=${item.getId()}" >${item.getName()}</a></闪电>
+    			<li ><a href="${pageContext.request.contextPath}/ShowArticleListServlet?id=${item.getId()}&pagenum=1" >${item.getName()}</a></li>
             </c:forEach>
     	</ul>
     </div>
-    
     </div>
     
     <div class = "main">
@@ -103,7 +101,7 @@
             request.setAttribute("categorylist", list3);
             %>
     			<c:forEach var="item" items="${categorylist }">
-    			<li ><a href="${pageContext.request.contextPath}/ShowArticleListServlet?id=${item.getId()}" >${item.getName() }</a></li>
+    			<li ><a href="${pageContext.request.contextPath}/ShowArticleListServlet?id=${item.getId()}&pagenum=1" >${item.getName() }</a></li>
             	</c:forEach>
 			</ul>
             </div>

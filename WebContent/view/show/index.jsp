@@ -2,7 +2,7 @@
     pageEncoding="utf-8" import = "java.util.*,sdut.blog.domain.*,sdut.blog.dao.impl.*, sdut.blog.service.impl.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="rooturl" value="${pageContext.request.contextPath}"></c:set>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -21,7 +21,7 @@
     <div class = "top1">
     <div id="nav">
     	<ul>
-        	<li><a class="home" href="${pageContext.request.contextPath}/ShowArticleListServlet?id">首页</a></li>
+        	<li><a class="home" href="${pageContext.request.contextPath}/ShowArticleListServlet?id=-1&pagenum=1">首页</a></li>
         	<% 
         	ArrayList<Category> list1 = new ArrayList<Category>();
             CategoryServiceImpl categoryopp = new CategoryServiceImpl();
@@ -29,7 +29,7 @@
             request.setAttribute("categorylist1", list1);
             %>
             <c:forEach var="item" items="${categorylist1 }">
-    			<li ><a href="${pageContext.request.contextPath}/ShowArticleListServlet?id=${item.getId()}" >${item.getName()}</a></闪电>
+    			<li ><a href="${pageContext.request.contextPath}/ShowArticleListServlet?id=${item.getId()}&pagenum=1" >${item.getName()}</a></li>
             </c:forEach>
     	</ul>
     </div>
@@ -39,20 +39,29 @@
     <div class = "main">
 		<div class = "main-left">
 		
-		
-        	<div class = "cate">分类</div></a>
+			<c:if test="${pagecategoryid != -1}" >
+        	<div class = "cate">${categoryname }</div></a>
             <HR style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="80%"  SIZE=3>
-            <br/>
             
+            <br/>
+            </c:if>
           <c:forEach var="item" items="${showarticlelist}"> 
             <div class = "main-left-show">
         		<table border="1" height = "200px" width = "510" aligh = "center" vspace=10px >
     				<tr>
         				<td width="408" >
         				
-                  			<div class = "innertitle"><h2 style = "color:white;"><a href = "${rooturl }/view/show/article.jsp?id=${item.getId()}" style = "color:whitesmoke;">${item.getTitle()}一只特立独行的猪</a></h2></div>
+                  			<div class = "innertitle"><h2 style = "color:white;"><a href = "${rooturl }/view/show/article.jsp?id=${item.getId()}" style = "color:whitesmoke;">${item.getTitle()}</a></h2></div>
                   			<div  class = "p1">作者：${item.getMemberName()}&nbsp;&nbsp;&nbsp;时间：${item.getNowtime() }</div>
-                  			<div class = "p2" style = "color:whitesmoke;">${item.getContent() }<br/><br/></div>
+                  			
+                  			<div class = "p2" style = "color:whitesmoke;">
+                  				<c:if test="${item.getContent().length()>25}">
+                  					${item.getContent().substring(0,25) }<br/><br/>
+                  				</c:if>
+                  				<c:if test="${item.getContent().length()<=25}">
+                  					${item.getContent()}<br/><br/>
+                  				</c:if>
+                  			</div>
                 		
                 		</td>
                 		
@@ -66,13 +75,26 @@
             
             <div calss = "pagenext">
             	<ul id="pagination-digg">
+            	   	<c:if test="${pagenum==1 }">
     				<li class="previous-off">&laquo;Previous</li>
-      				<li class="active">1</li>
-      				<li><a href="">2</a></li>
-      				<li><a href="">3</a></li>
-      				<li><a href="">4</a></li>
-      				<li><a href="">5</a></li>
-      				<li class="next"><a href="">Next &raquo;</a></li>
+    				</c:if>
+    				<c:if test="${pagenum!=1 }">
+    				<li class="next"><a href="${pageContext.request.contextPath}/ShowArticleListServlet?id=${pagecategoryid }&pagenum=${pagenum-1}">&laquo;Previous</a> </li>
+    				</c:if>
+    				<c:forEach begin="${page.getStartPage()}" end="${page.getEndPage() }" step="1" var="i">
+      				<li class="<c:if test="${i==pagenum}"> active</c:if> "  >
+      					<c:if test="${i!=pagenum}"> <a href="${pageContext.request.contextPath}/ShowArticleListServlet?id=${pagecategoryid }&pagenum=${i}">${i} </a></c:if>
+      					<c:if test="${i==pagenum}"> ${i}</c:if>
+      				</li>
+      				</c:forEach>
+      				<c:if test="${pagenum==page.getEndPage()}">
+    				<li class="previous-off">Next &raquo;</li>
+    				</c:if>
+    				<c:if test="${pagenum!=page.getEndPage() }">
+    				<li class="next"><a href="${pageContext.request.contextPath}/ShowArticleListServlet?id=${pagecategoryid }&pagenum=${pagenum+1}">Next &raquo;</a> </li>
+    				</c:if>
+      			
+      				
   				</ul>
             </div>
           
@@ -114,7 +136,7 @@
             request.setAttribute("categorylist", list3);
             %>
     			<c:forEach var="item" items="${categorylist }">
-    			<li ><a href="${pageContext.request.contextPath}/ShowArticleListServlet?id=${item.getId()}" >${item.getName() }</a></li>
+    			<li ><a href="${pageContext.request.contextPath}/ShowArticleListServlet?id=${item.getId()}&pagenum=1" >${item.getName() }</a></li>
             	</c:forEach>
 			</ul>
             </div>

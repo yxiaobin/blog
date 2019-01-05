@@ -12,6 +12,7 @@ import sdut.blog.dao.impl.ArticleDaoImpl;
 import sdut.blog.dao.impl.CategoryDaoImpl;
 import sdut.blog.domain.Article;
 import sdut.blog.domain.Category;
+import sdut.blog.domain.Page;
 import sdut.blog.service.impl.ArticleServiceImpl;
 
 /**
@@ -35,18 +36,39 @@ public class ShowArticleListServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setHeader("Content-Type", "text/html;charset=UTF-8");//设置UTF-8的显示页面的类型和字符集
 		String h = request.getParameter("id");
-		if(h!="") {
+		String pagenum = request.getParameter("pagenum");
+		if(Integer.parseInt(h)!=-1) {
 			int id = Integer.parseInt(h);
-		
 			ArticleServiceImpl op = new ArticleServiceImpl();
 			ArrayList<Article> list = new ArrayList<Article>();
-			list = op.SearchArticleByCategoryId(id);
-			
+			ArrayList<Article> list1 = new ArrayList<Article>();
+//			获取当前分类的所有的文章
+			//list = op.SearchArticleByCategoryId(id);
+			int total = op.SearchArticleByCategoryId(id).size();
+			//分页
+			Page page = new Page(Integer.parseInt(pagenum),total);
+//			查询list
+			list = op.SearchArticlesByCategoryIdandPage(id, page);
+			request.setAttribute("page", page);
+			request.setAttribute("pagecategoryid", id);
+			Category p = new Category();
+			p.setId(id);
+			request.setAttribute("categoryname", p.getCategoryName());
+			request.setAttribute("pagenum", Integer.parseInt(pagenum));
 			request.setAttribute("showarticlelist", list);
 		}else {
 			ArticleServiceImpl op = new ArticleServiceImpl();
 			ArrayList<Article> list = new ArrayList<Article>();
-			list = op.SearchArticles();
+			//获取当前分类的所有的文章
+			//list = op.SearchArticleByCategoryId(id);
+			int total = op.SearchArticles().size();
+			//分页
+			Page page = new Page(Integer.parseInt(pagenum),total);
+//			查询list
+			list = op.SearchArticlesandPage( page);
+			request.setAttribute("page", page);
+			request.setAttribute("pagecategoryid", -1);
+			request.setAttribute("pagenum", Integer.parseInt(pagenum));
 			request.setAttribute("showarticlelist", list);
 		}
 		

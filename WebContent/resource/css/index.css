@@ -167,22 +167,25 @@ pagenext{
 	width:150px;
 	height:35px;
 	}
-
-#pagination-digg li {  font-size:15px; list-style:none; /* savers */ float:right; }
+#pagination-digg {
+	text-align:center;
+}
+ul {
+	
+}
+#pagination-digg li {  font-size:15px; list-style:none; /* savers */display:inline-block; }
 
 #pagination-digg a { border:solid 1px white; margin-right:2px;border-radius:13px;  }/*修改静态页面边框的颜色*/
 
-#pagination-digg .previous-off,#pagination-digg .next-off  { border:solid 1px #fff; color:white; 
-
-float:ight; font-weight:bold; margin-right:2px; padding:3px 4px; border-radius:13px;}/*修改最左边边框*/
+#pagination-digg .previous-off,#pagination-digg .next-off  { border:solid 1px #fff; color:white;  font-weight:bold; margin-right:2px; padding:3px 4px; border-radius:13px;}/*修改最左边边框*/
 
 #pagination-digg .next a,#pagination-digg .previous a { font-weight:bold; }
 
-#pagination-digg .active { background:#F30; color:#FFFFFF; font-weight:bold;float:right; 
+#pagination-digg .active { background:#F30; color:#FFFFFF; font-weight:bold;
 
 padding:4px 6px; /* savers */ margin-right:2px;border-radius:13px; border:solid 1px #fff; }/*修改当前页面选中框的颜色*/
 
-#pagination-digg a:link,#pagination-digg a:visited { color:white;  float:right; padding:3px 6px; font-weight:bold;
+#pagination-digg a:link,#pagination-digg a:visited { color:white; padding:3px 6px; font-weight:bold;
 
 text-decoration:none; }/*修改字体的颜色*/
 

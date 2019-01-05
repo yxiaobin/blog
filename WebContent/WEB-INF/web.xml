@@ -39,10 +39,17 @@
     <url-pattern>/CategoryAddServlet</url-pattern>
     <url-pattern>/CategoryDeleteServlet</url-pattern>
     <url-pattern>/CategoryUpdateServlet</url-pattern>
+    <url-pattern>/CategoryUpServlet</url-pattern>
+    <url-pattern>/CategoryDownServlet</url-pattern>
     <url-pattern>/ArticleServlet</url-pattern>
     <url-pattern>/ArticleAddServlet</url-pattern>
     <url-pattern>/ArticleDeletServlet</url-pattern>
     <url-pattern>/ArticleUpdateServlet</url-pattern>
+    <url-pattern>/FileServlet</url-pattern>
+    <url-pattern>/FileUpServlet</url-pattern>
+    <url-pattern>/FileUpdateServlet</url-pattern>
+    <url-pattern>/FileDownServlet</url-pattern>
+    <url-pattern>/FileDeleteServlet</url-pattern>
   </filter-mapping>
   <servlet>
     <description></description>
@@ -264,14 +271,23 @@
     <servlet-name>ShowArticleListServlet</servlet-name>
     <url-pattern>/ShowArticleListServlet</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ShowArticleDetailServlet</display-name>
-    <servlet-name>ShowArticleDetailServlet</servlet-name>
-    <servlet-class>sdut.blog.controller.ShowArticleDetailServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ShowArticleDetailServlet</servlet-name>
-    <url-pattern>/ShowArticleDetailServlet</url-pattern>
-  </servlet-mapping>
+  <filter>
+    <display-name>HomePage</display-name>
+    <filter-name>HomePage</filter-name>
+    <filter-class>sdut.blog.filter.HomePage</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>HomePage</filter-name>
+    <url-pattern>/HomePage</url-pattern>
+    <url-pattern>/</url-pattern>
+  </filter-mapping>
+  <filter>
+    <display-name>Login</display-name>
+    <filter-name>Login</filter-name>
+    <filter-class>sdut.blog.filter.Login</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>Login</filter-name>
+    <url-pattern>/Login</url-pattern>
+  </filter-mapping>
 </web-app>

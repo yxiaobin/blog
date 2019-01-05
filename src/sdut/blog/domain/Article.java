@@ -78,4 +78,10 @@ public class Article {
 		p = op.SearchUserByID(this.member_id);
 		return p.getName();
 	}
+	public String getCategoryName() {
+		Category z = new Category();
+		z.setId(this.getCategory_id());
+		return z.getCategoryName();
+		
+	}
 }

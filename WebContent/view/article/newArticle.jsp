@@ -53,7 +53,7 @@
                             <label>博客分类</label>
                             <%
                             	CategoryDaoImpl op = new CategoryDaoImpl();
-                            	ArrayList<Category> list = (ArrayList<Category>) op.SearchCategorys();
+                            	ArrayList<Category> list = (ArrayList<Category>)op.SearchCategorys();
                             	request.setAttribute("list", list);
                             %>
                             <select name="category_id" id="" class="select2">

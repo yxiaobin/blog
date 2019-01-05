@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+    pageEncoding="utf-8" import="sdut.blog.dao.impl.*, java.util.*"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
    
@@ -73,9 +73,13 @@
                                         <a href="${pageContext.request.contextPath}/view/category/edit.jsp?id=${item.getId()}">
                                             <input type="button" class="btn btn-xs btn-primary"  value="修改">
                                         </a>
-                                        
+                                        <%
+                                        	CategoryDaoImpl op = new CategoryDaoImpl();
+                                        	List list =op.SearchCategorys(); 
+                                        	request.setAttribute("totalnum",list.size());
+                                        %>
                                         <a href="${pageContext.request.contextPath}/CategoryDownServlet?id=${item.getId()}">
-                                            <input type="button"  class="btn btn-xs btn-warning"  value="下移">
+                                            <input type="button" <c:if test="${item.getNum()==totalnum }">disabled</c:if> class="btn btn-xs btn-warning"  value="下移">
                                         </a>
                                          <a href="${pageContext.request.contextPath}/CategoryUpServlet?id=${item.getId()}">
                                             <input type="button" <c:if test="${item.getNum()==1 }">disabled</c:if> class="btn btn-xs btn-success"  value="上移">

@@ -1,5 +1,7 @@
 package sdut.blog.domain;
 
+import sdut.blog.dao.impl.CategoryDaoImpl;
+
 public class Category {
 	int id;
 	String name;
@@ -32,5 +34,11 @@ public class Category {
 	public void setShow(int show) {
 		this.show = show;
 	}
-	
+	public String getCategoryName() {
+		CategoryDaoImpl op = new CategoryDaoImpl();
+		Category p = op.SearchCategoryByID(this.id);
+		
+		return p.getName();
+		
+	}
 }
