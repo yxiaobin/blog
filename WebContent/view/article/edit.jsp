@@ -49,7 +49,6 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">修改博客</div>
-                <div class="card-body">
                     <form action="${rooturl }/ArticleUpdateServlet" method="post">
                      
                        <input type="text" class="form-control hidden" name="id" value="${p.getId() }">

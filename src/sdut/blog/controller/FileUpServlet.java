@@ -16,6 +16,9 @@ import org.apache.commons.fileupload.ProgressListener;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import sdut.blog.dao.impl.FileDaoImpl;
+import sdut.blog.domain.MyFile;
+
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -135,6 +138,14 @@ public class FileUpServlet extends HttpServlet {
                     //删除处理文件上传时生成的临时文件
                     //item.delete();
                     message = "文件上传成功！";
+                    //将信息保存到文件中
+                    FileDaoImpl op = new FileDaoImpl();
+                    MyFile myfile = new MyFile();
+                    myfile.setFilepwd(realSavePath);
+                    myfile.setName(saveFilename);
+                    myfile.setMember_id((int) request.getSession().getAttribute("user_id"));
+                    myfile.setIsshare(0);
+                    op.AddMyFile(myfile);
                 }
             }
         }catch (FileUploadBase.FileSizeLimitExceededException e) {
@@ -152,6 +163,7 @@ public class FileUpServlet extends HttpServlet {
             e.printStackTrace();
         }
         request.setAttribute("message",message);
+        
         request.getRequestDispatcher("/view/file/message.jsp").forward(request, response);
 	}
 

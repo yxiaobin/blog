@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import sdut.blog.dao.impl.FileDaoImpl;
+import sdut.blog.domain.MyFile;
+
 /**
  * Servlet implementation class FileDeleteServlet
  */
@@ -42,6 +45,9 @@ public class FileDeleteServlet extends HttpServlet {
 	        }else {
 	        	file.delete();
 	        }
+	        FileDaoImpl op = new  FileDaoImpl();
+	        op.DeleteMyFileByName(fileName);
+	        response.sendRedirect(request.getContextPath()+"/FileServlet");
 	}
 
 	/**

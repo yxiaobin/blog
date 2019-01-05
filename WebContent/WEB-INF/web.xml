@@ -244,4 +244,14 @@
     <servlet-name>FileDeleteServlet</servlet-name>
     <url-pattern>/FileDeleteServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FileUpdateServlet</display-name>
+    <servlet-name>FileUpdateServlet</servlet-name>
+    <servlet-class>sdut.blog.controller.FileUpdateServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FileUpdateServlet</servlet-name>
+    <url-pattern>/FileUpdateServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

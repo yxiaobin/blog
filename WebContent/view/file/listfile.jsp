@@ -15,6 +15,8 @@
              <c:param name="filename" value="${me.key}"></c:param>
          </c:url>
          ${me.value}<a href="${downurl}">下载</a>
+         
+         
          <c:url value="/FileDeleteServlet" var="delurl">
              <c:param name="filename" value="${me.key}"></c:param>
          </c:url>
