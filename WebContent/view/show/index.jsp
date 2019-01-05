@@ -56,10 +56,11 @@
                   			
                   			<div class = "p2" style = "color:whitesmoke;">
                   				<c:if test="${item.getContent().length()>25}">
-                  					${item.getContent().substring(0,25) }<br/><br/>
+                  				<p>${item.getContent().substring(0,25) }</p>	<br/><br/>
                   				</c:if>
                   				<c:if test="${item.getContent().length()<=25}">
-                  					${item.getContent()}<br/><br/>
+                  					<p>${item.getContent()}</p>
+                  					<br/><br/>
                   				</c:if>
                   			</div>
                 		

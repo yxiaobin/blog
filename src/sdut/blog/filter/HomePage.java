@@ -37,7 +37,7 @@ public class HomePage implements Filter {
 		// place your code here
 		HttpServletRequest req = (HttpServletRequest) request;
 	    HttpServletResponse rsp = (HttpServletResponse) response;
-	    rsp.sendRedirect(req.getContextPath()+"/view/show/index.jsp");
+	    rsp.sendRedirect(req.getContextPath()+"/ShowArticleListServlet?id=-1&pagenum=1");
 		// pass the request along the filter chain
 		//chain.doFilter(request, response);
 	}
