@@ -52,14 +52,14 @@ public class ArticleDaoImpl implements ArticleDao{
 			//1、连接数据库
 			Connection con = dbutil.getCon();
 			//2.查询语句
-			String sql = "update article set category_id=?,title=?,keyword=?,content=?,date=? where id=?";
+			String sql = "update article set category_id=?,title=?,keyword=?,content=?,count=? where id=?";
 			PreparedStatement pstmt =con.prepareStatement(sql) ;
 			pstmt.setInt(1, p.getCategory_id());
 			pstmt.setString(2, p.getTitle());
 			pstmt.setString(3, p.getKeyword());
 			pstmt.setString(4, p.getContent());
-			String dateStr = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-			pstmt.setString(5, dateStr);
+			pstmt.setInt(5, p.getCount());
+			
 			pstmt.setInt(6, p.getId());
 			boolean rs =pstmt.execute();
 			//3.关闭数据库
@@ -110,7 +110,7 @@ public class ArticleDaoImpl implements ArticleDao{
 			
 			while(rs.next()) {
 				Article p = new Article();
-				p.setId(rs.getInt(1));
+				p.setId(rs.getInt("id"));
 				p.setMember_id(rs.getInt(2));
 				p.setCategory_id(rs.getInt(3));
 				p.setTitle(rs.getString(4));
@@ -179,7 +179,38 @@ public class ArticleDaoImpl implements ArticleDao{
 	@Override
 	public ArrayList<Article> SearchArticleByCategoryID(Category p) {
 		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Article> list = new ArrayList<Article>();
+		DButils dbutil = new DButils();
+		try {
+			//1、连接数据库
+			Connection con = dbutil.getCon();
+			//2.查询语句
+			String sql = "select * from article where category_id = ?";
+			PreparedStatement pstmt =con.prepareStatement(sql) ;
+			pstmt.setInt(1, p.getId());
+			ResultSet rs =pstmt.executeQuery();
+			//3.处理结果集
+			
+			while(rs.next()) {
+				Article article = new Article();
+				article.setId(rs.getInt("id"));
+				article.setCategory_id(rs.getInt("category_id"));
+				article.setContent(rs.getString("content"));
+				article.setMember_id(rs.getInt("member_id"));
+				article.setTitle(rs.getString("title"));
+				article.setNowtime(rs.getString("date"));
+				article.setKeyword(rs.getString("keyword"));
+				article.setCount(rs.getInt("count"));
+				list.add(article);
+			}
+			//4.关闭数据库
+			dbutil.closeCon(con);
+			pstmt.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 }

@@ -254,4 +254,24 @@
     <servlet-name>FileUpdateServlet</servlet-name>
     <url-pattern>/FileUpdateServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ShowArticleListServlet</display-name>
+    <servlet-name>ShowArticleListServlet</servlet-name>
+    <servlet-class>sdut.blog.controller.ShowArticleListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ShowArticleListServlet</servlet-name>
+    <url-pattern>/ShowArticleListServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ShowArticleDetailServlet</display-name>
+    <servlet-name>ShowArticleDetailServlet</servlet-name>
+    <servlet-class>sdut.blog.controller.ShowArticleDetailServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ShowArticleDetailServlet</servlet-name>
+    <url-pattern>/ShowArticleDetailServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

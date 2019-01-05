@@ -172,7 +172,7 @@ public class CategoryDaoImpl implements CategoryDao{
 	}
 	
 	@Override
-	public List<Category> SearchCategorys() {
+	public ArrayList<Category> SearchCategorys() {
 		// TODO Auto-generated method stub
 		DButils dbutil = new DButils();
 		ArrayList<Category> list = new ArrayList<Category>(); 

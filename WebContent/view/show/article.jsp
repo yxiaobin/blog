@@ -1,29 +1,40 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+    pageEncoding="utf-8" import = "java.util.*,sdut.blog.domain.*,sdut.blog.dao.impl.*, sdut.blog.service.impl.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!-- 获取绝对路径 -->
+<c:set var="rooturl" value="${pageContext.request.contextPath}"></c:set>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>文章</title>
-<link href="../../resource/css/article.css" rel="stylesheet"/>
+<link href="${rooturl }/resource/css/article.css" rel="stylesheet"/>
 </head>
-<body background="../../resource/img/bg.png" >
+<body background="${rooturl }/resource/img/bg.png" >
 	<div class = "top2">
      	<div class = "title"> 猪猪的博客</div>
         <div class = "description">遇见一场烟花盛开的美，从此，即使梦碎，依然守着不悔，选择在回忆里沉醉。风，轻轻舞动薄衫，吹起书案零</div>
    </div>
    
+    
     <div class = "top1">
-    <div id="nav">
+    
+      <div id="nav">
     	<ul>
-        	<li><a class="home" href="#">首页</a></li>
-        	<li><a href="introduction.html">Java</a></li>
-        	<li><a href="Kind.html">HTML</a></li>
-        	<li><a href="Discuss.html">读书</a></li>
-        	<li><a href="Match.html">运动</a></li>
-        	<li><a href="About.html">旅游</a></li>
+        	<li><a class="home" href="${pageContext.request.contextPath}/ShowArticleListServlet?id">首页</a></li>
+        	<% 
+        	ArrayList<Category> list1 = new ArrayList<Category>();
+            CategoryServiceImpl categoryopp = new CategoryServiceImpl();
+            list1 = categoryopp.SerarchCategoryShowTitle();
+            request.setAttribute("categorylist1", list1);
+            %>
+            <c:forEach var="item" items="${categorylist1 }">
+    			<li ><a href="${pageContext.request.contextPath}/ShowArticleListServlet?id=${item.getId()}" >${item.getName()}</a></闪电>
+            </c:forEach>
     	</ul>
     </div>
+    
     </div>
     
     <div class = "main">
@@ -31,10 +42,18 @@
             <div class = "main-left-shows">
         		<table class = "maintable" >
     			<tr>
+    			<%
+    			    String s = request.getParameter("id");
+    				ArticleDaoImpl op = new ArticleDaoImpl();
+    				Article p = op.SearchArticleByID(Integer.parseInt(s));
+    				p.setCount(p.getCount()+1);
+    				op.UpdateArticle(p);
+    				request.setAttribute("p",p);
+    			%>
         		<td class = "maintd">
-                  <h2 class = "mainh2">一只特立独行的猪</h2>
-                  <p class = "mainp1">作者：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;时间:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;&nbsp;&nbsp;浏览量：</p>
-                  <p class = "mainp2">hjhhhkhskdafhaks是发动机撒房间爱的书法家的算法ID送风机打扫房间附件第三方的i得分好的客户dhfhskfsfhkhhkjhkj<br/><br/></p>
+                  <h2 class = "mainh2">${p.getTitle()}</h2>
+                  <p class = "mainp1">作者：${p.getMemberName()}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;时间:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;&nbsp;&nbsp;浏览量：${p.getCount()}</p>
+                  <p class = "mainp2">${p.getContent() }<br/><br/></p>
                   <br/><br/><br/>
                    <div calss = "pagenext">
             	<ul id="pagination-digg">
@@ -54,29 +73,38 @@
             
         </div>
         
-        <div class = "main-right">
+       <div class = "main-right">
         	<br/><br/>
             <HR style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="80%" color=b SIZE=3>
             <br/>
             <div class = "main-right-top">
-            &nbsp;&nbsp;热门文章：
+            <h3>&nbsp;&nbsp;&nbsp;&nbsp;热门文章：</h3>
             <ul >
-    			<li><a href="#">情感健康的说法角度看</a></li>
-    			<li><a href="#">j附近的房间的看法</a></li>
-                <li><a href="#">附近的开发角度看</a></li>
-                <li><a href="#">反倒是开发角度看</a></li>
-                <li><a href="#">辅导费</a></li>
+            <% 
+            ArrayList<Article> list2 = new ArrayList<Article>();
+            ArticleServiceImpl articleop = new ArticleServiceImpl();
+            list2 = articleop.SearchArticleByCount();
+            request.setAttribute("articlelist", list2);
+            System.out.println(list2.size());
+            %>
+            <c:forEach var="item" items="${articlelist }">
+    			<li ><a href="${rooturl }/view/show/article.jsp?id=${item.getId()}" >${item.getTitle()}</a></li>
+            </c:forEach>
 			</ul>
             </div>
             <br/><br/>
             <div class = "main-right-top">
-            &nbsp;&nbsp;博客分类：<br/>
-            <ul >
-    			<li><a href="#">情感</a></li>
-    			<li><a href="#">java</a></li>
-                <li><a href="#">html</a></li>
-                <li><a href="#">javaweb</a></li>
-                <li><a href="#">日记</a></li>
+            <h3>&nbsp;&nbsp;&nbsp;&nbsp;博客分类：</h3>
+            <ul>
+             <%
+             ArrayList<Category> list3 = new ArrayList<Category>();
+            CategoryDaoImpl categoryop = new CategoryDaoImpl();
+            list3 = categoryop.SearchCategorys();
+            request.setAttribute("categorylist", list3);
+            %>
+    			<c:forEach var="item" items="${categorylist }">
+    			<li ><a href="${pageContext.request.contextPath}/ShowArticleListServlet?id=${item.getId()}" >${item.getName() }</a></li>
+            	</c:forEach>
 			</ul>
             </div>
             <br/>
