@@ -1,0 +1,197 @@
+body{
+		background-repeat:no-repeat;
+		background-size:100% 100%;
+		background-attachment:fixed;
+	}
+.main{
+		margin:0 auto;
+		width:900px;
+		background-attachment:fixed;
+	}
+/*宣传栏展示*/
+.top2{
+		height:150px;
+		background:rgba(255,255,255,0.2);
+		margin:0 auto;
+		width:900px;
+	}
+.title{
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size:50px;
+	padding-top:25px;
+	margin-left:100px;
+	font-weight:bold;
+	color:white;
+	float:inherit;
+	width:300px;
+	}
+.description{
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size:12px;
+	width:200px;
+	height:100px;
+	margin-top:-50px;
+	margin-right:120px;
+	color:whitesmoke;
+	float:right;
+	}
+.main-left{
+	width:550px;
+	margin-bottom:30px;
+	float:left;
+	margin-top:20px;
+	background:rgba(255,255,255,0.3);
+	padding-left:30px;
+	padding-top:20px;
+	}
+	/*文字展示框*/
+.main-left-show{
+	height:200px;
+	width:500px;
+	}
+.innertitle{
+	height:30px;
+	margin-top:5px;
+	padding-left:20px;
+	color:white;
+	}
+.p1{
+	margin-left:40px;
+	margin-top:5px;
+	color:#FF9;
+	font-size:12px;
+	text-align:left;
+	}
+.p2{
+	margin-left:20px;
+	margin-right:20px;
+	margin-top:5px;
+	color:#6FC;
+	font-size:16px;
+	text-align:left;
+	text-indent:2em;
+	}
+td{
+	border-radius:20px;
+	}
+table{
+	border-radius: 20px;
+	border-top-style: double;
+	border-right-style: double;
+	border-bottom-style: double;
+	border-left-style: double;
+	border:double;
+	border-color:white;
+	}
+.main-right{
+	width:300px;
+	
+	float:right;
+	margin-top:20px;
+	background:rgba(255,255,255,0.4);
+	}
+.main-right-top{
+	border-style:dashed;
+	border-width:1px;
+	border-radius:10px;
+	width:200px;
+	margin:auto;
+	border-color:black
+	}
+h2{
+	color:#fff;
+    text-align:left;
+	line-height:30px;
+	}
+td{
+	border-radius:20px;
+	}
+
+/*导航栏样式*/
+.top1{
+		height:50px;
+		background:rgba(255,255,255,0.4);
+		margin:0 auto;
+		width:900px;
+	}
+ #nav{
+            width:900px;
+			margin:0px auto;
+          
+        }
+ #nav ul{
+            list-style:none;
+           
+            overflow:hidden;
+        }
+#nav li{
+            float:left;
+        }
+#nav li a{
+            display:block;
+            color:#FFF;
+            width:132px;
+            height:50px;
+			font-weight:bold;
+            line-height:50px;
+            text-decoration:none;
+            text-align:center;
+			font-family:"华文行楷";
+			font-weight:holder;
+			font-size:23px;
+        }
+ #nav .home{
+            width:132px;
+        }
+ #nav li a:hover{
+            color:;
+            background:rgba(255,153,204,0.5);
+        }
+a{
+	text-decoration:none;
+	}
+.cate{
+	height:30px;
+	font-size:16px;
+	background:rgba(255,51,51,0.4);
+	line-height:30px;
+	border-radius:30px;
+	color:#fff;
+	width:200px;
+	text-align:center;
+	
+	}
+/* 分页按钮*/
+pagenext{
+	margin-right:50px;
+	width:150px;
+	height:35px;
+	}
+
+#pagination-digg li {  font-size:15px; list-style:none; /* savers */ float:right; }
+
+#pagination-digg a { border:solid 1px white; margin-right:2px;border-radius:13px;  }/*修改静态页面边框的颜色*/
+
+#pagination-digg .previous-off,#pagination-digg .next-off  { border:solid 1px #fff; color:white; 
+
+float:ight; font-weight:bold; margin-right:2px; padding:3px 4px; border-radius:13px;}/*修改最左边边框*/
+
+#pagination-digg .next a,#pagination-digg .previous a { font-weight:bold; }
+
+#pagination-digg .active { background:#F30; color:#FFFFFF; font-weight:bold;float:right; 
+
+padding:4px 6px; /* savers */ margin-right:2px;border-radius:13px; border:solid 1px #fff; }/*修改当前页面选中框的颜色*/
+
+#pagination-digg a:link,#pagination-digg a:visited { color:white;  float:right; padding:3px 6px; font-weight:bold;
+
+text-decoration:none; }/*修改字体的颜色*/
+
+#pagination-digg a:hover { border:solid 1px #F30;border-radius:13px; background:#F30;}/*修改访问时边框的颜色*/
+
+h3{
+	font-weight:bold;
+	color:#006;
+	}
+p{
+	color:#006;
+	}
