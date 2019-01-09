@@ -9,17 +9,18 @@ import sdut.blog.domain.Article;
 import sdut.blog.domain.Page;
 import sdut.blog.services.ArticleService;
 import sdut.blog.utils.DButils;
+import sdut.blog.utils.JDBCUtil;
 
 public class ArticleServiceImpl implements ArticleService{
-
+	static JDBCUtil dbutil = new JDBCUtil(); 
 	@Override
 	public ArrayList<Article> SearchArticleByCount() {
 		// TODO Auto-generated method stub
 		ArrayList<Article> list = new ArrayList<Article>();
-		DButils dbutil = new DButils();
+		
 		try {
 			//1、连接数据库
-			Connection con = dbutil.getCon();
+			Connection con = dbutil.getConn();
 			//2.查询语句
 			String sql = "select  * from article order by count desc limit 5";
 			PreparedStatement pstmt =con.prepareStatement(sql);
@@ -38,7 +39,7 @@ public class ArticleServiceImpl implements ArticleService{
 				list.add(article);
 			}
 			//4.关闭数据库
-			dbutil.closeCon(con);
+			dbutil.closeConn(con);
 			pstmt.close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -51,10 +52,10 @@ public class ArticleServiceImpl implements ArticleService{
 	public ArrayList<Article> SearchArticleByCategoryId(int categoryid) {
 		// TODO Auto-generated method stub
 		ArrayList<Article> list = new ArrayList<Article>();
-		DButils dbutil = new DButils();
+		
 		try {
 			//1、连接数据库
-			Connection con = dbutil.getCon();
+			Connection con = dbutil.getConn();
 			//2.查询语句
 			String sql = "select  * from article where category_id = ? order by id desc";
 			PreparedStatement pstmt =con.prepareStatement(sql);
@@ -74,7 +75,7 @@ public class ArticleServiceImpl implements ArticleService{
 				list.add(article);
 			}
 			//4.关闭数据库
-			dbutil.closeCon(con);
+			dbutil.closeConn(con);
 			pstmt.close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -87,10 +88,10 @@ public class ArticleServiceImpl implements ArticleService{
 	public ArrayList<Article> SearchArticles() {
 		// TODO Auto-generated method stub	
 		ArrayList<Article> list = new ArrayList<Article>();
-		DButils dbutil = new DButils();
+		
 		try {
 			//1、连接数据库
-			Connection con = dbutil.getCon();
+			Connection con = dbutil.getConn();
 			//2.查询语句
 			String sql = "select  * from article order by id desc";
 			PreparedStatement pstmt =con.prepareStatement(sql);
@@ -110,7 +111,7 @@ public class ArticleServiceImpl implements ArticleService{
 				list.add(article);
 			}
 			//4.关闭数据库
-			dbutil.closeCon(con);
+			dbutil.closeConn(con);
 			pstmt.close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -123,10 +124,10 @@ public class ArticleServiceImpl implements ArticleService{
 	public ArrayList<Article> SearchArticlesByCategoryIdandPage(int id, Page page) {
 		// TODO Auto-generated method stub
 		ArrayList<Article> list = new ArrayList<Article>();
-		DButils dbutil = new DButils();
+	
 		try {
 			//1、连接数据库
-			Connection con = dbutil.getCon();
+			Connection con = dbutil.getConn();
 			//2.查询语句
 			String sql = "select  * from article  where category_id = ? order by id desc limit ? , ? ";
 			PreparedStatement pstmt =con.prepareStatement(sql);
@@ -148,7 +149,7 @@ public class ArticleServiceImpl implements ArticleService{
 				list.add(article);
 			}
 			//4.关闭数据库
-			dbutil.closeCon(con);
+			dbutil.closeConn(con);
 			pstmt.close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -161,10 +162,10 @@ public class ArticleServiceImpl implements ArticleService{
 	public ArrayList<Article> SearchArticlesandPage(Page page) {
 		// TODO Auto-generated method stub
 		ArrayList<Article> list = new ArrayList<Article>();
-		DButils dbutil = new DButils();
+		
 		try {
 			//1、连接数据库
-			Connection con = dbutil.getCon();
+			Connection con = dbutil.getConn();
 			//2.查询语句
 			String sql = "select  * from article order by id desc limit ? , ? ";
 			PreparedStatement pstmt =con.prepareStatement(sql);
@@ -185,7 +186,7 @@ public class ArticleServiceImpl implements ArticleService{
 				list.add(article);
 			}
 			//4.关闭数据库
-			dbutil.closeCon(con);
+			dbutil.closeConn(con);
 			pstmt.close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

@@ -2,6 +2,7 @@ package sdut.blog.dao.impl;
 import sdut.blog.domain.Category;
 import sdut.blog.domain.User;
 import sdut.blog.utils.DButils;
+import sdut.blog.utils.JDBCUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +13,7 @@ import java.util.List;
 import sdut.blog.daos.CategoryDao;
 
 public class CategoryDaoImpl implements CategoryDao{
-
+	static JDBCUtil dbutil = new JDBCUtil(); 
 	@Override
 	public int AddCategory(Category category) {
 		// TODO Auto-generated method stub
@@ -21,10 +22,10 @@ public class CategoryDaoImpl implements CategoryDao{
 		cate = SearchCategoryByName(category.getName());
 		//若为空，则说明可以添加
 		if(cate.getId()==-1) {
-			DButils dbutil = new DButils();
+			
 			try {
 				//1、连接数据库
-				Connection con = dbutil.getCon();
+				Connection con = dbutil.getConn();
 				//2.查询语句
 				String sql1 = "select count(*) as count from category";
 				String sql2 = "insert into category(name,num,isshow) values(?,?,?)";
@@ -42,7 +43,7 @@ public class CategoryDaoImpl implements CategoryDao{
 				pstmt.setInt(3, category.getShow());
 				pstmt.executeUpdate();
 				//4.关闭数据库
-				dbutil.closeCon(con);
+				dbutil.closeConn(con);
 				pstmt.close();	
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -58,10 +59,10 @@ public class CategoryDaoImpl implements CategoryDao{
 	@Override
 	public int UpdateCategory(Category category) {
 		// TODO Auto-generated method stub
-		DButils dbutil = new DButils();
+		
 		try {
 			//1、连接数据库
-			Connection con = dbutil.getCon();
+			Connection con = dbutil.getConn();
 			//2.查询语句
 			String sql = "Update category set name = ? ,isshow = ? , num = ? where id = ?";
 			PreparedStatement pstmt =con.prepareStatement(sql) ;
@@ -71,7 +72,7 @@ public class CategoryDaoImpl implements CategoryDao{
 			pstmt.setInt(4, category.getId());
 			pstmt.executeUpdate();
 			//4.关闭数据库
-			dbutil.closeCon(con);
+			dbutil.closeConn(con);
 			pstmt.close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -83,10 +84,10 @@ public class CategoryDaoImpl implements CategoryDao{
 	@Override
 	public int DelCategory(Category category) {
 		// TODO Auto-generated method stub
-		DButils dbutil = new DButils();
+		
 		try {
 			//1、连接数据库
-			Connection con = dbutil.getCon();
+			Connection con = dbutil.getConn();
 			//2.查询语句
 			String sql1 = "delete from category where id=?";
 			PreparedStatement pstmt =con.prepareStatement(sql1) ;
@@ -97,7 +98,7 @@ public class CategoryDaoImpl implements CategoryDao{
 			pstmt.setInt(1, category.getId());
 			pstmt.executeUpdate();
 			//4.关闭数据库
-			dbutil.closeCon(con);
+			dbutil.closeConn(con);
 			pstmt.close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -110,10 +111,10 @@ public class CategoryDaoImpl implements CategoryDao{
 	public Category SearchCategoryByID(int id) {
 		// TODO Auto-generated method stub
 		Category category = new Category();
-		DButils dbutil = new DButils();
+		
 		try {
 			//1、连接数据库
-			Connection con = dbutil.getCon();
+			Connection con = dbutil.getConn();
 			//2.查询语句
 			String sql = "select * from category where id=?";
 			PreparedStatement pstmt =con.prepareStatement(sql) ;
@@ -128,7 +129,7 @@ public class CategoryDaoImpl implements CategoryDao{
 				category.setShow(rs.getInt("isshow"));
 			}
 			//4.关闭数据库
-			dbutil.closeCon(con);
+			dbutil.closeConn(con);
 			pstmt.close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -142,10 +143,10 @@ public class CategoryDaoImpl implements CategoryDao{
 	public Category SearchCategoryByName(String name) {
 		// TODO Auto-generated method stub
 		Category category = new Category();
-		DButils dbutil = new DButils();
+	
 		try {
 			//1、连接数据库
-			Connection con = dbutil.getCon();
+			Connection con = dbutil.getConn();
 			//2.查询语句
 			String sql = "select * from category where name = ?";
 			PreparedStatement pstmt =con.prepareStatement(sql) ;
@@ -161,7 +162,7 @@ public class CategoryDaoImpl implements CategoryDao{
 			}
 			System.out.println(category.getId());
 			//4.关闭数据库
-			dbutil.closeCon(con);
+			dbutil.closeConn(con);
 			pstmt.close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -174,11 +175,11 @@ public class CategoryDaoImpl implements CategoryDao{
 	@Override
 	public ArrayList<Category> SearchCategorys() {
 		// TODO Auto-generated method stub
-		DButils dbutil = new DButils();
+	
 		ArrayList<Category> list = new ArrayList<Category>(); 
 		try {
 			//1、连接数据库
-			Connection con = dbutil.getCon();
+			Connection con = dbutil.getConn();
 			//2.查询语句
 			String sql = "select * from category order by num ";
 			PreparedStatement pstmt =con.prepareStatement(sql) ;
@@ -194,7 +195,7 @@ public class CategoryDaoImpl implements CategoryDao{
 				list.add(category);
 			}
 			//4.关闭数据库
-			dbutil.closeCon(con);
+			dbutil.closeConn(con);
 			pstmt.close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -208,10 +209,10 @@ public class CategoryDaoImpl implements CategoryDao{
 	public Category SearchCategoryByNum(int Num) {
 		// TODO Auto-generated method stub
 		Category category = new Category();
-		DButils dbutil = new DButils();
+		
 		try {
 			//1、连接数据库
-			Connection con = dbutil.getCon();
+			Connection con = dbutil.getConn();
 			//2.查询语句
 			String sql = "select * from category where num = ?";
 			PreparedStatement pstmt =con.prepareStatement(sql) ;
@@ -226,7 +227,7 @@ public class CategoryDaoImpl implements CategoryDao{
 				category.setShow(rs.getInt("isshow"));
 			}
 			//4.关闭数据库
-			dbutil.closeCon(con);
+			dbutil.closeConn(con);
 			pstmt.close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

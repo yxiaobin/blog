@@ -13,16 +13,17 @@ import sdut.blog.domain.Article;
 import sdut.blog.domain.Category;
 import sdut.blog.domain.MyFile;
 import sdut.blog.utils.DButils;
+import sdut.blog.utils.JDBCUtil;
 
 public class FileDaoImpl implements FileDao{
-
+	static JDBCUtil dbutil = new JDBCUtil(); 
 	@Override
 	public int AddMyFile(MyFile user) {
 		// TODO Auto-generated method stub
-		DButils dbutil = new DButils();
+		
 		try {
 			//1、连接数据库
-			Connection con = dbutil.getCon();
+			Connection con = dbutil.getConn();
 			//2.查询语句
 			String sql = "insert into file(name,member_id,isshare,filepwd,time) values(?,?,?,?,?)";
 			PreparedStatement pstmt =con.prepareStatement(sql) ;
@@ -34,7 +35,7 @@ public class FileDaoImpl implements FileDao{
 			pstmt.setString(5, dateStr);
 			boolean rs =pstmt.execute();
 			//3.关闭数据库
-			dbutil.closeCon(con);
+			dbutil.closeConn(con);
 			pstmt.close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -46,10 +47,10 @@ public class FileDaoImpl implements FileDao{
 	@Override
 	public int UpdateMyFile(MyFile user) {
 		// TODO Auto-generated method stub
-		DButils dbutil = new DButils();
+		
 		try {
 			//1、连接数据库
-			Connection con = dbutil.getCon();
+			Connection con = dbutil.getConn();
 			//2.查询语句
 			String sql = "Update file set isshare = ?  where id = ?";
 			PreparedStatement pstmt =con.prepareStatement(sql) ;
@@ -57,7 +58,7 @@ public class FileDaoImpl implements FileDao{
 			pstmt.setInt(2, user.getId());
 			pstmt.executeUpdate();
 			//4.关闭数据库
-			dbutil.closeCon(con);
+			dbutil.closeConn(con);
 			pstmt.close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -76,10 +77,10 @@ public class FileDaoImpl implements FileDao{
 	public List<MyFile> SearchMyFileByMemberID(int id) {
 		// TODO Auto-generated method stub
 		ArrayList<MyFile> list = new ArrayList<MyFile>();
-		DButils dbutil = new DButils();
+		
 		try {
 			//1、连接数据库
-			Connection con = dbutil.getCon();
+			Connection con = dbutil.getConn();
 			//2.查询语句
 			String sql = "select * from file where member_id = ? or isshare = 0";
 			PreparedStatement pstmt =con.prepareStatement(sql) ;
@@ -99,7 +100,7 @@ public class FileDaoImpl implements FileDao{
 				
 			}
 			//4.关闭数据库
-			dbutil.closeCon(con);
+			dbutil.closeConn(con);
 			pstmt.close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -112,10 +113,10 @@ public class FileDaoImpl implements FileDao{
 	public MyFile SearchMyFileByID(int id) {
 		// TODO Auto-generated method stub
 		MyFile p = new MyFile();
-		DButils dbutil = new DButils();
+		
 		try {
 			//1、连接数据库
-			Connection con = dbutil.getCon();
+			Connection con = dbutil.getConn();
 			//2.查询语句
 			String sql = "select * from file where id = ?";
 			PreparedStatement pstmt =con.prepareStatement(sql) ;
@@ -131,7 +132,7 @@ public class FileDaoImpl implements FileDao{
 				p.setName(rs.getString("name"));
 			}
 			//4.关闭数据库
-			dbutil.closeCon(con);
+			dbutil.closeConn(con);
 			pstmt.close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -143,10 +144,10 @@ public class FileDaoImpl implements FileDao{
 	@Override
 	public void DeleteMyFileByName(String name) {
 		// TODO Auto-generated method stub
-		DButils dbutil = new DButils();
+		
 		try {
 			//1、连接数据库
-			Connection con = dbutil.getCon();
+			Connection con = dbutil.getConn();
 			//2.查询语句
 			String sql = "delete  from file where name = ?";
 			PreparedStatement pstmt =con.prepareStatement(sql) ;
@@ -154,7 +155,7 @@ public class FileDaoImpl implements FileDao{
 			pstmt.executeUpdate();
 			
 			//4.关闭数据库
-			dbutil.closeCon(con);
+			dbutil.closeConn(con);
 			pstmt.close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

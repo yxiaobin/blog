@@ -11,15 +11,16 @@ import com.mysql.cj.protocol.Resultset;
 import sdut.blog.daos.UserDao;
 import sdut.blog.domain.User;
 import sdut.blog.utils.DButils;
+import sdut.blog.utils.JDBCUtil;
 
 public class UserDaoImpl implements UserDao{
-
+	static JDBCUtil dbutil = new JDBCUtil(); 
 	@Override
 	public int AddUser(User user) {
-		DButils dbutil = new DButils();
+	
 		try {
 			//1、连接数据库
-			Connection con = dbutil.getCon();
+			Connection con = dbutil.getConn();
 			//2.查询语句
 			String sql = "insert into user(name,username,password,email) values(?,?,?,?)";
 			PreparedStatement pstmt =con.prepareStatement(sql) ;
@@ -29,7 +30,7 @@ public class UserDaoImpl implements UserDao{
 			pstmt.setString(4, user.getEmail());
 			boolean rs =pstmt.execute();
 			//3.关闭数据库
-			dbutil.closeCon(con);
+			dbutil.closeConn(con);
 			pstmt.close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -42,10 +43,10 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public int UpdateUser(User user) {
 		// TODO Auto-generated method stub
-		DButils dbutil = new DButils();
+		
 		try {
 			//1、连接数据库
-			Connection con = dbutil.getCon();
+			Connection con = dbutil.getConn();
 			//2.查询语句
 			String sql = "update user set name=?,username=?,password=?,email=? where id=?";
 			PreparedStatement pstmt =con.prepareStatement(sql) ;
@@ -56,7 +57,7 @@ public class UserDaoImpl implements UserDao{
 			pstmt.setInt(5, user.getId());
 			boolean rs =pstmt.execute();
 			//3.关闭数据库
-			dbutil.closeCon(con);
+			dbutil.closeConn(con);
 			pstmt.close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -68,17 +69,17 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public int DelUser(User user) {
 		// TODO Auto-generated method stub
-		DButils dbutil = new DButils();
+		
 		try {
 			//1、连接数据库
-			Connection con = dbutil.getCon();
+			Connection con = dbutil.getConn();
 			//2.查询语句
 			String sql = "delete from user where id = ?";
 			PreparedStatement pstmt =con.prepareStatement(sql) ;
 			pstmt.setInt(1, user.getId());
 			boolean rs =pstmt.execute();
 			//3.关闭数据库
-			dbutil.closeCon(con);
+			dbutil.closeConn(con);
 			pstmt.close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -92,10 +93,10 @@ public class UserDaoImpl implements UserDao{
 	public User SearchUserByID(int id) {
 		// TODO Auto-generated method stub
 		User user = new User();
-		DButils dbutil = new DButils();
+		
 		try {
 			//1、连接数据库
-			Connection con = dbutil.getCon();
+			Connection con = dbutil.getConn();
 			//2.查询语句
 			String sql = "select * from user where id=?";
 			PreparedStatement pstmt =con.prepareStatement(sql) ;
@@ -111,7 +112,7 @@ public class UserDaoImpl implements UserDao{
 				user.setEmail(rs.getString("email"));
 			}
 			//4.关闭数据库
-			dbutil.closeCon(con);
+			dbutil.closeConn(con);
 			pstmt.close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -125,10 +126,10 @@ public class UserDaoImpl implements UserDao{
 	public User SearchUserByUsername(String username) {
 		// TODO Auto-generated method stub
 		User user = new User();
-		DButils dbutil = new DButils();
+		
 		try {
 			//1、连接数据库
-			Connection con = dbutil.getCon();
+			Connection con = dbutil.getConn();
 			//2.查询语句
 			String sql = "select * from user where username=?";
 			PreparedStatement pstmt =con.prepareStatement(sql) ;
@@ -144,7 +145,7 @@ public class UserDaoImpl implements UserDao{
 				user.setEmail(rs.getString("email"));
 			}
 			//4.关闭数据库
-			dbutil.closeCon(con);
+			dbutil.closeConn(con);
 			pstmt.close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -157,11 +158,11 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public List<User> SearchUsers() {
 		// TODO Auto-generated method stub
-		DButils dbutil = new DButils();
+		
 		ArrayList<User> list = new ArrayList<User>(); 
 		try {
 			//1、连接数据库
-			Connection con = dbutil.getCon();
+			Connection con = dbutil.getConn();
 			//2.查询语句
 			String sql = "select * from user order by id desc";
 			PreparedStatement pstmt =con.prepareStatement(sql) ;
@@ -178,7 +179,7 @@ public class UserDaoImpl implements UserDao{
 				list.add(user);
 			}
 			//4.关闭数据库
-			dbutil.closeCon(con);
+			dbutil.closeConn(con);
 			pstmt.close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

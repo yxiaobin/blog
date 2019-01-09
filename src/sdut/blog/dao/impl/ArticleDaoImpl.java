@@ -11,17 +11,17 @@ import sdut.blog.daos.ArticleDao;
 import sdut.blog.domain.Article;
 import sdut.blog.domain.Category;
 import sdut.blog.domain.User;
-import sdut.blog.utils.DButils;
+import sdut.blog.utils.*;
 
 public class ArticleDaoImpl implements ArticleDao{
 
 	@Override
 	public int AddArticle(Article p) {
 		// TODO Auto-generated method stub
-		DButils dbutil = new DButils();
+		JDBCUtil dbutil = new JDBCUtil();
 		try {
 			//1、连接数据库
-			Connection con = dbutil.getCon();
+			Connection con = dbutil.getConn();
 			//2.查询语句
 			String sql = "insert into article(member_id,category_id,title,content,keyword,date) values(?,?,?,?,?,?)";
 			PreparedStatement pstmt =con.prepareStatement(sql) ;
@@ -34,7 +34,7 @@ public class ArticleDaoImpl implements ArticleDao{
 			pstmt.setString(6, dateStr);
 			boolean rs =pstmt.execute();
 			//3.关闭数据库
-			dbutil.closeCon(con);
+			dbutil.closeConn(con);;
 			pstmt.close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -47,10 +47,10 @@ public class ArticleDaoImpl implements ArticleDao{
 	public int UpdateArticle(Article p) {
 		// TODO Auto-generated method stub
 		
-		DButils dbutil = new DButils();
+		JDBCUtil dbutil = new JDBCUtil();
 		try {
 			//1、连接数据库
-			Connection con = dbutil.getCon();
+			Connection con = dbutil.getConn();
 			//2.查询语句
 			String sql = "update article set category_id=?,title=?,keyword=?,content=?,count=? where id=?";
 			PreparedStatement pstmt =con.prepareStatement(sql) ;
@@ -63,7 +63,7 @@ public class ArticleDaoImpl implements ArticleDao{
 			pstmt.setInt(6, p.getId());
 			boolean rs =pstmt.execute();
 			//3.关闭数据库
-			dbutil.closeCon(con);
+			dbutil.closeConn(con);
 			pstmt.close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -75,17 +75,17 @@ public class ArticleDaoImpl implements ArticleDao{
 	@Override
 	public int DelArticle(Article p) {
 		// TODO Auto-generated method stub
-		DButils dbutil = new DButils();
+		JDBCUtil dbutil = new JDBCUtil();
 		try {
 			//1、连接数据库
-			Connection con = dbutil.getCon();
+			Connection con = dbutil.getConn();
 			//2.查询语句
 			String sql = "delete from article where id = ?";
 			PreparedStatement pstmt =con.prepareStatement(sql) ;
 			pstmt.setInt(1, p.getId());
 			boolean rs =pstmt.execute();
 			//3.关闭数据库
-			dbutil.closeCon(con);
+			dbutil.closeConn(con);
 			pstmt.close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -97,11 +97,11 @@ public class ArticleDaoImpl implements ArticleDao{
 
 	@Override
 	public ArrayList<Article> SearchArticles() {
-		DButils dbutil = new DButils();
+		JDBCUtil dbutil = new JDBCUtil();
 		ArrayList<Article> list = new ArrayList<Article>(); 
 		try {
 			//1、连接数据库
-			Connection con = dbutil.getCon();
+			Connection con = dbutil.getConn();
 			//2.查询语句
 			String sql = "select * from article order by id desc";
 			PreparedStatement pstmt =con.prepareStatement(sql) ;
@@ -121,7 +121,7 @@ public class ArticleDaoImpl implements ArticleDao{
 				list.add(p);
 			}
 			//4.关闭数据库
-			dbutil.closeCon(con);
+			dbutil.closeConn(con);
 			pstmt.close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -136,10 +136,10 @@ public class ArticleDaoImpl implements ArticleDao{
 		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
 				Article p = new Article();
-				DButils dbutil = new DButils();
+				JDBCUtil dbutil = new JDBCUtil();
 				try {
 					//1、连接数据库
-					Connection con = dbutil.getCon();
+					Connection con = dbutil.getConn();
 					//2.查询语句
 					String sql = "select * from article where id=?";
 					PreparedStatement pstmt =con.prepareStatement(sql) ;
@@ -160,7 +160,7 @@ public class ArticleDaoImpl implements ArticleDao{
 						p.setNowtime(rs.getString("date"));
 					}
 					//4.关闭数据库
-					dbutil.closeCon(con);
+					dbutil.closeConn(con);
 					pstmt.close();
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
@@ -180,10 +180,10 @@ public class ArticleDaoImpl implements ArticleDao{
 	public ArrayList<Article> SearchArticleByCategoryID(Category p) {
 		// TODO Auto-generated method stub
 		ArrayList<Article> list = new ArrayList<Article>();
-		DButils dbutil = new DButils();
+		JDBCUtil dbutil = new JDBCUtil();
 		try {
 			//1、连接数据库
-			Connection con = dbutil.getCon();
+			Connection con = dbutil.getConn();
 			//2.查询语句
 			String sql = "select * from article where category_id = ?";
 			PreparedStatement pstmt =con.prepareStatement(sql) ;
@@ -204,7 +204,7 @@ public class ArticleDaoImpl implements ArticleDao{
 				list.add(article);
 			}
 			//4.关闭数据库
-			dbutil.closeCon(con);
+			dbutil.closeConn(con);
 			pstmt.close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

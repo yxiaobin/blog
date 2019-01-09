@@ -14,4 +14,5 @@ public interface UserService {
 		//≤È’“”√ªßByUsername
 		public User SearchUserByUsername(String  username);
 		
+		
 }
