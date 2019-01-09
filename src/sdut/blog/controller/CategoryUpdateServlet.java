@@ -39,6 +39,8 @@ public class CategoryUpdateServlet extends HttpServlet {
 		String name = request.getParameter("name");
 		String h1 = request.getParameter("show");
 		String h2 = request.getParameter("id");
+		String h3 = request.getParameter("num");
+		int num = Integer.parseInt(h3);
 		int id = Integer.parseInt(h2);
 		int show = Integer.parseInt(h1);
 		System.out.println(id+" ### "+name+" "+show );
@@ -50,6 +52,8 @@ public class CategoryUpdateServlet extends HttpServlet {
 			category.setId(id);
 			category.setName(name);
 			category.setShow(show);
+			category.setNum(num);
+			
 			CategoryDaoImpl categoryop = new CategoryDaoImpl();
 			categoryop.UpdateCategory(category);
 			response.sendRedirect(request.getContextPath()+"/CategoryServlet");

@@ -92,7 +92,7 @@ public class CategoryDaoImpl implements CategoryDao{
 			PreparedStatement pstmt =con.prepareStatement(sql1) ;
 			pstmt.setInt(1, category.getId());
 			pstmt.executeUpdate();
-			String sql2 = "update category set num = num-1 where id > ?";
+			String sql2 = "update category set num = num-1 where num > ?";
 		    pstmt =con.prepareStatement(sql2) ;
 			pstmt.setInt(1, category.getId());
 			pstmt.executeUpdate();

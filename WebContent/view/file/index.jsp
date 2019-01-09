@@ -14,6 +14,7 @@
     <link rel="stylesheet" type="text/css" href="${rooturl}/resource/assets/css/theme/blue.css">
     <link rel="stylesheet" type="text/css" href="${rooturl}/resource/assets/css/theme/red.css">
     <link rel="stylesheet" type="text/css" href="${rooturl}/resource/assets/css/theme/yellow.css">
+     <link rel="stylesheet" type="text/css" href="${rooturl}/resource/layui-v2.4.5/layui/css/layui.css">
     <style type="text/css">
         th::after{
             content: "" !important;
@@ -71,8 +72,22 @@
 
                                   <a href="${rooturl }/FileDeleteServlet?filename=${item.getName()}" class="btn btn-danger btn-xs" role="button" onclick="return confirm('确认要删除吗？')">
                                         	删除
-                                  </a>
+                                  </a> 
+								 <!-- <a href="#" id="del" class="btn btn-danger btn-xs" role="button" onclick="func()">
+                                        	删除
+                                  </a> -->
+                                  <script type="text/javascript">
+										function func(){
 
+											 var layer = layui.layer;
+									            layer.confirm('您确定要删除吗？', {
+									                btn: ['确定', '取消'],
+									            },function() {
+									            	 $.post("${rooturl}/FileDeleteServlet?filename=${item.getName()}");  
+									            	  var s = setTimeout('window.location.reload()',1000); 	
+									            });
+										}					 	
+								</script>
                                 </td>
                             </tr>
                        </c:forEach>
@@ -125,8 +140,12 @@
 <!--补充slide.jsp 的 div  -->
 </div>
 
+
+
 <!--引用js  -->
 <script type="text/javascript" src="${rooturl}/resource/assets/js/vendor.js"></script>
 <script type="text/javascript" src="${rooturl}/resource/assets/js/app.js"></script>
+<script type="text/javascript" src="${rooturl}/resource/layui-v2.4.5/layui/layui.all.js"></script>
+
 </body>
 </html>

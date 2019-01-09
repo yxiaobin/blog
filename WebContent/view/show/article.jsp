@@ -10,6 +10,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>文章</title>
 <link href="${rooturl }/resource/css/article.css" rel="stylesheet"/>
+<style type="text/css">
+	p{
+		color:white;
+		text-index:2em;
+	}
+</style>
 </head>
 <body background="${rooturl }/resource/img/bg.png" >
 	<div class = "top2">
@@ -29,6 +35,7 @@
             request.setAttribute("categorylist1", list1);
             %>
             <c:forEach var="item" items="${categorylist1 }">
+            
     			<li ><a href="${pageContext.request.contextPath}/ShowArticleListServlet?id=${item.getId()}&pagenum=1" >${item.getName()}</a></li>
             </c:forEach>
     	</ul>
@@ -50,14 +57,14 @@
     			%>
         		<td class = "maintd">
                   <h2 class = "mainh2">${p.getTitle()}</h2>
-                  <p class = "mainp1">作者：${p.getMemberName()}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;时间:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;&nbsp;&nbsp;浏览量：${p.getCount()}</p>
-                  <p class = "mainp2" style ="color:white;">${p.getContent() }<br/><br/></p>
-                  <br/><br/><br/>
+                  <p class = "mainp1">作者：${p.getMemberName()}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;时间:${p.getNowtime()}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;浏览量：${p.getCount()}</p>
+                  <p class = "mainp2" style ="color:white;!important">${p.getContent() }</p>
+                  
                    <div calss = "pagenext">
-            	<ul id="pagination-digg">
+            <!-- 	<ul id="pagination-digg">
     				<li class="previous-off" >&laquo;上一篇</li>
       				<li class="next"><a href="">下一篇 &raquo;</a></li>
-  				</ul>
+  				</ul> -->
             </div>
                 </td>
     			</tr>
@@ -76,7 +83,7 @@
             <HR style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="80%" color=b SIZE=3>
             <br/>
             <div class = "main-right-top">
-            <h3>&nbsp;&nbsp;&nbsp;&nbsp;热门文章：</h3>
+            <h3 style = "color:#124410;">&nbsp;&nbsp;&nbsp;&nbsp;热门文章：</h3>
             <ul >
             <% 
             ArrayList<Article> list2 = new ArrayList<Article>();
@@ -86,13 +93,13 @@
             System.out.println(list2.size());
             %>
             <c:forEach var="item" items="${articlelist }">
-    			<li ><a href="${rooturl }/view/show/article.jsp?id=${item.getId()}" >${item.getTitle()}</a></li>
+    			<li ><a href="${rooturl }/view/show/article.jsp?id=${item.getId()}" style = "color:#064e41;" >${item.getTitle()}</a></li>
             </c:forEach>
 			</ul>
             </div>
             <br/><br/>
             <div class = "main-right-top">
-            <h3>&nbsp;&nbsp;&nbsp;&nbsp;博客分类：</h3>
+            <h3 style = "color:#124410;">&nbsp;&nbsp;&nbsp;&nbsp;博客分类：</h3>
             <ul>
              <%
              ArrayList<Category> list3 = new ArrayList<Category>();
@@ -101,7 +108,7 @@
             request.setAttribute("categorylist", list3);
             %>
     			<c:forEach var="item" items="${categorylist }">
-    			<li ><a href="${pageContext.request.contextPath}/ShowArticleListServlet?id=${item.getId()}&pagenum=1" >${item.getName() }</a></li>
+    			<li ><a href="${pageContext.request.contextPath}/ShowArticleListServlet?id=${item.getId()}&pagenum=1" style = "color:#064e41;">${item.getName() }</a></li>
             	</c:forEach>
 			</ul>
             </div>

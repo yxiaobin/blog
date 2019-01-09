@@ -64,6 +64,7 @@
                                                 <div class="section-title"></div>
                                                 <div class="section-body">
                                                 <input type="text" class="form-control hidden" name="id" value="<%=category.getId()%>">
+                                                 <input type="text" class="form-control hidden" name="num" value="<%=category.getNum()%>">
           				                             <div class="form-group">
                                                         <label class="col-md-3 control-label">名称</label>
                                                         <div class="col-md-9">

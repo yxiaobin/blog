@@ -70,7 +70,7 @@
                                         <a href="${pageContext.request.contextPath}/CategoryDeleteServlet?id=${item.getId()}">
                                             <input type="button" class="btn btn-xs btn-danger" onclick="return confirm('确认要删除吗？')" value="删除">
                                         </a>
-                                        <a href="${pageContext.request.contextPath}/view/category/edit.jsp?id=${item.getId()}">
+                                        <a href="${pageContext.request.contextPath}/view/category/edit.jsp?id=${item.getId()}&num=${item.getNum()}">
                                             <input type="button" class="btn btn-xs btn-primary"  value="修改">
                                         </a>
                                         <%

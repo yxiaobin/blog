@@ -289,5 +289,6 @@
   <filter-mapping>
     <filter-name>Login</filter-name>
     <url-pattern>/Login</url-pattern>
+    <url-pattern>/login</url-pattern>
   </filter-mapping>
 </web-app>
