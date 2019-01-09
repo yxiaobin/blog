@@ -1,5 +1,7 @@
 package sdut.blog.domain;
 
+import sdut.blog.dao.impl.FileDaoImpl;
+
 public class MyFile {
 	private int  id=-1;
 	private String name;
@@ -43,5 +45,9 @@ public class MyFile {
 	public void setNowtime(String nowtime) {
 		this.nowtime = nowtime;
 	}
-	
+	public  String getMemberName() {
+		FileDaoImpl op =new FileDaoImpl();
+		return op.SearchNameByMemberId(this.member_id);
+		
+	}
 }

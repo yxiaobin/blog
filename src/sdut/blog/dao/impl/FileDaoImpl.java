@@ -163,4 +163,32 @@ public class FileDaoImpl implements FileDao{
 		return ;
 	}
 
+	@Override
+	public String SearchNameByMemberId(int id) {
+		// TODO Auto-generated method stub
+		String name = "";
+		DButils dbutil = new DButils();
+		try {
+			//1、连接数据库
+			Connection con = dbutil.getCon();
+			//2.查询语句
+			String sql = "select name from user where id = ?";
+			PreparedStatement pstmt =con.prepareStatement(sql) ;
+			pstmt.setInt(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			rs.next();
+			name = rs.getString("name");
+			
+			
+			//4.关闭数据库
+			dbutil.closeCon(con);
+			pstmt.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return name;
+		
+	}
+
 }

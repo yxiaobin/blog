@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+    pageEncoding="utf-8" import = "sdut.blog.dao.impl.UserDaoImpl"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <c:set var="rooturl" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
@@ -40,6 +40,7 @@
 						<tr>
                         <th>文件名称</th>
                         <th>文件类型</th>
+                        <th>上传者</th>
                         <th>上传时间</th>
                         <th>操作</th>
                         </tr>
@@ -55,7 +56,10 @@
                                 <c:if test="${item.getIsshare()==0}">共享类型</c:if>
                                  <c:if test="${item.getIsshare()==1}">私有类型</c:if>
                                 </td>
-                                
+                                 <td>
+               
+                                    ${item.getMemberName()} 
+                                </td>
                                 <td>
                                    ${item.getNowtime() }
                                 </td>
@@ -64,10 +68,11 @@
                                  <a href="${rooturl }/FileDownServlet?filename=${item.getName()}" class="btn btn-success btn-xs" role="button">
                                         	下载
                                   </a>
-
-									<a href="${rooturl }/FileUpdateServlet?id=${item.getId()}" class="btn btn-primary btn-xs" role="button">
+									<a href="${rooturl }/FileUpdateServlet?id=${item.getId()}"<c:if test = "${item.getMember_id()!=user_id }">disabled</c:if> class="btn btn-primary btn-xs" role="button">
+                                    	
                                     	<c:if test="${item.getIsshare()==0}">设为私有</c:if>
-                                    	<c:if test="${item.getIsshare()==1}">设为共有</c:if>    	
+                                    	<c:if test="${item.getIsshare()==1}">设为共有</c:if>   
+                                    	 	
                                   </a>
 
                                   <a href="${rooturl }/FileDeleteServlet?filename=${item.getName()}" class="btn btn-danger btn-xs" role="button" onclick="return confirm('确认要删除吗？')">
