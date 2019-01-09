@@ -16,7 +16,9 @@ import sdut.blog.utils.DButils;
 import sdut.blog.utils.JDBCUtil;
 
 public class FileDaoImpl implements FileDao{
-	static JDBCUtil dbutil = new JDBCUtil(); 
+	
+	static JDBCUtil dbutil = new JDBCUtil();
+	
 	@Override
 	public int AddMyFile(MyFile user) {
 		// TODO Auto-generated method stub
@@ -70,6 +72,8 @@ public class FileDaoImpl implements FileDao{
 	@Override
 	public int DelMyFile(MyFile user) {
 		// TODO Auto-generated method stub
+		Connection coon = dbutil.getConn();
+		
 		return 0;
 	}
 
@@ -162,6 +166,34 @@ public class FileDaoImpl implements FileDao{
 			e.printStackTrace();
 		}
 		return ;
+	}
+
+	@Override
+	public String SearchNameByMemberId(int id) {
+		// TODO Auto-generated method stub
+		String name = "";
+		
+		try {
+			//1、连接数据库
+			Connection con = dbutil.getConn();
+			//2.查询语句
+			String sql = "select name from user where id = ?";
+			PreparedStatement pstmt =con.prepareStatement(sql) ;
+			pstmt.setInt(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			rs.next();
+			name = rs.getString("name");
+			
+			
+			//4.关闭数据库
+			dbutil.closeConn(con);
+			pstmt.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return name;
+		
 	}
 
 }

@@ -18,4 +18,6 @@ public interface FileDao {
 		public MyFile SearchMyFileByID(int id);
 		//删除文件Byname
 		public void DeleteMyFileByName(String name);
+		//通过作者id找到作者的名字
+		public String SearchNameByMemberId(int id);
 }

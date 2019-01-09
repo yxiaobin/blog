@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8" import ="java.text.SimpleDateFormat, java.util.Date, sdut.blog.dao.impl.ArticleDaoImpl, java.util.ArrayList, sdut.blog.domain.Article, sdut.blog.utils.DButils,java.sql.*"%>
+    pageEncoding="utf-8" import ="java.text.SimpleDateFormat, java.util.Date, sdut.blog.dao.impl.ArticleDaoImpl, java.util.ArrayList, sdut.blog.domain.Article, sdut.blog.utils.JDBCUtil,java.sql.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <c:set var="rooturl" value="${pageContext.request.contextPath}"></c:set>
@@ -41,13 +41,13 @@
                     <div class="content">
                         <div class="title"> 用户管理</div>
                         <%
-                        DButils dbutil = new DButils();
+                        JDBCUtil dbutil = new JDBCUtil();
             			try {
             				int usercount = 0; 
             				int categorycount = 0;
             				int articlecount = 0;
             				//1、连接数据库
-            				Connection con = dbutil.getCon();
+            				Connection con = dbutil.getConn();
             				//2.查询语句
             				String sql1 = "select count(*) as usercount from user";
             				PreparedStatement pstmt =con.prepareStatement(sql1) ;
@@ -57,6 +57,8 @@
             				rs.next();
             				usercount = rs.getInt("usercount");
             				request.setAttribute("usercount",usercount);
+            				
+            				
             				
                         %>
                         <div class="value"><span class="sign"></span>${usercount}</div>
@@ -102,7 +104,7 @@
             				categorycount = rs.getInt("categorycount");
             				request.setAttribute("categorycount",categorycount);
             				//4.关闭数据库
-            				dbutil.closeCon(con);
+            				dbutil.closeConn(con);
             				pstmt.close();
             			} catch (Exception e) {
             				// TODO Auto-generated catch block
