@@ -69,7 +69,7 @@
                                         	下载
                                   </a>
                                   <c:if test = "${item.getMember_id()==user_id }">
-									<a href="${rooturl }/FileUpdateServlet?id=${item.getId()}" class="btn btn-primary btn-xs" role="button" >
+									<a href="${rooturl }/FileUpdateServlet?id=${item.getId()}&pagenum=${page.getPagenum()}" class="btn btn-primary btn-xs" role="button" >
                                     	
                                     	<c:if test="${item.getIsshare()==0}">设为私有</c:if>
                                     	<c:if test="${item.getIsshare()==1}">设为共有</c:if>   

@@ -47,7 +47,7 @@ public class FileDeleteServlet extends HttpServlet {
 	        }
 	        FileDaoImpl op = new  FileDaoImpl();
 	        op.DeleteMyFileByName(fileName);
-	        //response.sendRedirect(request.getContextPath()+"/FileServlet");
+	       response.sendRedirect(request.getContextPath()+"/FileServlet?pagenum=1");
 	  
 	}
 

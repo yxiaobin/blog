@@ -45,7 +45,7 @@ public class FileServlet extends HttpServlet {
         FileDaoImpl op = new FileDaoImpl();
         int total = op.SearchFileCount(id);
         Page page = new Page(Integer.parseInt(pagenum),total);
-        ArrayList<MyFile> list = (ArrayList<MyFile>) op.SearchMyFileByStartIndex(id,Integer.parseInt(pagenum), page.getPagesize());
+        ArrayList<MyFile> list = (ArrayList<MyFile>) op.SearchMyFileByStartIndex(id,page.getStartindex(), page.getPagesize());
         request.setAttribute("file_list", list);
         request.setAttribute("page", page);
         request.getRequestDispatcher("/view/file/index.jsp?pagenum="+pagenum).forward(request, response);

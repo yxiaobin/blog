@@ -29,6 +29,8 @@ public class FileUpdateServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String s = request.getParameter("id");
+		String pagenum = request.getParameter("pagenum");
+		
 		int id = Integer.parseInt(s);
 		FileDaoImpl op = new FileDaoImpl();
 		MyFile f = op.SearchMyFileByID(id);
@@ -39,7 +41,7 @@ public class FileUpdateServlet extends HttpServlet {
 			op.UpdateMyFile(f);
 		}
 		
-		response.sendRedirect(request.getContextPath()+"/FileServlet");
+		response.sendRedirect(request.getContextPath()+"/FileServlet?pagenum="+ pagenum);
 	}
 
 	/**
