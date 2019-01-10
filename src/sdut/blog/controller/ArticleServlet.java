@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import sdut.blog.dao.impl.ArticleDaoImpl;
 import sdut.blog.dao.impl.UserDaoImpl;
 import sdut.blog.domain.Article;
+import sdut.blog.domain.Page;
 import sdut.blog.domain.User;
 
 /**
@@ -35,12 +36,18 @@ public class ArticleServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		String pagenum = request.getParameter("pagenum");
 		ArticleDaoImpl  op = new ArticleDaoImpl();
-		ArrayList<Article> article_list = (ArrayList<Article>) op.SearchArticles();
+		//获取当前所有的文章数量
+		int total = op.SearchArticleCount();
+		System.out.println(total);
+		Page page = new Page(Integer.parseInt(pagenum),total);
+		request.setAttribute("page", page);
+		int start =page.getStartindex();
+		ArrayList<Article> article_list = (ArrayList<Article>) op.SearchArticleByStartIndex(page.getStartindex(), page.getPagesize());
 		request.setAttribute("article_list", article_list);
 		System.out.println(article_list.size());
-		request.getRequestDispatcher("/view/article/index.jsp").forward(request, response);
+		request.getRequestDispatcher("/view/article/index.jsp?pagenum="+pagenum).forward(request, response);
 	}
 
 	/**

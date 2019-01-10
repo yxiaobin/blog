@@ -50,7 +50,7 @@ public class ArticleAddServlet extends HttpServlet {
 			Article p = new Article(member_id, category_id, title, content, keyword);
 			ArticleDaoImpl op = new ArticleDaoImpl();
 			op.AddArticle(p);
-			response.sendRedirect(request.getContextPath()+"/ArticleServlet");
+			response.sendRedirect(request.getContextPath()+"/ArticleServlet?pagenum=1");
 		}
 	}
 

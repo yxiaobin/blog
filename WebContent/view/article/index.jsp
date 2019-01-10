@@ -81,7 +81,33 @@
                        </c:forEach>
                        </c:if>
                     </table>
+                    <div class="bottom" style = "float:right;">
+						<div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">
+    					</div>
+    					<div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">			 	
+    						<ul class="pagination">
+    						  <c:if test = "${page.getPagenum()==1}" >
+    						  <li class="paginate_button previous  "><a  href="" disabled aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">上一页</a></li> 
+    						   </c:if>
+    						   <c:if test = "${page.getPagenum()!=1}" >
+    						  <li class="paginate_button previous  "><a  href="${pageContext.request.contextPath}/ArticleServlet?pagenum=${page.getPagenum()-1}" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">上一页</a></li> 
+    						   </c:if>
+    						   <c:forEach begin = "${page.getStartPage()}" end = "${page.getEndPage()}" step = "1" var = "i">
+    							<li class="paginate_button <c:if test = "${page.getPagenum()==i}">active</c:if>"><a href="${pageContext.request.contextPath}/ArticleServlet?pagenum=${i}" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0">${i }</a></li>
+    						  </c:forEach> 
+    						  <c:if test = "${page.getPagenum()==page.getTotalpage()}">
+    						<li class="paginate_button next  id="DataTables_Table_0_next"><a href="" aria-controls="DataTables_Table_0" data-dt-idx="3" tabindex="0">下一页</a></li>
+    						  </c:if>
+    						  <c:if test = "${page.getPagenum()!=page.getTotalpage()}">
+    						<li class="paginate_button next  id="DataTables_Table_0_next"><a href="${rooturl}/ArticleServlet?pagenum=${page.getPagenum()+1}" aria-controls="DataTables_Table_0" data-dt-idx="3" tabindex="0">下一页</a></li>
+    						  </c:if>
+    						</ul>
+    					</div>
+    					<div class="clear">
+    					</div>
+					</div>
                 </div>
+                
                 <div class="card-header">
                     <a href="${pageContext.request.contextPath}/view/article/newArticle.jsp">
                         <input type="button" class="btn btn-primary" value="添加">

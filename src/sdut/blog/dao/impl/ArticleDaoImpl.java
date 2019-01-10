@@ -213,4 +213,63 @@ public class ArticleDaoImpl implements ArticleDao{
 		return list;
 	}
 
+	@Override
+	public int SearchArticleCount() {
+		// TODO Auto-generated method stub
+		int count = 0;
+		JDBCUtil dbutil = new JDBCUtil();
+		try {
+			//1、连接数据库
+			Connection con = dbutil.getConn();
+			//2.查询语句
+			String sql = "select count(0) as count1 from article ";
+			PreparedStatement pstmt =con.prepareStatement(sql) ;
+			ResultSet rs =pstmt.executeQuery();
+			//3.处理结果集
+			rs.next();
+			 count = rs.getInt("count1");
+			//4.关闭数据库
+			dbutil.closeConn(con);
+			pstmt.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return count;
+	}
+
+	@Override
+	public ArrayList<Article> SearchArticleByStartIndex(int startindex, int pagesize) {
+		// TODO Auto-generated method stub
+		ArrayList<Article> list = new ArrayList<Article>();
+		JDBCUtil dbutil = new JDBCUtil();
+		try {
+			Connection conn = dbutil.getConn();
+			String sql = "select * from article limit ?,?";
+			PreparedStatement pstmt =conn.prepareStatement(sql);
+		    pstmt.setInt(1, startindex);
+		    pstmt.setInt(2, pagesize);
+		    ResultSet rs = pstmt.executeQuery();
+		    while(rs.next()) {
+		    	Article article = new Article();
+				article.setId(rs.getInt("id"));
+				article.setCategory_id(rs.getInt("category_id"));
+				article.setContent(rs.getString("content"));
+				article.setMember_id(rs.getInt("member_id"));
+				article.setTitle(rs.getString("title"));
+				article.setNowtime(rs.getString("date"));
+				article.setKeyword(rs.getString("keyword"));
+				article.setCount(rs.getInt("count"));
+				list.add(article);
+		    }
+		    //关闭连接池
+		    dbutil.closeConn(conn);;
+			pstmt.close();
+		}catch(Exception e){
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+
 }

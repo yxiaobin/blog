@@ -20,5 +20,9 @@ public interface ArticleDao {
 		public ArrayList<Article> SearchArticleByTitle(String title);
 		//查找文章ByCategoryId
 		public ArrayList<Article> SearchArticleByCategoryID(Category p);
+		//查找文章数量
+		public int SearchArticleCount();
+		//查找当前页显示文章的数量
+		public ArrayList<Article> SearchArticleByStartIndex(int startindex,int pagesize);
 		
 }

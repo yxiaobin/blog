@@ -128,14 +128,39 @@
                 <div class="card-header">
                     	Last Statuses
                 </div>
-                <div class="card-body">
-                    <ul class="list-group">
+                <div class="card-body" style = "margin-top:-30px;">
+                    <table class=" table">
+                        <thead>
+						<tr >
+                        <th>标题</th>
+                        <th>时间</th>
+                        <th>作者</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                    	<c:if test="${article_list.size()>0 }">
+                        <c:forEach var="item" items="${article_list }" end="3" >
+                            <tr>
+                                <td>
+                                   ${item.getTitle() }
+                                </td>
+                                <td>
+                                   ${item.getNowtime() }
+                                </td>
+                                <td>
+                                    ${item.getMemberName()}
+                                </td>
+                            </tr>
+                       </c:forEach>
+                       </c:if>
+                    </table>
+                   <%--  <ul class="list-group">
                     	<c:forEach var="item" items="${article_list }" end="4" >
                         <li class="list-group-item">
-                            <label style="width=70px;">博客标题: &nbsp;</label>  <span style="margin-left:5%;"> ${item.getTitle() }  </span>
+                            <label style="width=70px;"><th>博客标题: &nbsp;</label>  <span style="margin-left:5%;"> ${item.getTitle() }  </span>
                         </li>
                        </c:forEach>
-                    </ul>
+                    </ul> --%>
                     
                 </div>
             </div>
@@ -157,7 +182,7 @@
                 <div class="card-header">
                    	 小站信息
                 </div>
-                <div class="card-body">
+                <div class="card-body" style = "margin-top:15px;">
                     <ul class="list-group">
                         <li class="list-group-item">
                             <label>建站时间</label><span style="margin-left:10%;">2019-01-02</span>
