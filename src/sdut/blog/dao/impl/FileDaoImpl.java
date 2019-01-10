@@ -196,4 +196,66 @@ public class FileDaoImpl implements FileDao{
 		
 	}
 
+	@Override
+	public int SearchFileCount(int id) {
+		// TODO Auto-generated method stub
+		int count = 0;
+		try {
+			//1、连接数据库
+			Connection con = dbutil.getConn();
+			//2.查询语句
+			String sql = "select count(0) as count1 from file where member_id = ? or isshare = 0";
+			PreparedStatement pstmt =con.prepareStatement(sql) ;
+			pstmt.setInt(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			rs.next();
+			count = rs.getInt("count1");
+			//4.关闭数据库
+			dbutil.closeConn(con);
+			pstmt.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return count;
+	}
+
+	@Override
+	public List<MyFile> SearchMyFileByStartIndex(int id, int startIndex, int pagesize) {
+		// TODO Auto-generated method stub
+			ArrayList<MyFile> list = new ArrayList<MyFile>();
+		
+		try {
+			//1、连接数据库
+			Connection con = dbutil.getConn();
+			//2.查询语句
+			String sql = "select * from file where member_id = ? or isshare = 0 limit ?,?";
+			PreparedStatement pstmt =con.prepareStatement(sql) ;
+			pstmt.setInt(1, id);
+			pstmt.setInt(2, startIndex);
+			pstmt.setInt(3, pagesize);
+			ResultSet rs =pstmt.executeQuery();
+			//3.处理结果集
+			
+			while(rs.next()) {
+				MyFile p = new MyFile();
+				p.setId(rs.getInt("id"));
+				p.setMember_id(rs.getInt("member_id"));
+				p.setIsshare(rs.getInt("isshare"));
+				p.setFilepwd(rs.getString("filepwd"));
+				p.setNowtime(rs.getString("time"));
+				p.setName(rs.getString("name"));
+				list.add(p);
+				
+			}
+			//4.关闭数据库
+			dbutil.closeConn(con);
+			pstmt.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+
 }

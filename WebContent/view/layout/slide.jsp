@@ -44,13 +44,13 @@
                     </a>
                     <div class="dropdown-menu">
                         <ul>
-                            <li><a href="${pageContext.request.contextPath}/ArticleServlet">博客列表</a></li>
+                            <li><a href="${pageContext.request.contextPath}/ArticleServlet?pagenum=1">博客列表</a></li>
                             <li><a href="${pageContext.request.contextPath}/view/article/newArticle.jsp">更新博客</a></li>
                         </ul>
                     </div> 
                 </li>
   				<li class="dropdown">
-                    <a href="${pageContext.request.contextPath}/FileServlet">
+                    <a href="${pageContext.request.contextPath}/FileServlet?pagenum=1">
                         <div class="icon">
                             <i class="fa fa-sliders" aria-hidden="true"></i>
                         </div>

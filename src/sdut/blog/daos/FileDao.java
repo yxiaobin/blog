@@ -20,4 +20,9 @@ public interface FileDao {
 		public void DeleteMyFileByName(String name);
 		//通过作者id找到作者的名字
 		public String SearchNameByMemberId(int id);
+		//获取文件总数量
+		public int SearchFileCount(int id);
+		//根据索引，查取当前显示的文件的相关信息
+		public List<MyFile> SearchMyFileByStartIndex(int id,int startIndex,int pagesize);
+		
 }

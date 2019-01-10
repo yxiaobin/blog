@@ -68,12 +68,22 @@
                                  <a href="${rooturl }/FileDownServlet?filename=${item.getName()}" class="btn btn-success btn-xs" role="button">
                                         	下载
                                   </a>
-									<a href="${rooturl }/FileUpdateServlet?id=${item.getId()}"<c:if test = "${item.getMember_id()!=user_id }">disabled</c:if> class="btn btn-primary btn-xs" role="button">
+                                  <c:if test = "${item.getMember_id()==user_id }">
+									<a href="${rooturl }/FileUpdateServlet?id=${item.getId()}" class="btn btn-primary btn-xs" role="button" >
                                     	
                                     	<c:if test="${item.getIsshare()==0}">设为私有</c:if>
                                     	<c:if test="${item.getIsshare()==1}">设为共有</c:if>   
                                     	 	
                                   </a>
+                                  </c:if>
+                                    <c:if test = "${item.getMember_id()!=user_id }">
+									<a href="#" class="btn btn-primary btn-xs" role="button" disabled>
+                                    	
+                                    	<c:if test="${item.getIsshare()==0}">设为私有</c:if>
+                                    	<c:if test="${item.getIsshare()==1}">设为共有</c:if>   
+                                    	 	
+                                  </a>
+                                  </c:if>
 
                                   <a href="${rooturl }/FileDeleteServlet?filename=${item.getName()}" class="btn btn-danger btn-xs" role="button" onclick="return confirm('确认要删除吗？')">
                                         	删除
@@ -99,6 +109,31 @@
                       
                     </table>
                 </div>
+                <div class="bottom" style = "float:right;">
+						<div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">
+    					</div>
+    					<div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">			 	
+    						<ul class="pagination">
+							<c:if test = "${page.getPagenum()==1}" >  						
+    						  <li class="paginate_button previous  "><a  href="#"  disabled aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">上一页</a></li> 
+    						</c:if>
+    						  <c:if test = "${page.getPagenum()!=1}" >  						
+    						  <li class="paginate_button previous  "><a  href="${pageContext.request.contextPath}/FileServlet?pagenum=${page.getPagenum()-1}" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">上一页</a></li> 
+    						</c:if> 
+    						   <c:forEach begin = "${page.getStartPage()}" end = "${page.getEndPage()}" step = "1" var = "i">
+    							<li class="paginate_button <c:if test = "${page.getPagenum()==i}">active</c:if>"><a href="${pageContext.request.contextPath}/FileServlet?pagenum=${i}" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0">${i }</a></li>
+    						  </c:forEach> 
+    						<c:if test = "${page.getPagenum()==page.getTotalpage()}">
+    						<li class="paginate_button next id="DataTables_Table_0_next"><a href="" disabled aria-controls="DataTables_Table_0" data-dt-idx="3" tabindex="0">下一页</a></li>
+    						</c:if>
+    						<c:if test = "${page.getPagenum()!=page.getTotalpage()}">
+    						<li class="paginate_button next id="DataTables_Table_0_next"><a href="${rooturl}/FileServlet?pagenum=${page.getPagenum()+1}" aria-controls="DataTables_Table_0" data-dt-idx="3" tabindex="0">下一页</a></li>
+    						</c:if>
+    						</ul>
+    					</div>
+    					<div class="clear">
+    					</div>
+					</div>
                 <div class="card-header">
                     <button  class="btn btn-primary" data-toggle="modal" data-target="#myModal" >
                     			   添加
@@ -123,9 +158,10 @@
                                 <div class="col-md-7">
                                     <input type="file" class="form-control"  name="file">
                                 </div>
+                                
                             </div>
- 
                             <br>
+                            
                             <div class="form-footer">
                                 <div class="form-group">
                                     <div class="col-md-9 col-md-offset-3">

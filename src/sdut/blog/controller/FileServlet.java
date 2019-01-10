@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import sdut.blog.dao.impl.FileDaoImpl;
 import sdut.blog.domain.MyFile;
+import sdut.blog.domain.Page;
 
 import java.io.File;
 import java.io.IOException;
@@ -36,17 +37,18 @@ public class FileServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		   //获取上传文件的目录
+		String pagenum = request.getParameter("pagenum"); 
+		int id = (int) request.getSession().getAttribute("user_id");
         String uploadFilePath = this.getServletContext().getRealPath("/WEB-INF/upload");
         //存储要下载的文件名
         Map<String,String> fileNameMap = new HashMap<String,String>();
         FileDaoImpl op = new FileDaoImpl();
-        
-        ArrayList<MyFile> list = (ArrayList<MyFile>) op.SearchMyFileByMemberID((int) request.getSession().getAttribute("user_id"));
-        
-     
+        int total = op.SearchFileCount(id);
+        Page page = new Page(Integer.parseInt(pagenum),total);
+        ArrayList<MyFile> list = (ArrayList<MyFile>) op.SearchMyFileByStartIndex(id,Integer.parseInt(pagenum), page.getPagesize());
         request.setAttribute("file_list", list);
-   
-        request.getRequestDispatcher("/view/file/index.jsp").forward(request, response);
+        request.setAttribute("page", page);
+        request.getRequestDispatcher("/view/file/index.jsp?pagenum="+pagenum).forward(request, response);
 	}
 
 	/**
