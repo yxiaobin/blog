@@ -6,6 +6,8 @@ public class User {
 	String username;
 	String password;
 	String email;
+	String img;
+	
 	public User() {
 		/*nothing to do*/
 		this.id = -1;
@@ -44,5 +46,12 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
+	}
+	
 	
 }

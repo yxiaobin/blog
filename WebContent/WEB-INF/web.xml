@@ -301,7 +301,14 @@
     <servlet-name>WebServlet</servlet-name>
     <url-pattern>/WebServlet</url-pattern>
   </servlet-mapping>
-  
-    
-
+  <servlet>
+    <description></description>
+    <display-name>ImgUpServlet</display-name>
+    <servlet-name>ImgUpServlet</servlet-name>
+    <servlet-class>sdut.blog.controller.ImgUpServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ImgUpServlet</servlet-name>
+    <url-pattern>/ImgUpServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
