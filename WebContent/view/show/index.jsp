@@ -4,18 +4,22 @@
 <c:set var="rooturl" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
 <html>
+<%
+WebDaoImpl op = new WebDaoImpl();	
+Web web = op.SearchWebByid();
+%>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>猪猪的博客</title>
+<title><%=web.getWebname() %></title>
 <link href="${rooturl }/resource/css/index.css" rel="stylesheet"/>
 </head>
 <body background="${rooturl }/resource/img/bg.png" >
 
-<!--	<div class = "top1">
-	</div>-->
+
+
 	<div class = "top2">
-     	<div class = "title"> 猪猪的博客</div>
-        <div class = "description">遇见一场烟花盛开的美，从此，即使梦碎，依然守着不悔，选择在回忆里沉醉。风，轻轻舞动薄衫，吹起书案零.</div>
+     	<div class = "title"> <%=web.getWebname() %> </div>
+        <div class = "description"><%=web.getWebstyle()%></div>
    </div>
    
     <div class = "top1">

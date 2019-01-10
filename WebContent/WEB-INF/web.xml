@@ -291,4 +291,14 @@
     <url-pattern>/Login</url-pattern>
     <url-pattern>/login</url-pattern>
   </filter-mapping>
+  <servlet>
+    <description></description>
+    <display-name>WebServlet</display-name>
+    <servlet-name>WebServlet</servlet-name>
+    <servlet-class>sdut.blog.controller.WebServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>WebServlet</servlet-name>
+    <url-pattern>/WebServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

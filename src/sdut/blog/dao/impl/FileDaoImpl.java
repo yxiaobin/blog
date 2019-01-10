@@ -73,7 +73,7 @@ public class FileDaoImpl implements FileDao{
 	public int DelMyFile(MyFile user) {
 		// TODO Auto-generated method stub
 		Connection coon = dbutil.getConn();
-		
+		dbutil.closeConn(coon);
 		return 0;
 	}
 
