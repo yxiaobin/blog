@@ -68,11 +68,11 @@
                                     <a href="${rooturl }/view/show/article.jsp?id=${item.getId()}" target="view_window" class="btn btn-primary btn-xs" role="button">
                                      		   预览
                                     </a>
-                                    <a href="${rooturl }/view/article/edit.jsp?id=${item.getId()}" class="btn btn-primary btn-xs" role="button">
+                                    <a href="${rooturl }/view/article/edit.jsp?id=${item.getId()}&pagenum=${page.getPagenum()}" class="btn btn-primary btn-xs" role="button">
                                       		  编辑
                                     </a>
 
-                                    <a href="${rooturl }/ArticleDeletServlet?id=${item.getId()}" class="btn btn-danger btn-xs" role="button" onclick="return confirm('确认要删除吗？')">
+                                    <a <c:if test = "${page.getTotalrecords()%page.getPagesize()==1}">href="${rooturl }/ArticleDeletServlet?id=${item.getId()}&pagenum=${page.getPagenum()-1}"</c:if> <c:if test = "${page.getTotalrecords()%page.getPagesize()!=1}">href="${rooturl }/ArticleDeletServlet?id=${item.getId()}&pagenum=${page.getPagenum()}"</c:if> class="btn btn-danger btn-xs" role="button" onclick="return confirm('确认要删除吗？')">
                                         	删除
                                     </a>
 
