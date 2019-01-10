@@ -29,7 +29,8 @@ public class FileDeleteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		 String fileName = request.getParameter("filename");  //23239283-92489-阿凡达.avi
+			String pagenum = request.getParameter("pagenum"); 
+			String fileName = request.getParameter("filename");  //23239283-92489-阿凡达.avi
 	        fileName = new String(fileName.getBytes("iso8859-1"),"UTF-8");
 	        //上传的文件都是保存在/WEB-INF/upload目录下的子目录当中
 	        String fileSaveRootPath=this.getServletContext().getRealPath("/WEB-INF/upload");
@@ -40,14 +41,14 @@ public class FileDeleteServlet extends HttpServlet {
 	        //如果文件不存在
 	        if(!file.exists()){
 	            request.setAttribute("message", "您要下载的资源已被删除！！");
-	            request.getRequestDispatcher("/message.jsp").forward(request, response);
+	            request.getRequestDispatcher("/view/file/message.jsp").forward(request, response);
 	            return;
 	        }else {
 	        	file.delete();
 	        }
 	        FileDaoImpl op = new  FileDaoImpl();
 	        op.DeleteMyFileByName(fileName);
-	       response.sendRedirect(request.getContextPath()+"/FileServlet?pagenum=1");
+	       response.sendRedirect(request.getContextPath()+"/FileServlet?pagenum="+pagenum);
 	  
 	}
 

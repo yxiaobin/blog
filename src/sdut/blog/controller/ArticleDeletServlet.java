@@ -32,6 +32,7 @@ public class ArticleDeletServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String pagenum = request.getParameter("pagenum");
 		response.setHeader("Content-Type", "text/html;charset=UTF-8");//设置UTF-8的显示页面的类型和字符集
 		PrintWriter out = response.getWriter();
 		String s = request.getParameter("id");
@@ -41,7 +42,9 @@ public class ArticleDeletServlet extends HttpServlet {
 		p.setId(id);
 		op.DelArticle(p);
 		System.out.println("删除成功");
-		response.sendRedirect(request.getContextPath()+"/ArticleServlet?");
+
+		response.sendRedirect(request.getContextPath()+"/ArticleServlet?pagenum="+pagenum);
+
 	}
 
 	/**

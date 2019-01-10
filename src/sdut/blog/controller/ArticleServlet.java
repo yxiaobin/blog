@@ -46,8 +46,9 @@ public class ArticleServlet extends HttpServlet {
 		int start =page.getStartindex();
 		ArrayList<Article> article_list = (ArrayList<Article>) op.SearchArticleByStartIndex(page.getStartindex(), page.getPagesize());
 		request.setAttribute("article_list", article_list);
-		System.out.println(article_list.size());
-		request.getRequestDispatcher("/view/article/index.jsp?pagenum="+pagenum).forward(request, response);
+		System.out.println(article_list.size()+"###");
+		request.getRequestDispatcher("/view/article/index.jsp?pagenum="+page.getPagenum()).forward(request, response);
+		//response.sendRedirect(request.getContextPath()+"/view/article/index.jsp?pagenum="+page.getPagenum());
 	}
 
 	/**

@@ -84,10 +84,24 @@
                                     	 	
                                   </a>
                                   </c:if>
-
-                                  <a href="${rooturl }/FileDeleteServlet?filename=${item.getName()}" class="btn btn-danger btn-xs" role="button" onclick="return confirm('确认要删除吗？')">
+                                  <c:if test = "${item.getMember_id()==user_id }">
+                                   <c:if test = "${page.getTotalrecords()%page.getPagesize()==1}">  
+                                  <a   href = "${rooturl}/FileDeleteServlet?filename=${item.getName()}&pagenum=${page.getPagenum()-1 }"   class="btn btn-danger btn-xs" role="button" onclick="return confirm('确认要删除吗？')">
                                         	删除
+                                  </a>
+                                   </c:if>  
+                                  <c:if test = "${page.getTotalrecords()%page.getPagesize()!=1}">
+                                  <a   href = "${rooturl}/FileDeleteServlet?filename=${item.getName()}&pagenum=${page.getPagenum()}"   class="btn btn-danger btn-xs" role="button" onclick="return confirm('确认要删除吗？')">
+                                        	删除
+                                  </a>
+                                  </c:if> 
+                                  </c:if>
+                                  <c:if test = "${item.getMember_id()!=user_id }">
+                                  <a href="#" disabled class="btn btn-danger btn-xs" role="button" >
+                                        	删除2
                                   </a> 
+                                  
+                                  </c:if>
 								 <!-- <a href="#" id="del" class="btn btn-danger btn-xs" role="button" onclick="func()">
                                         	删除
                                   </a> -->

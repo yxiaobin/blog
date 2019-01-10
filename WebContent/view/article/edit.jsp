@@ -49,7 +49,8 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">修改博客</div>
-                    <form action="${rooturl }/ArticleUpdateServlet" method="post">
+                <% String pagenum = request.getParameter("pagenum");%>
+                    <form action="${rooturl }/ArticleUpdateServlet?pagenum=<%=pagenum %>" method="post">
                      
                        <input type="text" class="form-control hidden" name="id" value="${p.getId() }">
                         

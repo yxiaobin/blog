@@ -33,7 +33,7 @@ public class ArticleUpdateServlet extends HttpServlet {
 		response.setHeader("Content-Type", "text/html;charset=UTF-8");//设置UTF-8的显示页面的类型和字符集
 		request.setCharacterEncoding("utf-8");
 		PrintWriter out = response.getWriter();
-		
+		String pagenum = request.getParameter("pagenum");
 		String title = request.getParameter("title");
 		String s  = request.getParameter("category_id");
 		int category_id = Integer.parseInt(s);
@@ -51,7 +51,7 @@ public class ArticleUpdateServlet extends HttpServlet {
 			ArticleDaoImpl op = new ArticleDaoImpl();
 			op.UpdateArticle(p);
 			System.out.println("更新成功");
-			response.sendRedirect(request.getContextPath()+"/ArticleServlet");
+			response.sendRedirect(request.getContextPath()+"/ArticleServlet?pagenum="+pagenum);
 		}
 	}
 
