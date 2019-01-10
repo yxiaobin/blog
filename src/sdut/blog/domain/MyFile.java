@@ -50,4 +50,6 @@ public class MyFile {
 		return op.SearchNameByMemberId(this.member_id);
 		
 	}
+	
+	
 }

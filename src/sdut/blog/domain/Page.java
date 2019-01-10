@@ -106,5 +106,36 @@ public class Page {
 				}
 			}
 		}
-
+		//可以改变分页大小的构造函数
+		public Page(int pagesize ,int pagenum,int totalrecords) {
+			this.pagesize = pagesize;
+			this.pagenum = pagenum;//当前页
+			this.totalrecords = totalrecords;//总记录数
+			//计算每一页的索引
+			this.startindex = (pagenum-1)*pagesize;
+			//计算总页数
+			//用三目表达式表判断
+			//this.totalpage  = totalrecords%pagesize == 0?totalrecords/pagesize:(totalrecords/pagesize+1);
+			if(totalrecords % pagesize == 0) {
+				totalpage = totalrecords/pagesize;
+			}else {
+				totalpage = totalrecords/pagesize+1;
+			}
+			//要显示的页码
+			if(totalpage<=5) {
+				startPage = 1;
+				endPage = totalpage;
+			}else {
+				startPage = pagenum -2;
+				endPage = pagenum+2;
+				if(startPage<1) {
+					startPage = 1;
+					endPage = 5;
+				}
+				if(endPage>totalpage) {
+					endPage = totalpage;
+					startPage = totalpage-4;
+				}
+			}
+		}
 }
