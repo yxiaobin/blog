@@ -42,7 +42,9 @@ public class ArticleDeletServlet extends HttpServlet {
 		p.setId(id);
 		op.DelArticle(p);
 		System.out.println("É¾³ý³É¹¦");
+
 		response.sendRedirect(request.getContextPath()+"/ArticleServlet?pagenum="+pagenum);
+
 	}
 
 	/**

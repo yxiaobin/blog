@@ -86,12 +86,7 @@ public class MyFile   extends HttpServlet {
             upload.setProgressListener(new ProgressListener(){
                 public void update(long pBytesRead, long pContentLength, int arg2) {
                     System.out.println("文件大小为：" + pContentLength + ",当前已处理：" + pBytesRead);
-                    /**
-                     * 文件大小为：14608,当前已处理：4096
-				                        文件大小为：14608,当前已处理：7367
-				                        文件大小为：14608,当前已处理：11419
-				                        文件大小为：14608,当前已处理：14608
-                     */
+                    
                 }
             });
              //解决上传文件名的中文乱码

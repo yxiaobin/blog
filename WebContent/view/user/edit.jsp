@@ -87,10 +87,9 @@
                                                      <div class="form-group">
                                                         <label class="col-md-3 control-label">邮箱</label>
                                                         <div class="col-md-9">
-                                                            <input type="text" class="form-control" placeholder="邮箱" name="email" value="<%=user.getEmail()%>">
+                                                            <input type="password" class="form-control" placeholder="邮箱" name="email" value="<%=user.getEmail()%>">
                                                         </div>
                                                     </div>
-                                                    
                                                     <div class="form-footer">
                                                         <div class="form-group">
                                                             <div class="col-md-9 col-md-offset-3">

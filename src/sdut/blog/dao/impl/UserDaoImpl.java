@@ -48,13 +48,14 @@ public class UserDaoImpl implements UserDao{
 			//1、连接数据库
 			Connection con = dbutil.getConn();
 			//2.查询语句
-			String sql = "update user set name=?,username=?,password=?,email=? where id=?";
+			String sql = "update user set name=?,username=?,password=?,email=? ,img = ? where id=?";
 			PreparedStatement pstmt =con.prepareStatement(sql) ;
 			pstmt.setString(1, user.getName());
 			pstmt.setString(2, user.getUsername());
 			pstmt.setString(3, user.getPassword());
 			pstmt.setString(4, user.getEmail());
-			pstmt.setInt(5, user.getId());
+			pstmt.setString(5, user.getImg());
+			pstmt.setInt(6, user.getId());
 			boolean rs =pstmt.execute();
 			//3.关闭数据库
 			dbutil.closeConn(con);
@@ -110,6 +111,7 @@ public class UserDaoImpl implements UserDao{
 				user.setUsername(rs.getString("username"));
 				user.setPassword(rs.getString("password"));
 				user.setEmail(rs.getString("email"));
+				user.setImg(rs.getString("img"));
 			}
 			//4.关闭数据库
 			dbutil.closeConn(con);
@@ -143,6 +145,7 @@ public class UserDaoImpl implements UserDao{
 				user.setUsername(rs.getString("username"));
 				user.setPassword(rs.getString("password"));
 				user.setEmail(rs.getString("email"));
+				user.setImg(rs.getString("img"));
 			}
 			//4.关闭数据库
 			dbutil.closeConn(con);
@@ -176,6 +179,7 @@ public class UserDaoImpl implements UserDao{
 				user.setUsername(rs.getString("username"));
 				user.setPassword(rs.getString("password"));
 				user.setEmail(rs.getString("email"));
+				user.setImg(rs.getString("img"));
 				list.add(user);
 			}
 			//4.关闭数据库

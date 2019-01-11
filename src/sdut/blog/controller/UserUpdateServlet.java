@@ -1,5 +1,6 @@
 package sdut.blog.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import sdut.blog.dao.impl.UserDaoImpl;
+import sdut.blog.domain.MyFile;
 import sdut.blog.domain.User;
 
 /**
@@ -38,6 +40,7 @@ public class UserUpdateServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String name = request.getParameter("name");
 		String s = request.getParameter("id");
+		System.out.println(s+"$$$$$$$$$$$$$");
 		int id = Integer.parseInt(s);
 		System.out.println(id+" ### "+username+" "+name+" "+ password +" "+ email );
 		if(username == "" || password == "" || email == "" || name == "" ) {
@@ -45,6 +48,22 @@ public class UserUpdateServlet extends HttpServlet {
 			out.write("<script>window.location.href=' " +request.getContextPath()+"/UserServlet ' "+ " </script>");
 		}else {
 			User user = new User();
+			/*String img = request.getParameter("img");
+			if(img !=""){
+				
+				//得到上传文件的保存目录，将上传的文件存放于WEB-INF目录下，不允许外界直接访问，保证上传文件的安全
+		        String savePath = this.getServletContext().getRealPath("/WEB-INF/img");
+		        //上传时生成的临时文件保存目录
+		        String tempPath = this.getServletContext().getRealPath("/WEB-INF/temp");
+		        File tmpFile = new File(tempPath);
+		        if (!tmpFile.exists()) {
+		            //创建临时目录
+		            tmpFile.mkdir();
+		        }
+		        MyFile file = new MyFile();
+		        MyFile myfile = file.Save(request, response, savePath , tempPath, tmpFile);
+		        user.setImg(myfile.getFilepwd());
+			}*/
 			user.setEmail(email);
 			user.setName(name);
 			user.setPassword(password);
