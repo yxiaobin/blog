@@ -76,15 +76,7 @@ h2{
 td{
 	border-radius:20px;
 	}
-table{
-	border-radius: 20px;
-	border-top-style: double;
-	border-right-style: double;
-	border-bottom-style: double;
-	border-left-style: double;
-	border:double;
-	border-color:#63C;
-	}
+
 .main-right{
 	width:300px;
 	
@@ -230,3 +222,58 @@ text-decoration:none; }/*修改字体的颜色*/
 .main-left-shows{
 	width:500px;
 	}
+	
+textarea{
+	width:325px;
+	height:100px;
+	border-radius:13px;
+	background-color:rgba(255,204,204,0.3);
+	font-size:15px;
+	color:black;
+	}
+.text-button{
+	margin-left:350px;
+	width:80px;
+	height:30px;
+	border-radius:13px;
+	border-color:#6FF;
+	background:#6FF;
+	color:black;
+	}
+.input-text{
+	background-color:rgba(255,204,204,0.3);
+	width:330px;
+	height:20px;
+	border-radius:8px;
+	border:#63C;
+	font-size:15px;
+	color:black;
+	}	
+.commit-table{
+	
+	color:white;
+	
+	}
+.message{
+	border-color:white;
+	border-radius:13px;
+	border-width:1px;
+		border-style:ridge;
+	border-width:1px;
+	border-radius:10px;
+	}
+.cp1{
+	color:#CCC;
+	font-size:12px;
+	text-align:right;
+	}
+.cp2{
+	color:#FFF;
+	text-indent:2em;
+	}
+.cp11{
+	color:#CCC;
+	font-size:12px;
+	text-align:left;
+	}
+	

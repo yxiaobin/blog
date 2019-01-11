@@ -66,6 +66,54 @@
       				<li class="next"><a href="">下一篇 &raquo;</a></li>
   				</ul> -->
             </div>
+           
+            <div calss = "pagenext">
+            	<ul id="pagination-digg">
+    				<li class="previous-off" >&laquo;上一篇</li>
+      				<li class="next"><a href="">下一篇 &raquo;</a></li>
+  				</ul>
+            </div>
+            <br/><br/>
+          <hr color= "#422656"/>
+          <br/>
+                  <div >
+                  <form action = "#" method="post">
+                  	<!--<textarea placeholder = "发表评论"></textarea>-->
+                    <div class = "message">
+                    <table class = "commit-table">
+                    <tr>
+                    	<td width="50"><label>昵称：</label> </td>
+                        <td><input type = "text" class = "input-text"/></td>
+                    </tr>
+                      <tr>
+                    	<td><label>邮箱：</label> </td>
+                        <td><input type = "text" class = "input-text"/></td>
+                    </tr> 
+                     <tr><td><label>评论：</label> </td><td ><textarea placeholder = "发表评论"></textarea></td></tr>
+                    </table>
+                    </div>
+                    <button type = "submit"“ class = "text-button">发表评论</button>
+                  </form>
+                  </div>
+                   <br/>
+                  <hr style="height:1px;border:none;border-top:1px dashed white;" />
+                   
+                    <div class = "message-box">
+                    <p class = "cp11">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;昵称：杨小猪</p>
+                     <p class = "cp2">JKLJLKJKJKJ及杨小宾是只猪！！！</p>
+                     <p class = "cp1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;时间:1997-11-30</p>
+                    </div>
+                    <hr style="height:1px;border:none;border-top:1px dashed white;" />
+                    <br/>
+                  <hr style="height:1px;border:none;border-top:1px dashed white;" />
+                   
+                    <div class = "message-box">
+                    <p class = "cp11">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;昵称：杨小猪</p>
+                     <p class = "cp2">JKLJLKJKJKJ及杨小宾是只猪！！！</p>
+                     <p class = "cp1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;时间:1997-11-30</p>
+                    </div>
+                    <hr style="height:1px;border:none;border-top:1px dashed white;" />
+                
                 </td>
     			</tr>
 			</table>
