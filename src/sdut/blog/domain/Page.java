@@ -78,7 +78,7 @@ public class Page {
 		//当前页和总记录数
 		public Page(int pagenum,int totalrecords) {
 			this.pagenum = pagenum;//当前页
-			if(totalrecords/pagesize < pagenum && totalrecords%pagesize == 0) {
+			if(totalrecords/pagesize < pagenum && totalrecords%pagesize == 0 && totalrecords > 0) {
 				pagenum = totalrecords/pagesize; 
 			}
 			this.totalrecords = totalrecords;//总记录数

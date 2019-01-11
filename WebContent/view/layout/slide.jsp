@@ -64,14 +64,16 @@
                             <i class="fa fa-sliders" aria-hidden="true"></i>
                         </div>
                         <div class="title">用户管理</div>
-                    </a>
-                   <!--  <div class="dropdown-menu">
-                        <ul>
-                            <li><a href="#">幻灯片管理</a></li>
-                            <li><a href="#">幻灯片管理</a></li>
-                            <li><a href="#">幻灯片管理</a></li>
-                        </ul>
-                    </div> -->
+                    </a>               
+                </li>
+                
+                <li class="dropdown">
+                    <a href="${pageContext.request.contextPath}/WebServlet">
+                        <div class="icon">
+                            <i class="fa fa-sliders" aria-hidden="true"></i>
+                        </div>
+                        <div class="title">网站基本信息</div>
+                    </a>               
                 </li>
             </ul>
         </div>

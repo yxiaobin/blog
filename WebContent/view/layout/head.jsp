@@ -66,7 +66,7 @@
                         <div class="section-body">
                            <br>
                             <div class="form-group">
-                                <label class="col-md-3 control-label" style="padding-left: 12%;" >选择文件</label>
+                                <label class="col-md-3 control-label" style="padding-left: 12%;" > 选择头像   </label>
                                 <div class="col-md-7">
                                     <input type="file" class="form-control"  name="file">
                                 </div>

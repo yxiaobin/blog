@@ -44,6 +44,7 @@ public class FileServlet extends HttpServlet {
         Map<String,String> fileNameMap = new HashMap<String,String>();
         FileDaoImpl op = new FileDaoImpl();
         int total = op.SearchFileCount(id);
+       
         Page page = new Page(Integer.parseInt(pagenum),total);
         ArrayList<MyFile> list = (ArrayList<MyFile>) op.SearchMyFileByStartIndex(id,page.getStartindex(), page.getPagesize());
         request.setAttribute("file_list", list);

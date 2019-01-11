@@ -72,7 +72,12 @@
                                       		  编辑
                                     </a>
 
-                                    <a <c:if test = "${page.getTotalrecords()%page.getPagesize()==1}">href="${rooturl }/ArticleDeletServlet?id=${item.getId()}&pagenum=${page.getPagenum()-1}"</c:if> <c:if test = "${page.getTotalrecords()%page.getPagesize()!=1}">href="${rooturl }/ArticleDeletServlet?id=${item.getId()}&pagenum=${page.getPagenum()}"</c:if> class="btn btn-danger btn-xs" role="button" onclick="return confirm('确认要删除吗？')">
+                                    <a 
+                                    	<c:if test = "${page.getTotalrecords()%page.getPagesize()==1 && page.getPagenum()==page.getEndPage()}">href="${rooturl }/ArticleDeletServlet?id=${item.getId()}&pagenum=${page.getPagenum()-1}"</c:if>
+                                     	<c:if test = "${page.getTotalrecords()%page.getPagesize()==1 && page.getPagenum()<page.getEndPage()}">href="${rooturl }/ArticleDeletServlet?id=${item.getId()}&pagenum=${page.getPagenum()}"</c:if>
+                                     	<c:if test = "${page.getTotalrecords()%page.getPagesize()!=1}">href="${rooturl }/ArticleDeletServlet?id=${item.getId()}&pagenum=${page.getPagenum()}"</c:if>
+                                      	
+                                      	class="btn btn-danger btn-xs" role="button" onclick="return confirm('确认要删除吗？')">
                                         	删除
                                     </a>
 
