@@ -276,4 +276,32 @@ textarea{
 	font-size:12px;
 	text-align:left;
 	}
+
+	
+	pagenext{
+	margin-right:50px;
+	width:150px;
+	height:35px;
+	}
+#pagination-digga {
+	text-align:center;
+}
+
+#pagination-digga li {  font-size:15px; list-style:none; /* savers */display:inline-block; }
+
+#pagination-digga a { border:solid 1px white; margin-right:2px;border-radius:13px;  }/*修改静态页面边框的颜色*/
+
+#pagination-digga .previous-off,#pagination-digga .next-off  { border:solid 1px #fff; color:white;  font-weight:bold; margin-right:2px; padding:3px 4px; border-radius:13px;}/*修改最左边边框*/
+
+#pagination-digga .next a,#pagination-digga .previous a { font-weight:bold; }
+
+#pagination-digga .active { background:#F30; color:#FFFFFF; font-weight:bold;
+
+padding:4px 6px; /* savers */ margin-right:2px;border-radius:13px; border:solid 1px #fff; }/*修改当前页面选中框的颜色*/
+
+#pagination-digga a:link,#pagination-digga a:visited { color:white; padding:3px 6px; font-weight:bold;
+
+text-decoration:none; }/*修改字体的颜色*/
+
+#pagination-digga a:hover { border:solid 1px #F30;border-radius:13px; background:#F30;}/*修改访问时边框的颜色*/
 	

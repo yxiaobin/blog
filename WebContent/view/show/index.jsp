@@ -55,7 +55,7 @@ Web web = op.SearchWebByid();
     				<tr>
         				<td width="408" >
         				
-                  			<div class = "innertitle"><h2 style = "color:white;"><a href = "${rooturl }/view/show/article.jsp?id=${item.getId()}" style = "color:whitesmoke;">${item.getTitle()}</a></h2></div>
+                  			<div class = "innertitle"><h2 style = "color:white;"><a href = "${rooturl }/view/show/article.jsp?id=${item.getId()}&pagenum=1" style = "color:whitesmoke;">${item.getTitle()}</a></h2></div>
                   			<div  class = "p1">作者：${item.getMemberName()}&nbsp;&nbsp;&nbsp;时间：${item.getNowtime() }</div>
                   			
                   			<div class = "p2" style = "color:whitesmoke;">
@@ -131,7 +131,7 @@ Web web = op.SearchWebByid();
             System.out.println(list2.size());
             %>
             <c:forEach var="item" items="${articlelist }">
-    			<li ><a href="${rooturl }/view/show/article.jsp?id=${item.getId()}" style = "color:#064e41;" >${item.getTitle()}</a></li>
+    			<li ><a href="${rooturl }/view/show/article.jsp?id=${item.getId()}&pagenum=1" style = "color:#064e41;" >${item.getTitle()}</a></li>
             </c:forEach>
 			</ul>
             </div>

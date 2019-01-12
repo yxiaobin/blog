@@ -57,7 +57,14 @@
                         <div class="title">文件管理</div>
                     </a>
                 </li>
-                
+                <li class="dropdown">
+                    <a href="${pageContext.request.contextPath}/MessageServlet">
+                        <div class="icon">
+                            <i class="fa fa-sliders" aria-hidden="true"></i>
+                        </div>
+                        <div class="title">留言管理</div>
+                    </a>
+                </li>
                 <li class="dropdown">
                     <a href="${pageContext.request.contextPath}/UserServlet">
                         <div class="icon">

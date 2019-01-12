@@ -170,9 +170,7 @@ pagenext{
 #pagination-digg {
 	text-align:center;
 }
-ul {
-	
-}
+
 #pagination-digg li {  font-size:15px; list-style:none; /* savers */display:inline-block; }
 
 #pagination-digg a { border:solid 1px white; margin-right:2px;border-radius:13px;  }/*ÐÞ¸Ä¾²Ì¬Ò³Ãæ±ß¿òµÄÑÕÉ«*/

@@ -65,7 +65,7 @@
                                     ${item.getNowtime() }
                                 </td>
                                 <td>
-                                    <a href="${rooturl }/view/show/article.jsp?id=${item.getId()}" target="view_window" class="btn btn-primary btn-xs" role="button">
+                                    <a href="${rooturl }/view/show/article.jsp?id=${item.getId()}&pagenum=1" target="view_window" class="btn btn-primary btn-xs" role="button">
                                      		   预览
                                     </a>
                                     <a href="${rooturl }/view/article/edit.jsp?id=${item.getId()}&pagenum=${page.getPagenum()}" class="btn btn-primary btn-xs" role="button">

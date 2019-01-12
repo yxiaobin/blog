@@ -311,4 +311,54 @@
     <servlet-name>ImgUpServlet</servlet-name>
     <url-pattern>/ImgUpServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MessageServlet</display-name>
+    <servlet-name>MessageServlet</servlet-name>
+    <servlet-class>sdut.blog.controller.MessageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MessageServlet</servlet-name>
+    <url-pattern>/MessageServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MessageAddServlet</display-name>
+    <servlet-name>MessageAddServlet</servlet-name>
+    <servlet-class>sdut.blog.controller.MessageAddServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MessageAddServlet</servlet-name>
+    <url-pattern>/MessageAddServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MessageDeleteServlet</display-name>
+    <servlet-name>MessageDeleteServlet</servlet-name>
+    <servlet-class>sdut.blog.controller.MessageDeleteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MessageDeleteServlet</servlet-name>
+    <url-pattern>/MessageDeleteServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MessageModify</display-name>
+    <servlet-name>MessageModify</servlet-name>
+    <servlet-class>sdut.blog.controller.MessageModify</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MessageModify</servlet-name>
+    <url-pattern>/MessageModify</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MessageModifyServlet</display-name>
+    <servlet-name>MessageModifyServlet</servlet-name>
+    <servlet-class>sdut.blog.controller.MessageModifyServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MessageModifyServlet</servlet-name>
+    <url-pattern>/MessageModifyServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

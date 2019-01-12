@@ -56,16 +56,19 @@ public class LoginServlet extends HttpServlet {
 					session.setAttribute("usr_name", user.getName());
 					session.setAttribute("user_id", user.getId());
 					//转存图片二进制流
-					 FileInputStream in = new FileInputStream(user.getImg());
-					 byte[] data = null;
-					 data = new byte[in.available()];  
-			         in.read(data);
-			         in.close();
-			         BASE64Encoder encoder = new BASE64Encoder();  
-			         String base64Img =encoder.encode(data); 
-			         
-					session.setAttribute("user_img", base64Img);
-					System.out.println(user.getImg());
+					if(user.getImg() != null) {
+						FileInputStream in = new FileInputStream(user.getImg());
+						 byte[] data = null;
+						 data = new byte[in.available()];  
+				         in.read(data);
+				         in.close();
+				         BASE64Encoder encoder = new BASE64Encoder();  
+				         String base64Img =encoder.encode(data); 
+				         System.out.println(user.getImg());
+						session.setAttribute("user_img", base64Img);
+					}
+					 
+					
 					//跳转到后台管理页面
 					String url = request.getContextPath() + "/view/layout/manager.jsp";
 					response.sendRedirect(url);
