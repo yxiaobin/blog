@@ -66,6 +66,96 @@
       				<li class="next"><a href="">下一篇 &raquo;</a></li>
   				</ul> -->
             </div>
+           
+            <div calss = "pagenext">
+            	<ul id="pagination-digg">
+    				<li class="previous-off" >&laquo;上一篇</li>
+      				<li class="next"><a href="">下一篇 &raquo;</a></li>
+  				</ul>
+            </div>
+            <br/><br/>
+          <hr color= "#422656"/>
+          <br/>
+                  <div >
+                  <form action = "${rooturl}/MessageAddServlet?id=${p.getId()}" method="post">
+                  	<!-- <textarea placeholder = "发表评论"></textarea> -->
+                    <div class = "message">
+                    <table class = "commit-table">
+                    <tr>
+                    	<td width="50"><label>昵称：</label> </td>
+                        <td><input type = "text" class = "input-text" name = "username"/></td>
+                    </tr>
+                      <tr>
+                    	<td><label>邮箱：</label> </td>
+                        <td><input type = "text" class = "input-text" name = "email"/></td>
+                    </tr> 
+                     <tr><td><label>评论：</label> </td><td ><textarea placeholder = "发表评论" name = "content"></textarea></td></tr>
+                    </table>
+                    </div> 
+                    <button type = "submit"“ class = "text-button">发表评论</button>
+                  </form>
+                  </div>
+                   <br/>
+                   <%
+                   String pagenum = request.getParameter("pagenum");
+                   System.out.println(pagenum);
+                   ArrayList<Message> list =  new ArrayList<Message>();
+                   MessageDaoImpl op1 = new MessageDaoImpl();
+                   int total = op1.SearchMessageByArticleIdCount(Integer.parseInt(s));
+                   Page pp = new Page(Integer.parseInt(pagenum),total);
+                   list = op1.SearchMessageByIndex(pp.getStartindex(),pp.getPagesize(),Integer.parseInt(s));
+                   request.setAttribute("pp",pp);
+                   request.setAttribute("list",list);
+                   
+                   %>
+                   <c:forEach var = "item" items = "${list}" >
+                  <hr style="height:1px;border:none;border-top:1px dashed white;" />
+                    <div class = "message-box">
+                    <p class = "cp11">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;昵称：${item.getUsername()}</p>
+                     <p class = "cp2">${item.getContent()}</p>
+                     <p class = "cp1">时间:${item.getTime()}</p>
+                    </div>
+                    <hr style="height:1px;border:none;border-top:1px dashed white;" />
+                    <br/>
+                   </c:forEach>
+                   
+                   <c:if test = "${!empty list }">
+                   <div calss = "pagenext">
+            		
+            		<ul id="pagination-digga">
+            	    
+            	    <c:if test = "${pp.getPagenum()==1}">
+    				 <li class="previous-off">&laquo;Previous</li>
+    				</c:if>
+    				 <c:if test = "${pp.getPagenum()!=1}">
+    				 <li class="next"><a href = "${rooturl }/view/show/article.jsp?id=${p.getId()}&pagenum=${pp.getPagenum()-1}">&laquo;Previous</a></li>
+    				</c:if>
+    				
+    				<c:forEach begin="${pp.getStartPage()}" end="${pp.getEndPage() }" step="1" var="i">
+      				<c:if test = "${pp.getPagenum()==i }">
+      				<li class = "active"  >
+      					 1
+      				</li>
+      				</c:if>
+      				<c:if test = "${pp.getPagenum()!=i}">
+      				<li class=" "  >
+      					 <a href="${rooturl }/view/show/article.jsp?id=${p.getId()}&pagenum=${i}">${i } </a>
+      				</li>
+      				</c:if>
+      				</c:forEach>
+      				
+      				<c:if test = "${pp.getPagenum()==pp.getEndPage()}">
+    				<li class="previous-off">Next &raquo;</li>
+    				</c:if>
+    				<c:if test = "${pp.getPagenum()!=pp.getEndPage()}">
+    				 <li class="next"><a href = "${rooturl }/view/show/article.jsp?id=${p.getId()}&pagenum=${pp.getPagenum()+1}">&laquo;Previous</a></li>
+    				</c:if>
+    				
+  				</ul>
+            </div>
+            </c:if>
+            
+                   
                 </td>
     			</tr>
 			</table>
@@ -93,7 +183,7 @@
             System.out.println(list2.size());
             %>
             <c:forEach var="item" items="${articlelist }">
-    			<li ><a href="${rooturl }/view/show/article.jsp?id=${item.getId()}" style = "color:#064e41;" >${item.getTitle()}</a></li>
+    			<li ><a href="${rooturl }/view/show/article.jsp?id=${item.getId()}&pagenum=1" style = "color:#064e41;" >${item.getTitle()}</a></li>
             </c:forEach>
 			</ul>
             </div>
