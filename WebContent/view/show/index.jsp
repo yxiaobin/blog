@@ -5,8 +5,15 @@
 <!DOCTYPE html>
 <html>
 <%
-WebDaoImpl op = new WebDaoImpl();	
-Web web = op.SearchWebByid();
+	//获取博客博主memberid
+	String sq = request.getQueryString();
+	sq =sq.substring(10,sq.indexOf('&'));
+	
+	WebDaoImpl op = new WebDaoImpl();
+	int member_id = Integer.parseInt(sq);
+	Web web1 = new Web();
+	web1.setMember_id(member_id);
+	Web web = op.SearchWebByMember_id(web1);
 %>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -23,13 +30,14 @@ Web web = op.SearchWebByid();
    </div>
    
     <div class = "top1">
+ 	<!-- 导航栏 -->   
     <div id="nav">
     	<ul>
         	<li><a class="home" href="${pageContext.request.contextPath}/ShowArticleListServlet?id=-1&pagenum=1">首页</a></li>
         	<% 
         	ArrayList<Category> list1 = new ArrayList<Category>();
             CategoryServiceImpl categoryopp = new CategoryServiceImpl();
-            list1 = categoryopp.SerarchCategoryShowTitle();
+            list1 = categoryopp.SerarchCategoryShowTitle(member_id);
             request.setAttribute("categorylist1", list1);
             %>
             <c:forEach var="item" items="${categorylist1 }">
@@ -126,7 +134,7 @@ Web web = op.SearchWebByid();
             <% 
             ArrayList<Article> list2 = new ArrayList<Article>();
             ArticleServiceImpl articleop = new ArticleServiceImpl();
-            list2 = articleop.SearchArticleByCount();
+            list2 = articleop.SearchArticleByCount(member_id);
             request.setAttribute("articlelist", list2);
             System.out.println(list2.size());
             %>
@@ -142,7 +150,7 @@ Web web = op.SearchWebByid();
              <%
              ArrayList<Category> list3 = new ArrayList<Category>();
             CategoryDaoImpl categoryop = new CategoryDaoImpl();
-            list3 = categoryop.SearchCategorys();
+            list3 = categoryop.SearchCategorys(member_id);
             request.setAttribute("categorylist", list3);
             %>
     			<c:forEach var="item" items="${categorylist }">

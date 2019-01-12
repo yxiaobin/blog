@@ -7,6 +7,13 @@ public class Category {
 	String name;
 	int num;
 	int show;
+	int member_id;
+	public int getMember_id() {
+		return member_id;
+	}
+	public void setMember_id(int member_id) {
+		this.member_id = member_id;
+	}
 	public Category() {
 		this.id = -1;
 	}
@@ -36,7 +43,7 @@ public class Category {
 	}
 	public String getCategoryName() {
 		CategoryDaoImpl op = new CategoryDaoImpl();
-		Category p = op.SearchCategoryByID(this.id);
+		Category p = op.SearchCategoryByID(this.member_id,this.id);
 		
 		return p.getName();
 		

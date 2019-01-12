@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import sdut.blog.dao.impl.UserDaoImpl;
 import sdut.blog.domain.User;
+import sdut.blog.utils.Encrypt;
 
 /**
  * Servlet implementation class AddUserServlet
@@ -37,21 +38,35 @@ public class UserAddServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		String email = request.getParameter("email");
 		String name = request.getParameter("name");
-	
+		int rank = Integer.parseInt(request.getParameter("rank"));
 		System.out.println(" "+username+" "+name+" "+ password +" "+ email );
 		if(username == "" || password == "" || email == "" || name == "" ) {
 			out.write("<script>alert('请保证输入的数据完全')</script>");
 			out.write("<script>window.location.href=' " +request.getContextPath()+"/UserServlet ' "+ " </script>");
 		}else {
+			
 			User user = new User();
 			user.setEmail(email);
 			user.setName(name);
-			user.setPassword(password);
+			try {
+				user.setPassword(Encrypt.encrypt(password));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			user.setUsername(username);
+			user.setRank(rank);
 			UserDaoImpl  userop =  new UserDaoImpl();
-			userop.AddUser(user);
-			System.out.println("添加成功");
-			response.sendRedirect(request.getContextPath()+"/UserServlet");
+			User judge = userop.SearchUserByUsername(username);
+			if(judge.getId() != -1) {
+				out.write("<script>alert('该账户已经存在了，请重新选择新的用户名')</script>");
+				out.write("<script>window.location.href=' " +request.getContextPath()+"/UserServlet' "+ " </script>");
+			}else {
+				userop.AddUser(user);
+				System.out.println("添加成功");
+				response.sendRedirect(request.getContextPath()+"/UserServlet");
+			}
+			
 		}
 	}
 

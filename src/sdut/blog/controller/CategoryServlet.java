@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -37,9 +38,13 @@ public class CategoryServlet extends HttpServlet {
 		response.setHeader("Content-Type", "text/html;charset=UTF-8");//设置UTF-8的显示页面的类型和字符集
 		CategoryDaoImpl  categoryop = new CategoryDaoImpl();
 		Category category = new Category();
-		ArrayList<Category> list = (ArrayList<Category>) categoryop.SearchCategorys();
+		int member_id = (int) request.getSession().getAttribute("user_id");
+		ArrayList<Category> list = (ArrayList<Category>) categoryop.SearchCategorys(member_id);
 		request.setAttribute("list", list);
 		request.setAttribute("tab", 1);
+		CategoryDaoImpl op = new CategoryDaoImpl();	
+		List list1 =op.SearchCategorys(member_id); 
+    	request.setAttribute("totalnum",list1.size());
 		request.getRequestDispatcher("/view/category/index.jsp").forward(request, response);
 	}
 

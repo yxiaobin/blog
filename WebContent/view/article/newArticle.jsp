@@ -53,7 +53,8 @@
                             <label>博客分类</label>
                             <%
                             	CategoryDaoImpl op = new CategoryDaoImpl();
-                            	ArrayList<Category> list = (ArrayList<Category>)op.SearchCategorys();
+                            	int member_id = Integer.parseInt(request.getSession().getAttribute("user_id").toString());
+                            	ArrayList<Category> list = (ArrayList<Category>)op.SearchCategorys(member_id);
                             	request.setAttribute("list", list);
                             %>
                             <select name="category_id" id="" class="select2">

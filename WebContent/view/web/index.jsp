@@ -57,9 +57,11 @@
                                             <div class="section">
                                                 <div class="section-body">
                                                <%
-                                               	 WebDaoImpl op = new WebDaoImpl();	
-                                                 Web web = op.SearchWebByid();
-                                                 
+                                               	 WebDaoImpl op = new WebDaoImpl();
+                                               	 Web web1 = new Web();
+                                               	 web1.setMember_id(Integer.parseInt(request.getSession().getAttribute("user_id").toString()));
+                                                 Web web = op.SearchWebByMember_id(web1);
+                                       
                                                %>
           				                             <div class="form-group">
                                                         <label class="col-md-3 control-label">博客标题</label>

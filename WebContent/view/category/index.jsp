@@ -73,11 +73,6 @@
                                         <a href="${pageContext.request.contextPath}/view/category/edit.jsp?id=${item.getId()}&num=${item.getNum()}">
                                             <input type="button" class="btn btn-xs btn-primary"  value="修改">
                                         </a>
-                                        <%
-                                        	CategoryDaoImpl op = new CategoryDaoImpl();
-                                        	List list =op.SearchCategorys(); 
-                                        	request.setAttribute("totalnum",list.size());
-                                        %>
                                         <a href="${pageContext.request.contextPath}/CategoryDownServlet?id=${item.getId()}">
                                             <input type="button" <c:if test="${item.getNum()==totalnum }">disabled</c:if> class="btn btn-xs btn-warning"  value="下移">
                                         </a>

@@ -25,7 +25,15 @@
                         </div>
                     </a>
                 </li>
-  
+  				<li class="dropdown">
+                    <a href="${pageContext.request.contextPath}/ShowArticleListServlet?member_id=${user_id}&id=-1&pagenum=1"  target="_blank">
+                        <div class="icon">
+                            <i class="fa fa-sliders" aria-hidden="true"></i>
+                        </div>
+                        <div class="title">我的博客</div>
+                    </a>
+                </li>
+                
 				<li class="dropdown">
                     <a href="${pageContext.request.contextPath}/CategoryServlet">
                         <div class="icon">
@@ -68,7 +76,7 @@
                 </li>
                 
                 <li class="dropdown">
-                    <a href="${pageContext.request.contextPath}/WebServlet">
+                    <a href="${pageContext.request.contextPath}/view/web/index.jsp">
                         <div class="icon">
                             <i class="fa fa-sliders" aria-hidden="true"></i>
                         </div>

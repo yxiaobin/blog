@@ -14,7 +14,7 @@ import sdut.blog.utils.JDBCUtil;
 public class ArticleServiceImpl implements ArticleService{
 	static JDBCUtil dbutil = new JDBCUtil(); 
 	@Override
-	public ArrayList<Article> SearchArticleByCount() {
+	public ArrayList<Article> SearchArticleByCount(int member_id) {
 		// TODO Auto-generated method stub
 		ArrayList<Article> list = new ArrayList<Article>();
 		
@@ -22,8 +22,9 @@ public class ArticleServiceImpl implements ArticleService{
 			//1、连接数据库
 			Connection con = dbutil.getConn();
 			//2.查询语句
-			String sql = "select  * from article order by count desc limit 5";
+			String sql = "select  * from article where member_id = ? order by count desc limit 5";
 			PreparedStatement pstmt =con.prepareStatement(sql);
+			pstmt.setInt(1, member_id);
 			ResultSet rs =pstmt.executeQuery();
 			//3.处理结果集
 			while(rs.next()) {

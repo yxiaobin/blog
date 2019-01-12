@@ -44,7 +44,8 @@ public class ArticleServlet extends HttpServlet {
 		Page page = new Page(Integer.parseInt(pagenum),total);
 		request.setAttribute("page", page);
 		int start =page.getStartindex();
-		ArrayList<Article> article_list = (ArrayList<Article>) op.SearchArticleByStartIndex(page.getStartindex(), page.getPagesize());
+		int id = (int) request.getSession().getAttribute("user_id");
+		ArrayList<Article> article_list = (ArrayList<Article>) op.SearchArticleByStartIndex( id , page.getStartindex(), page.getPagesize());
 		request.setAttribute("article_list", article_list);
 		System.out.println(article_list.size()+"###");
 		request.getRequestDispatcher("/view/article/index.jsp?pagenum="+page.getPagenum()).forward(request, response);

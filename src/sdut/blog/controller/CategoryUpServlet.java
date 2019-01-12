@@ -34,15 +34,16 @@ public class CategoryUpServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		String s = request.getParameter("id");
 		int id = Integer.parseInt(s);
+		int member_id = (int) request.getSession().getAttribute("user_id");
 		CategoryDaoImpl op = new CategoryDaoImpl();
 //		获取当前的分类对象
-		Category c1 =op.SearchCategoryByID(id);
+		Category c1 =op.SearchCategoryByID(member_id,id);
 //		查询c1的num-1是哪一个对象
-		Category c2 = op.SearchCategoryByNum(c1.getNum()-1);
+		Category c2 = op.SearchCategoryByNum(member_id,c1.getNum()-1);
 		c1.setNum(c1.getNum()-1);
 		c2.setNum(c2.getNum()+1);
-		op.UpdateCategory(c1);
-		op.UpdateCategory(c2);
+		op.UpdateCategory(member_id,c1);
+		op.UpdateCategory(member_id,c2);
 		response.sendRedirect(request.getContextPath()+"/CategoryServlet");
 	}
 

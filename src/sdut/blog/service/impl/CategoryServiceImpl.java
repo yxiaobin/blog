@@ -13,7 +13,7 @@ import sdut.blog.utils.DButils;
 public class CategoryServiceImpl implements CategoryService{
 
 	@Override
-	public ArrayList<Category> SerarchCategoryShowTitle() {
+	public ArrayList<Category> SerarchCategoryShowTitle(int member_id) {
 		// TODO Auto-generated method stub
 		ArrayList<Category> list = new ArrayList<Category>();
 		DButils dbutil = new DButils();
@@ -21,8 +21,9 @@ public class CategoryServiceImpl implements CategoryService{
 			//1、连接数据库
 			Connection con = dbutil.getCon();
 			//2.查询语句
-			String sql = "select  * from category  where isshow=1 limit 5";
+			String sql = "select  * from category  where member_id = ? and  isshow=1 limit 5";
 			PreparedStatement pstmt =con.prepareStatement(sql);
+			pstmt.setInt(1, member_id);
 			ResultSet rs =pstmt.executeQuery();
 			//3.处理结果集
 			while(rs.next()) {

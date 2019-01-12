@@ -6,7 +6,7 @@ import sdut.blog.domain.Article;
 import sdut.blog.domain.Page;
 
 public interface ArticleService {
-	ArrayList<Article> SearchArticleByCount();
+	ArrayList<Article> SearchArticleByCount(int member_id);
 	ArrayList<Article> SearchArticleByCategoryId(int categoryid);
 	ArrayList<Article> SearchArticles();
 	ArrayList<Article> SearchArticlesByCategoryIdandPage(int id, Page page);

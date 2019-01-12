@@ -47,7 +47,8 @@
                  String item = request.getParameter("id");
                  int id =Integer.parseInt(item);
                  UserDaoImpl useop = new UserDaoImpl();
-                 User user = useop.SearchUserByID(id);                                      	
+                 User user = useop.SearchUserByID(id);  
+                 request.getSession().setAttribute("password", user.getPassword());
                  %>        
                 <div class="card-body no-padding tab-content">
                     <div role="tabpanel" class="tab-pane active" id="tab2">
@@ -80,7 +81,7 @@
                                                      <div class="form-group">
                                                         <label class="col-md-3 control-label">密码</label>
                                                         <div class="col-md-9">
-                                                            <input type="password" class="form-control" placeholder="密码" name="password" value="<%=user.getPassword() %>">
+                                                            <input type="password" class="form-control" placeholder="密码" name="password" >
                                                         </div>
                                                     </div>
                                                     
@@ -90,6 +91,18 @@
                                                             <input type="password" class="form-control" placeholder="邮箱" name="email" value="<%=user.getEmail()%>">
                                                         </div>
                                                     </div>
+                                                    
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label">是否是管理员</label>
+                                                        <div class="col-md-9">
+                                                       
+                                                            <select  class="form-control"  name="rank" >
+                                                            	<option <c:if test="${category.getRank()==0}" >selected </c:if> value = "0">普通用户</option>
+                                                            	<option <c:if test="${category.getRank()==1}" > selected</c:if> value = "1">管理员</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <br>
                                                     <div class="form-footer">
                                                         <div class="form-group">
                                                             <div class="col-md-9 col-md-offset-3">

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import sdut.blog.dao.impl.UserDaoImpl;
 import sdut.blog.domain.User;
+import sdut.blog.utils.Encrypt;
 import sun.misc.BASE64Encoder;
 
 /**
@@ -49,33 +50,40 @@ public class LoginServlet extends HttpServlet {
 				out.write("<script>window.location.href=' " +request.getContextPath()+"/view/login/login.jsp ' "+ " </script>");
 			
 			}else {
-				if(user.getPassword().equals(password)) {
-					System.out.print("登陆成功");
-					//添加全局用户session
-					HttpSession session = request.getSession();
-					session.setAttribute("usr_name", user.getName());
-					session.setAttribute("user_id", user.getId());
-					//转存图片二进制流
-					 FileInputStream in = new FileInputStream(user.getImg());
-					 byte[] data = null;
-					 data = new byte[in.available()];  
-			         in.read(data);
-			         in.close();
-			         BASE64Encoder encoder = new BASE64Encoder();  
-			         String base64Img =encoder.encode(data); 
-			         
-					session.setAttribute("user_img", base64Img);
-					System.out.println(user.getImg());
-					//跳转到后台管理页面
-					String url = request.getContextPath() + "/view/layout/manager.jsp";
-					response.sendRedirect(url);
-				}else {
-					out.write("<script>alert('用户名或密码错误')</script>");
-					out.write("<script>window.location.href=' " +request.getContextPath()+"/view/login/login.jsp ' "+ " </script>");
+				try {
+					if(user.getPassword().equals(Encrypt.encrypt(password))) {
+						System.out.print("登陆成功");
+						//添加全局用户session
+						HttpSession session = request.getSession();
+						session.setAttribute("usr_name", user.getName());
+						session.setAttribute("user_id", user.getId());
+						session.setAttribute("rank", user.getRank());
+						//转存图片二进制流
+						if(user.getImg() != null) {
+							 FileInputStream in = new FileInputStream(user.getImg());
+							 byte[] data = null;
+							 data = new byte[in.available()];  
+					         in.read(data);
+					         in.close();
+					         BASE64Encoder encoder = new BASE64Encoder();  
+					         String base64Img =encoder.encode(data);
+							session.setAttribute("user_img", base64Img);
+							System.out.println(user.getImg());
+						}
+						
+						//跳转到后台管理页面
+						String url = request.getContextPath() + "/view/layout/manager.jsp";
+						response.sendRedirect(url);
+					}else {
+						out.write("<script>alert('用户名或密码错误')</script>");
+						out.write("<script>window.location.href=' " +request.getContextPath()+"/view/login/login.jsp ' "+ " </script>");
+					}
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 			}
 		}
-		
 	}
 
 	/**

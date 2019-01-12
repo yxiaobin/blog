@@ -15,11 +15,11 @@ import sdut.blog.daos.CategoryDao;
 public class CategoryDaoImpl implements CategoryDao{
 	static JDBCUtil dbutil = new JDBCUtil(); 
 	@Override
-	public int AddCategory(Category category) {
+	public int AddCategory(int member_id,Category category) {
 		// TODO Auto-generated method stub
 		Category cate = null;
 		//在数据库中查找是否存在即将要添加的分类
-		cate = SearchCategoryByName(category.getName());
+		cate = SearchCategoryByName(member_id,category.getName());
 		//若为空，则说明可以添加
 		if(cate.getId()==-1) {
 			
@@ -27,20 +27,22 @@ public class CategoryDaoImpl implements CategoryDao{
 				//1、连接数据库
 				Connection con = dbutil.getConn();
 				//2.查询语句
-				String sql1 = "select count(*) as count from category";
-				String sql2 = "insert into category(name,num,isshow) values(?,?,?)";
+				String sql1 = "select count(*) as count from category where member_id = ?";
+				String sql2 = "insert into category(name,num,isshow,member_id) values(?,?,?,?)";
 				PreparedStatement pstmt =con.prepareStatement(sql1) ;
+				pstmt.setInt(1, member_id);
 				ResultSet rs = pstmt.executeQuery();
 				
 				//3.处理结果集
 				int count;
 				rs.next();
 				count = rs.getInt("count");
-				System.out.println(count+"hhh");
+				
 				pstmt =con.prepareStatement(sql2);
 				pstmt.setString(1, category.getName());
 				pstmt.setInt(2,count+1);
 				pstmt.setInt(3, category.getShow());
+				pstmt.setInt(4, member_id);
 				pstmt.executeUpdate();
 				//4.关闭数据库
 				dbutil.closeConn(con);
@@ -57,7 +59,7 @@ public class CategoryDaoImpl implements CategoryDao{
 	}
 
 	@Override
-	public int UpdateCategory(Category category) {
+	public int UpdateCategory(int member_id,Category category) {
 		// TODO Auto-generated method stub
 		
 		try {
@@ -82,7 +84,7 @@ public class CategoryDaoImpl implements CategoryDao{
 	}
 
 	@Override
-	public int DelCategory(Category category) {
+	public int DelCategory(int member_id,Category category) {
 		// TODO Auto-generated method stub
 		
 		try {
@@ -108,7 +110,7 @@ public class CategoryDaoImpl implements CategoryDao{
 	}
 
 	@Override
-	public Category SearchCategoryByID(int id) {
+	public Category SearchCategoryByID(int member_id,int id) {
 		// TODO Auto-generated method stub
 		Category category = new Category();
 		
@@ -140,7 +142,7 @@ public class CategoryDaoImpl implements CategoryDao{
 	}
 
 	@Override
-	public Category SearchCategoryByName(String name) {
+	public Category SearchCategoryByName(int member_id,String name) {
 		// TODO Auto-generated method stub
 		Category category = new Category();
 	
@@ -148,9 +150,10 @@ public class CategoryDaoImpl implements CategoryDao{
 			//1、连接数据库
 			Connection con = dbutil.getConn();
 			//2.查询语句
-			String sql = "select * from category where name = ?";
+			String sql = "select * from category where name = ? and member_id=?";
 			PreparedStatement pstmt =con.prepareStatement(sql) ;
 			pstmt.setString(1, name);
+			pstmt.setInt(2, member_id);
 			ResultSet rs =pstmt.executeQuery();
 			//3.处理结果集
 			
@@ -159,6 +162,7 @@ public class CategoryDaoImpl implements CategoryDao{
 				category.setName(rs.getString("name"));
 				category.setNum(rs.getInt("num"));
 				category.setShow(rs.getInt("isshow"));
+				category.setMember_id(rs.getInt("member_id"));
 			}
 			System.out.println(category.getId());
 			//4.关闭数据库
@@ -173,7 +177,7 @@ public class CategoryDaoImpl implements CategoryDao{
 	}
 	
 	@Override
-	public ArrayList<Category> SearchCategorys() {
+	public ArrayList<Category> SearchCategorys(int member_id) {
 		// TODO Auto-generated method stub
 	
 		ArrayList<Category> list = new ArrayList<Category>(); 
@@ -181,8 +185,9 @@ public class CategoryDaoImpl implements CategoryDao{
 			//1、连接数据库
 			Connection con = dbutil.getConn();
 			//2.查询语句
-			String sql = "select * from category order by num ";
+			String sql = "select * from category where member_id= ? order by num ";
 			PreparedStatement pstmt =con.prepareStatement(sql) ;
+			pstmt.setInt(1, member_id);
 			ResultSet rs =pstmt.executeQuery();
 			//3.处理结果集
 			
@@ -192,6 +197,7 @@ public class CategoryDaoImpl implements CategoryDao{
 				category.setName(rs.getString("name"));
 				category.setNum(rs.getInt("num"));
 				category.setShow(rs.getInt("isshow"));
+				category.setMember_id(rs.getInt("member_id"));
 				list.add(category);
 			}
 			//4.关闭数据库
@@ -206,7 +212,7 @@ public class CategoryDaoImpl implements CategoryDao{
 	}
 
 	@Override
-	public Category SearchCategoryByNum(int Num) {
+	public Category SearchCategoryByNum(int member_id,int Num) {
 		// TODO Auto-generated method stub
 		Category category = new Category();
 		
@@ -214,9 +220,10 @@ public class CategoryDaoImpl implements CategoryDao{
 			//1、连接数据库
 			Connection con = dbutil.getConn();
 			//2.查询语句
-			String sql = "select * from category where num = ?";
+			String sql = "select * from category where num = ? and member_id = ? ";
 			PreparedStatement pstmt =con.prepareStatement(sql) ;
 			pstmt.setInt(1, Num);
+			pstmt.setInt(2, member_id);
 			ResultSet rs =pstmt.executeQuery();
 			//3.处理结果集
 			
@@ -225,6 +232,7 @@ public class CategoryDaoImpl implements CategoryDao{
 				category.setName(rs.getString("name"));
 				category.setNum(rs.getInt("num"));
 				category.setShow(rs.getInt("isshow"));
+				category.setMember_id(rs.getInt("member_id"));
 			}
 			//4.关闭数据库
 			dbutil.closeConn(con);

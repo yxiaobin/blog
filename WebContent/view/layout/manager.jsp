@@ -67,7 +67,7 @@
             </a>
         </div>
         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-            <a class="card card-banner card-blue-light" href="${rooturl }/ArticleServlet">
+            <a class="card card-banner card-blue-light" href="${rooturl }/ArticleServlet?pagenum=1">
                 <div class="card-body">
                     <i class="icon fa fa-newspaper-o fa-4x"></i>
                     <div class="content">

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import sdut.blog.dao.impl.UserDaoImpl;
 import sdut.blog.domain.MyFile;
 import sdut.blog.domain.User;
+import sdut.blog.utils.Encrypt;
 
 /**
  * Servlet implementation class UserUpdateServlet
@@ -39,34 +40,36 @@ public class UserUpdateServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		String email = request.getParameter("email");
 		String name = request.getParameter("name");
+		//修改信息并没有修改密码，只需要将密码解密就好了
+		if(password =="") {
+			//将密码解密
+			try {
+				password = request.getSession().getAttribute("password").toString();
+				password = Encrypt.decrypt(password);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		
 		String s = request.getParameter("id");
-		System.out.println(s+"$$$$$$$$$$$$$");
+		int rank = Integer.parseInt(request.getParameter("rank"));
 		int id = Integer.parseInt(s);
-		System.out.println(id+" ### "+username+" "+name+" "+ password +" "+ email );
+		
 		if(username == "" || password == "" || email == "" || name == "" ) {
 			out.write("<script>alert('请保证输入的数据完全')</script>");
 			out.write("<script>window.location.href=' " +request.getContextPath()+"/UserServlet ' "+ " </script>");
 		}else {
 			User user = new User();
-			/*String img = request.getParameter("img");
-			if(img !=""){
-				
-				//得到上传文件的保存目录，将上传的文件存放于WEB-INF目录下，不允许外界直接访问，保证上传文件的安全
-		        String savePath = this.getServletContext().getRealPath("/WEB-INF/img");
-		        //上传时生成的临时文件保存目录
-		        String tempPath = this.getServletContext().getRealPath("/WEB-INF/temp");
-		        File tmpFile = new File(tempPath);
-		        if (!tmpFile.exists()) {
-		            //创建临时目录
-		            tmpFile.mkdir();
-		        }
-		        MyFile file = new MyFile();
-		        MyFile myfile = file.Save(request, response, savePath , tempPath, tmpFile);
-		        user.setImg(myfile.getFilepwd());
-			}*/
+			user.setRank(rank);
 			user.setEmail(email);
 			user.setName(name);
-			user.setPassword(password);
+			try {
+				user.setPassword(Encrypt.encrypt(password));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			user.setUsername(username);
 			user.setId(id);
 			UserDaoImpl  userop =  new UserDaoImpl();

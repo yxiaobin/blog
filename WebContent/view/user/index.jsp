@@ -114,7 +114,17 @@
                                                         </div>
                                                     </div>
                                                     
-                                                   
+                                                     <div class="form-group">
+                                                        <label class="col-md-3 control-label">是否是管理员</label>
+                                                        <div class="col-md-9">
+                                                       
+                                                            <select  class="form-control"  name="rank" >
+                                                            	<option <c:if test="${category.getRank()==0}" >selected </c:if> value = "0">普通用户</option>
+                                                            	<option <c:if test="${category.getRank()==1}" > selected</c:if> value = "1">管理员</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <br>
                                                     
                                                     <div class="form-footer">
                                                         <div class="form-group">

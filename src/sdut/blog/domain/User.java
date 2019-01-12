@@ -1,13 +1,13 @@
 package sdut.blog.domain;
 
 public class User {
-	int id;
-	String name;
-	String username;
-	String password;
-	String email;
-	String img;
-	
+	private int id;
+	private String name;
+	private String username;
+	private String password;
+	private String email;
+	private String img;
+	private int  rank;
 	public User() {
 		/*nothing to do*/
 		this.id = -1;
@@ -15,7 +15,17 @@ public class User {
 		this.username="";
 		this.password = "";
 		this.email="";
+		this.rank=-1;
 	};
+	
+	public int getRank() {
+		return rank;
+	}
+
+	public void setRank(int rank) {
+		this.rank = rank;
+	}
+
 	public int getId() {
 		return id;
 	}

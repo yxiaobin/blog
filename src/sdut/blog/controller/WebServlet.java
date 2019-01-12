@@ -47,9 +47,20 @@ public class WebServlet extends HttpServlet {
 		web.setWebkeyword(webkeyword);
 		web.setWebname(webname);
 		web.setWebstyle(webstyle);
+		web.setMember_id(Integer.parseInt(request.getSession().getAttribute("user_id").toString()));
 		WebDaoImpl op = new WebDaoImpl();
-		op.UpdateWebByid(web);
-		response.sendRedirect(request.getContextPath()+"/view/web/index.jsp");
+		//查询是否存在
+		Web judge = op.SearchWebByMember_id(web);
+		if(judge.getId() != -1) {
+			web.setId(judge.getId());
+			op.UpdateWebByid(web);
+		}else {
+			op.AddWeb(web);
+			op.UpdateWebByid(web);
+		}
+		out.write("<script>alert('修改成功')</script>");
+		out.write("<script>window.location.href=' " +request.getContextPath()+"/view/web/index.jsp ' "+ " </script>");
+		//response.sendRedirect(request.getContextPath()+"/view/web/index.jsp");
 	}
 
 	/**

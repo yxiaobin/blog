@@ -1,6 +1,8 @@
 package sdut.blog.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -35,8 +37,20 @@ public class CategoryDeleteServlet extends HttpServlet {
 		int id = Integer.parseInt(s);
 		CategoryDaoImpl categoryop = new CategoryDaoImpl();
 		Category category = new Category();
-		category = categoryop.SearchCategoryByID(id);
-		categoryop.DelCategory(category);
+		int member_id = (int) request.getSession().getAttribute("user_id");
+		category = categoryop.SearchCategoryByID(member_id, id);
+		//删除所选的分类
+		categoryop.DelCategory(member_id,category);
+		//更新其他的分类
+		ArrayList<Category> list = categoryop.SearchCategorys(member_id);
+		int i =1;
+		Iterator it1 = list.iterator();
+	    while(it1.hasNext()){
+	    	 Category category1 = (Category) it1.next();
+	    	 category1.setNum(i);
+	    	 categoryop.UpdateCategory(member_id, category1);
+	    	 i++;
+	     }
 		response.sendRedirect(request.getContextPath()+"/CategoryServlet");
 		
 	}

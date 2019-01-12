@@ -258,4 +258,37 @@ public class FileDaoImpl implements FileDao{
 		return list;
 	}
 
+	@Override
+	public List<MyFile> SearchAllFiles() {
+		// TODO Auto-generated method stub
+		ArrayList<MyFile> list = new ArrayList<MyFile>();
+		try {
+			//1、连接数据库
+			Connection con = dbutil.getConn();
+			//2.查询语句
+			String sql = "select * from file order by id desc";
+			PreparedStatement pstmt =con.prepareStatement(sql) ;
+			ResultSet rs =pstmt.executeQuery();
+			//3.处理结果集	
+			while(rs.next()) {
+				MyFile p = new MyFile();
+				p.setId(rs.getInt("id"));
+				p.setMember_id(rs.getInt("member_id"));
+				p.setIsshare(rs.getInt("isshare"));
+				p.setFilepwd(rs.getString("filepwd"));
+				p.setNowtime(rs.getString("time"));
+				p.setName(rs.getString("name"));
+				list.add(p);
+				
+			}
+			//4.关闭数据库
+			dbutil.closeConn(con);
+			pstmt.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+
 }

@@ -35,6 +35,7 @@ public class CategoryAddServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		String name= request.getParameter("name");
 		String h = request.getParameter("show");
+		
 		if(name=="") {
 			out.write("<script>alert('请保证输入的数据正确并完全')</script>");
 			out.write("<script>window.location.href=' " +request.getContextPath()+"/CategoryServlet ' "+ " </script>");
@@ -45,7 +46,8 @@ public class CategoryAddServlet extends HttpServlet {
 	    	int show = Integer.parseInt(h);
 	    	category.setName(name);
 			category.setShow(show);
-			int is = categoryop.AddCategory(category);
+			int member_id = (int) request.getSession().getAttribute("user_id");
+			int is = categoryop.AddCategory(member_id,category);
 			if(is==1) {
 				response.sendRedirect(request.getContextPath()+"/CategoryServlet");
 			}

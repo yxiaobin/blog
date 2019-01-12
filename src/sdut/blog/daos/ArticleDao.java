@@ -23,6 +23,6 @@ public interface ArticleDao {
 		//查找文章数量
 		public int SearchArticleCount();
 		//查找当前页显示文章的数量
-		public ArrayList<Article> SearchArticleByStartIndex(int startindex,int pagesize);
+		public ArrayList<Article> SearchArticleByStartIndex(int id , int startindex,int pagesize);
 		
 }

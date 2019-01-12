@@ -6,7 +6,7 @@ import sdut.blog.domain.Category;
 import sdut.blog.domain.MyFile;
 
 public interface FileDao {
-	//添加文件
+		//添加文件
 		public int AddMyFile(MyFile user);
 		//修改文件
 		public int UpdateMyFile(MyFile user);
@@ -24,5 +24,6 @@ public interface FileDao {
 		public int SearchFileCount(int id);
 		//根据索引，查取当前显示的文件的相关信息
 		public List<MyFile> SearchMyFileByStartIndex(int id,int startIndex,int pagesize);
-		
+		//管理员权限查看所有的文件
+		public List<MyFile> SearchAllFiles();
 }

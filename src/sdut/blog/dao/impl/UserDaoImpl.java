@@ -22,12 +22,13 @@ public class UserDaoImpl implements UserDao{
 			//1、连接数据库
 			Connection con = dbutil.getConn();
 			//2.查询语句
-			String sql = "insert into user(name,username,password,email) values(?,?,?,?)";
+			String sql = "insert into user(name,username,password,email,rank) values(?,?,?,?,?)";
 			PreparedStatement pstmt =con.prepareStatement(sql) ;
 			pstmt.setString(1, user.getName());
 			pstmt.setString(2, user.getUsername());
 			pstmt.setString(3, user.getPassword());
 			pstmt.setString(4, user.getEmail());
+			pstmt.setInt(5,user.getRank());
 			boolean rs =pstmt.execute();
 			//3.关闭数据库
 			dbutil.closeConn(con);
@@ -48,14 +49,15 @@ public class UserDaoImpl implements UserDao{
 			//1、连接数据库
 			Connection con = dbutil.getConn();
 			//2.查询语句
-			String sql = "update user set name=?,username=?,password=?,email=? ,img = ? where id=?";
+			String sql = "update user set name=?,username=?,password=?,email=? ,img = ? , rank = ? where id=?";
 			PreparedStatement pstmt =con.prepareStatement(sql) ;
 			pstmt.setString(1, user.getName());
 			pstmt.setString(2, user.getUsername());
 			pstmt.setString(3, user.getPassword());
 			pstmt.setString(4, user.getEmail());
 			pstmt.setString(5, user.getImg());
-			pstmt.setInt(6, user.getId());
+			pstmt.setInt(6, user.getRank());
+			pstmt.setInt(7, user.getId());
 			boolean rs =pstmt.execute();
 			//3.关闭数据库
 			dbutil.closeConn(con);
@@ -112,6 +114,7 @@ public class UserDaoImpl implements UserDao{
 				user.setPassword(rs.getString("password"));
 				user.setEmail(rs.getString("email"));
 				user.setImg(rs.getString("img"));
+				user.setRank(rs.getInt("rank"));
 			}
 			//4.关闭数据库
 			dbutil.closeConn(con);
@@ -146,6 +149,7 @@ public class UserDaoImpl implements UserDao{
 				user.setPassword(rs.getString("password"));
 				user.setEmail(rs.getString("email"));
 				user.setImg(rs.getString("img"));
+				user.setRank(rs.getInt("rank"));
 			}
 			//4.关闭数据库
 			dbutil.closeConn(con);
@@ -180,6 +184,7 @@ public class UserDaoImpl implements UserDao{
 				user.setPassword(rs.getString("password"));
 				user.setEmail(rs.getString("email"));
 				user.setImg(rs.getString("img"));
+				user.setRank(rs.getInt("rank"));
 				list.add(user);
 			}
 			//4.关闭数据库

@@ -46,8 +46,9 @@
                  <%
                  String item = request.getParameter("id");
                  int id =Integer.parseInt(item);
+                 int member_id =Integer.parseInt(request.getSession().getAttribute("user_id").toString()) ;
                  CategoryDaoImpl categoryop = new CategoryDaoImpl();
-                 Category category = categoryop.SearchCategoryByID(id);  
+                 Category category = categoryop.SearchCategoryByID(member_id, id);  
                  request.setAttribute("category",category);
                  %>        
                 <div class="card-body no-padding tab-content">

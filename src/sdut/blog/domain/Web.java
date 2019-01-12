@@ -2,6 +2,16 @@ package sdut.blog.domain;
 
 public class Web {
 	
+	
+	private String webname;
+	private String webkeyword;
+	private String webdescription;
+	private String webstyle;
+	private int id;
+	private int member_id;
+	public Web() {
+		this.id = -1;
+	}
 	public String getWebname() {
 		return webname;
 	}
@@ -26,10 +36,16 @@ public class Web {
 	public void setWebstyle(String webstyle) {
 		this.webstyle = webstyle;
 	}
-	private String webname;
-	private String webkeyword;
-	private String webdescription;
-	private String webstyle;
-	
-	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public int getMember_id() {
+		return member_id;
+	}
+	public void setMember_id(int member_id) {
+		this.member_id = member_id;
+	}
 }

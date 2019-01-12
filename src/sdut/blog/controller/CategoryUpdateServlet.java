@@ -55,7 +55,8 @@ public class CategoryUpdateServlet extends HttpServlet {
 			category.setNum(num);
 			
 			CategoryDaoImpl categoryop = new CategoryDaoImpl();
-			categoryop.UpdateCategory(category);
+			int member_id = (int) request.getSession().getAttribute("user_id");
+			categoryop.UpdateCategory(member_id,category);
 			response.sendRedirect(request.getContextPath()+"/CategoryServlet");
 		}
 	}
