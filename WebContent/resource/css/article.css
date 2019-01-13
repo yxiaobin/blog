@@ -34,7 +34,7 @@ body{
 	float:right;
 	}
 .main-left{
-	width:550px;
+	width:580px;
 	margin-bottom:30px;
 	float:left;
 	margin-top:20px;
@@ -315,4 +315,28 @@ text-decoration:none; }/*修改字体的颜色*/
 	font-weight:bold;
 	
 	}
+.login-form{
+	heigh:400px;
+	width:300px;
+	margin-left:30px;
+	
+}
+.login-table{
+	heigh:400px;
+	width:300px;
+	
+}
+.login-input{
+	/* background-color:rgba(255,204,204,0.3); */
+	width:200px;
+	height:30px;
+	font-size:15px;
+	color:black;
+	
+}
+.login-buttonstyle{
+	margin-left:50px;
+	
+}
+
 	
