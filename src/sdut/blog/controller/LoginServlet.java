@@ -38,6 +38,7 @@ public class LoginServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
+		String url = request.getParameter("url");
 		if(username.equals("") || password.equals("")) {
 			out.write("<script>alert('请输入用户名和密码后在尝试登录操作')</script>");
 			out.write("<script>window.location.href=' " +request.getContextPath()+"/view/login/login.jsp ' "+ " </script>");
@@ -72,8 +73,14 @@ public class LoginServlet extends HttpServlet {
 						}
 						
 						//跳转到后台管理页面
-						String url = request.getContextPath() + "/view/layout/manager.jsp";
-						response.sendRedirect(url);
+						if(url == null) {
+							String url1 = request.getContextPath() + "/view/layout/manager.jsp";
+							response.sendRedirect(url1);
+						}else {
+							out.write("<script>alert('登陆成功')</script>");
+							out.write("<script>window.location.href=' "+ url  +" ' "+ " </script>");
+						}
+						
 					}else {
 						out.write("<script>alert('用户名或密码错误')</script>");
 						out.write("<script>window.location.href=' " +request.getContextPath()+"/view/login/login.jsp ' "+ " </script>");

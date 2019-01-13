@@ -9,28 +9,99 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>文章</title>
-<link href="${rooturl }/resource/css/article.css" rel="stylesheet"/>
+	<link rel="stylesheet" type="text/css" href="${rooturl}/resource/assets/css/vendor.css">
+    <link rel="stylesheet" type="text/css" href="${rooturl}/resource/assets/css/flat-admin.css">
+    <link rel="stylesheet" type="text/css" href="${rooturl}/resource/assets/css/theme/blue-sky.css">
+    <link rel="stylesheet" type="text/css" href="${rooturl}/resource/assets/css/theme/blue.css">
+    <link rel="stylesheet" type="text/css" href="${rooturl}/resource/assets/css/theme/red.css">
+    <link rel="stylesheet" type="text/css" href="${rooturl}/resource/assets/css/theme/yellow.css">
+    <link href="${rooturl }/resource/css/article.css" rel="stylesheet"/>
 <style type="text/css">
 	p{
 		color:white;
 		text-index:2em;
 	}
+	#showlist{
+	width:120px;
+	height:80px;
+	background:pink;
+	display:none;
+	}
+#showlist a:hover{
+	background:pink;
+	}
 </style>
+<script language="javascript">
+function onMouseover()
+{
+var obj=document.getElementById("showlist");
+obj.style.display="block";
+}
+function onMouseout()
+{
+var obj=document.getElementById("showlist");
+obj.style.display="none";
+}
+</script>
 </head>
 <body background="${rooturl }/resource/img/bg.png" >
 	  <div class = "top">
     		<div class = "top2-register" >
-         		<c:if test= "${empty user.getUsername() }">
+         		<c:if test= "${empty usr_name }">
          		<a href ="#" style = "color:#FFF;">注册</a>
          		&nbsp;&nbsp;&nbsp;
-         		<a href ="#" style = "color:#FFF;">登录</a>
+         		<a href ="#" style = "color:#FFF;" data-toggle="modal" data-target="#myModal">登录</a>
         		 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        		 
+        		 <!-- 模态框（Modal） -->
+<div  class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" background="${rooturl }/resource/img/bg.png" style = "width:400px; background:pink;">
+            <div  class="modal-body" style = "color:black;font-weight:100;">
+            <form action = "${rooturl}/LoginServlet?member_id=${user.getId()}&id=${p.getId()}" method="post" style = "color:black;">
+                    <div class = "login-form">
+                    <table class = "login-table">
+                    <%
+                    	String url =request.getRequestURI()+"?"+request.getQueryString();
+                    	System.out.print(url);
+                    %>
+                    <input type="text" hidden  name="url" value = "<%=url%>">
+                    <tr height = "100">
+                    	<td width="70">用户名： </td>
+                        <td><input type = "text" class = "login-input" name = "username"/></td>
+                    </tr>
+                      <tr>
+                    	<td>密&nbsp;&nbsp;&nbsp;码： </td>
+                        <td><input type = "password" class = "login-input" name = "password"/></td>
+                    </tr> 
+                    </table>
+                    </div> 
+                    <br/>
+                    <div class = "login-buttonstyle">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="submit" class="btn btn-primary">登陆</button>
+                    </div>
+                  </form>
+                  </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+        		 
         		 </c:if>
-        		 <c:if test="${!empty user.getUsername() }">
-        		<span style="font-family:楷体;">亲爱的&nbsp;${user.getUsername() }&nbsp;，您好&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        		 <c:if test="${!empty usr_name }">
+        		 <div onmouseover="onMouseover()" onmouseout="onMouseout()">
+        		<span  style="font-family:楷体;">亲爱的&nbsp;${usr_name }&nbsp;，您好&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        		<div id = "showlist">
+					<a href="${rooturl}/view/layout/manager.jsp" class="list-group-item" >
+  					 进入后台管理
+					</a>
+					<a href="${rooturl}/LogoutServlet" class="list-group-item">退出</a>
+				</div>
+        		</div>
         		</c:if>
         	</div>
  	</div>
+ 	
  	<%
 	//获取博客博主memberid
 	String sq = request.getQueryString();
@@ -39,10 +110,10 @@
 	int member_id = Integer.parseInt(sq);
 	Web web1 = new Web();
 	web1.setMember_id(member_id);
+	Web web = op.SearchWebByMember_id(web1);
 	UserDaoImpl userop = new UserDaoImpl();
 	User user = userop.SearchUserByID(member_id);
 	request.setAttribute("user",user);
-	Web web = op.SearchWebByMember_id(web1);
 %>
 	<div class = "top2">
      	<div class = "title"> <%=web.getWebname() %> </div>
@@ -160,7 +231,7 @@
     				<c:forEach begin="${pp.getStartPage()}" end="${pp.getEndPage() }" step="1" var="i">
       				<c:if test = "${pp.getPagenum()==i }">
       				<li class = "active"  >
-      					 1
+      					${i }
       				</li>
       				</c:if>
       				<c:if test = "${pp.getPagenum()!=i}">
@@ -174,7 +245,7 @@
     				<li class="previous-off">Next &raquo;</li>
     				</c:if>
     				<c:if test = "${pp.getPagenum()!=pp.getEndPage()}">
-    				 <li class="next"><a href = "${rooturl }/view/show/article.jsp?member_id=${user.getId()}&id=${p.getId()}&pagenum=${pp.getPagenum()+1}">&laquo;Previous</a></li>
+    				 <li class="next"><a href = "${rooturl }/view/show/article.jsp?member_id=${user.getId()}&id=${p.getId()}&pagenum=${pp.getPagenum()+1}">Next &raquo;</a></li>
     				</c:if>
     				
   				</ul>
@@ -230,9 +301,12 @@
             </div>
             <br/>
             
-            <HR style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="80%" color=b SIZE=3>
+            <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="80%" color="black" !important SIZE=3/>
             <br/><br/>
         </div>
 	</div>
+		<!--引用js  -->
+<script type="text/javascript" src="${rooturl}/resource/assets/js/vendor.js"></script>
+<script type="text/javascript" src="${rooturl}/resource/assets/js/app.js"></script>
 </body>
 </html>
