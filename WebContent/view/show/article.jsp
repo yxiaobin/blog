@@ -18,25 +18,51 @@
 </style>
 </head>
 <body background="${rooturl }/resource/img/bg.png" >
+	  <div class = "top">
+    		<div class = "top2-register" >
+         		<c:if test= "${empty user.getUsername() }">
+         		<a href ="#" style = "color:#FFF;">注册</a>
+         		&nbsp;&nbsp;&nbsp;
+         		<a href ="#" style = "color:#FFF;">登录</a>
+        		 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        		 </c:if>
+        		 <c:if test="${!empty user.getUsername() }">
+        		<span style="font-family:楷体;">亲爱的&nbsp;${user.getUsername() }&nbsp;，您好&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        		</c:if>
+        	</div>
+ 	</div>
+ 	<%
+	//获取博客博主memberid
+	String sq = request.getQueryString();
+	sq =sq.substring(10,sq.indexOf('&'));
+	WebDaoImpl op = new WebDaoImpl();
+	int member_id = Integer.parseInt(sq);
+	Web web1 = new Web();
+	web1.setMember_id(member_id);
+	UserDaoImpl userop = new UserDaoImpl();
+	User user = userop.SearchUserByID(member_id);
+	request.setAttribute("user",user);
+	Web web = op.SearchWebByMember_id(web1);
+%>
 	<div class = "top2">
-     	<div class = "title"> 猪猪的博客</div>
-        <div class = "description">遇见一场烟花盛开的美，从此，即使梦碎，依然守着不悔，选择在回忆里沉醉。风，轻轻舞动薄衫，吹起书案零</div>
+     	<div class = "title"> <%=web.getWebname() %> </div>
+        <div class = "description"><%=web.getWebstyle()%></div>
    </div>
    
     
      <div class = "top1">
+ 	<!-- 导航栏 -->   
     <div id="nav">
     	<ul>
-        	<li><a class="home" href="${pageContext.request.contextPath}/ShowArticleListServlet?id=-1&pagenum=1">首页</a></li>
+        	<li><a class="home" href="${pageContext.request.contextPath}/ShowArticleListServlet?member_id=${user.getId()}&id=-1&pagenum=1">首页</a></li>
         	<% 
         	ArrayList<Category> list1 = new ArrayList<Category>();
             CategoryServiceImpl categoryopp = new CategoryServiceImpl();
-            list1 = categoryopp.SerarchCategoryShowTitle();
+            list1 = categoryopp.SerarchCategoryShowTitle(member_id);
             request.setAttribute("categorylist1", list1);
             %>
             <c:forEach var="item" items="${categorylist1 }">
-            
-    			<li ><a href="${pageContext.request.contextPath}/ShowArticleListServlet?id=${item.getId()}&pagenum=1" >${item.getName()}</a></li>
+    			<li ><a href="${pageContext.request.contextPath}/ShowArticleListServlet?member_id=${user.getId()}&id=${item.getId()}&pagenum=1" >${item.getName()}</a></li>
             </c:forEach>
     	</ul>
     </div>
@@ -49,10 +75,10 @@
     			<tr>
     			<%
     			    String s = request.getParameter("id");
-    				ArticleDaoImpl op = new ArticleDaoImpl();
-    				Article p = op.SearchArticleByID(Integer.parseInt(s));
+    				ArticleDaoImpl articleop = new ArticleDaoImpl();
+    				Article p = articleop.SearchArticleByID(Integer.parseInt(s));
     				p.setCount(p.getCount()+1);
-    				op.UpdateArticle(p);
+    				articleop.UpdateArticle(p);
     				request.setAttribute("p",p);
     			%>
         		<td class = "maintd">
@@ -77,7 +103,7 @@
           <hr color= "#422656"/>
           <br/>
                   <div >
-                  <form action = "${rooturl}/MessageAddServlet?id=${p.getId()}" method="post">
+                  <form action = "${rooturl}/MessageAddServlet?member_id=${user.getId()}&id=${p.getId()}" method="post">
                   	<!-- <textarea placeholder = "发表评论"></textarea> -->
                     <div class = "message">
                     <table class = "commit-table">
@@ -128,7 +154,7 @@
     				 <li class="previous-off">&laquo;Previous</li>
     				</c:if>
     				 <c:if test = "${pp.getPagenum()!=1}">
-    				 <li class="next"><a href = "${rooturl }/view/show/article.jsp?id=${p.getId()}&pagenum=${pp.getPagenum()-1}">&laquo;Previous</a></li>
+    				 <li class="next"><a href = "${rooturl }/view/show/article.jsp?member_id=${user.getId()}&id=${p.getId()}&pagenum=${pp.getPagenum()-1}">&laquo;Previous</a></li>
     				</c:if>
     				
     				<c:forEach begin="${pp.getStartPage()}" end="${pp.getEndPage() }" step="1" var="i">
@@ -139,7 +165,7 @@
       				</c:if>
       				<c:if test = "${pp.getPagenum()!=i}">
       				<li class=" "  >
-      					 <a href="${rooturl }/view/show/article.jsp?id=${p.getId()}&pagenum=${i}">${i } </a>
+      					 <a href="${rooturl }/view/show/article.jsp?member_id=${user.getId()}&id=${p.getId()}&pagenum=${i}">${i } </a>
       				</li>
       				</c:if>
       				</c:forEach>
@@ -148,7 +174,7 @@
     				<li class="previous-off">Next &raquo;</li>
     				</c:if>
     				<c:if test = "${pp.getPagenum()!=pp.getEndPage()}">
-    				 <li class="next"><a href = "${rooturl }/view/show/article.jsp?id=${p.getId()}&pagenum=${pp.getPagenum()+1}">&laquo;Previous</a></li>
+    				 <li class="next"><a href = "${rooturl }/view/show/article.jsp?member_id=${user.getId()}&id=${p.getId()}&pagenum=${pp.getPagenum()+1}">&laquo;Previous</a></li>
     				</c:if>
     				
   				</ul>
@@ -177,28 +203,28 @@
             <ul >
             <% 
             ArrayList<Article> list2 = new ArrayList<Article>();
-            ArticleServiceImpl articleop = new ArticleServiceImpl();
-            list2 = articleop.SearchArticleByCount();
+            ArticleServiceImpl articleopp = new ArticleServiceImpl();
+            list2 = articleopp.SearchArticleByCount(member_id);
             request.setAttribute("articlelist", list2);
             System.out.println(list2.size());
             %>
             <c:forEach var="item" items="${articlelist }">
-    			<li ><a href="${rooturl }/view/show/article.jsp?id=${item.getId()}&pagenum=1" style = "color:#064e41;" >${item.getTitle()}</a></li>
+    			<li ><a href="${rooturl }/view/show/article.jsp?member_id=${user.getId()}&id=${item.getId()}&pagenum=1" style = "color:#064e41;" >${item.getTitle()}</a></li>
             </c:forEach>
 			</ul>
             </div>
             <br/><br/>
             <div class = "main-right-top">
             <h3 style = "color:#124410;">&nbsp;&nbsp;&nbsp;&nbsp;博客分类：</h3>
-            <ul>
+           <ul>
              <%
              ArrayList<Category> list3 = new ArrayList<Category>();
             CategoryDaoImpl categoryop = new CategoryDaoImpl();
-            list3 = categoryop.SearchCategorys();
+            list3 = categoryop.SearchCategorys(member_id);
             request.setAttribute("categorylist", list3);
             %>
     			<c:forEach var="item" items="${categorylist }">
-    			<li ><a href="${pageContext.request.contextPath}/ShowArticleListServlet?id=${item.getId()}&pagenum=1" style = "color:#064e41;">${item.getName() }</a></li>
+    			<li ><a href="${pageContext.request.contextPath}/ShowArticleListServlet?member_id=${user.getId()}&id=${item.getId()}&pagenum=1" style = "color:#064e41;">${item.getName() }</a></li>
             	</c:forEach>
 			</ul>
             </div>

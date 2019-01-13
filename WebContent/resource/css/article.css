@@ -304,4 +304,15 @@ padding:4px 6px; /* savers */ margin-right:2px;border-radius:13px; border:solid 
 text-decoration:none; }/*修改字体的颜色*/
 
 #pagination-digga a:hover { border:solid 1px #F30;border-radius:13px; background:#F30;}/*修改访问时边框的颜色*/
+.top{
+	height:25px;
+	margin:0 auto;
+	width:900px
+	}
+.top2-register{
+	float:right;
+	color:white;
+	font-weight:bold;
+	
+	}
 	

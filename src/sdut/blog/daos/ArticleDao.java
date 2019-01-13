@@ -22,7 +22,9 @@ public interface ArticleDao {
 		public ArrayList<Article> SearchArticleByCategoryID(Category p);
 		//查找文章数量
 		public int SearchArticleCount();
-		//查找当前页显示文章的数量
+		//查找用户文章的文章数量
+		public int SearchMemberArticleCount(int member_id);
+		//查找当前页显示的文章
 		public ArrayList<Article> SearchArticleByStartIndex(int id , int startindex,int pagesize);
 		
 }

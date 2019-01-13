@@ -41,13 +41,14 @@ public class MessageAddServlet extends HttpServlet {
 		String content = request.getParameter("content");
 		String h = request.getParameter("id");
 		int id = Integer.parseInt(h);
+		String member_id = request.getParameter("member_id");
 		
 		
 		//int member_id =  (int) request.getSession().getValue("user_id");
 		
 		if(username=="" || email=="" || content=="") {
 			out.write("<script>alert('请保证输入的数据完全')</script>");
-			out.write("<script>window.location.href=' " +request.getContextPath()+"/view/show/article.jsp?id="+id+"'"+ " </script>");
+			out.write("<script>window.location.href=' " +request.getContextPath()+"/view/show/article.jsp?member_id="+member_id+"&id="+id+"&pagenum=1'"+ " </script>");
 		}else {
 			Message m = new Message(id, username, email, content);
 			MessageDaoImpl op = new MessageDaoImpl();
@@ -56,8 +57,7 @@ public class MessageAddServlet extends HttpServlet {
 			//System.out.println(m.getUsername()+"#"+m.getEmail()+"#"+m.getArticleId()+"#"+m.getContent()+"#");
 			//out.print(username+"#"+email+"#"+content);
 			out.write("<script>alert('留言评论成功，请等待作者审核！')</script>");
-			out.write("<script>window.location.href=' " +request.getContextPath()+"/view/show/article.jsp?id="+id+"&pagenum=1'"+ " </script>");
-			
+			out.write("<script>window.location.href=' " +request.getContextPath()+"/view/show/article.jsp?member_id="+member_id+"&id="+id+"&pagenum=1'"+ " </script>");
 			}
 	}
 

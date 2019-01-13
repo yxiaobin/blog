@@ -273,4 +273,31 @@ public class ArticleDaoImpl implements ArticleDao{
 		return list;
 	}
 
+	@Override
+	public int SearchMemberArticleCount(int member_id) {
+		// TODO Auto-generated method stub
+		
+		int count = 0;
+		JDBCUtil dbutil = new JDBCUtil();
+		try {
+			//1、连接数据库
+			Connection con = dbutil.getConn();
+			//2.查询语句
+			String sql = "select count(0) as count1 from article where member_id = ?";
+			PreparedStatement pstmt =con.prepareStatement(sql) ;
+			pstmt.setInt(1, member_id);
+			ResultSet rs =pstmt.executeQuery();
+			//3.处理结果集
+			rs.next();
+			 count = rs.getInt("count1");
+			//4.关闭数据库
+			dbutil.closeConn(con);
+			pstmt.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return count;
+	}
+
 }

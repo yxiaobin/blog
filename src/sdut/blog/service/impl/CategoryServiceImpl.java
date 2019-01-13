@@ -9,6 +9,7 @@ import sdut.blog.domain.Article;
 import sdut.blog.domain.Category;
 import sdut.blog.services.CategoryService;
 import sdut.blog.utils.DButils;
+import sdut.blog.utils.JDBCUtil;
 
 public class CategoryServiceImpl implements CategoryService{
 
@@ -16,10 +17,10 @@ public class CategoryServiceImpl implements CategoryService{
 	public ArrayList<Category> SerarchCategoryShowTitle(int member_id) {
 		// TODO Auto-generated method stub
 		ArrayList<Category> list = new ArrayList<Category>();
-		DButils dbutil = new DButils();
+		JDBCUtil dbutil = new JDBCUtil();
 		try {
 			//1、连接数据库
-			Connection con = dbutil.getCon();
+			Connection con = dbutil.getConn();
 			//2.查询语句
 			String sql = "select  * from category  where member_id = ? and  isshow=1 limit 5";
 			PreparedStatement pstmt =con.prepareStatement(sql);
@@ -35,7 +36,7 @@ public class CategoryServiceImpl implements CategoryService{
 				    list.add(category);
 			}
 			//4.关闭数据库
-			dbutil.closeCon(con);
+			dbutil.closeConn(con);
 			pstmt.close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

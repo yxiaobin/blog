@@ -196,3 +196,14 @@ h3{
 p{
 	color:#006;
 	}
+.top{
+	height:25px;
+	margin:0 auto;
+	width:900px
+	}
+.top2-register{
+	float:right;
+	color:white;
+	font-weight:bold;
+	
+	}

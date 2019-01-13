@@ -35,10 +35,11 @@ public class ShowArticleListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.setHeader("Content-Type", "text/html;charset=UTF-8");//设置UTF-8的显示页面的类型和字符集
-		String h = request.getParameter("id");
+		String h1 = request.getParameter("id");
+		String  h2= request.getParameter("member_id");
 		String pagenum = request.getParameter("pagenum");
-		if(Integer.parseInt(h)!=-1) {
-			int id = Integer.parseInt(h);
+		if(Integer.parseInt(h1)!=-1) {
+			int id = Integer.parseInt(h1);
 			ArticleServiceImpl op = new ArticleServiceImpl();
 			ArrayList<Article> list = new ArrayList<Article>();
 			ArrayList<Article> list1 = new ArrayList<Article>();
