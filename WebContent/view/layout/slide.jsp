@@ -3,7 +3,9 @@
     
     
 <!DOCTYPE html>
-
+<%
+	int rank = Integer.parseInt(request.getSession().getAttribute("rank").toString());
+%>
 <div id="managerslide">
 
 <aside class="app-sidebar" id="sidebar" style="height: auto">
@@ -25,25 +27,19 @@
                         </div>
                     </a>
                 </li>
-  				<li class="dropdown">
-                    <a href="${pageContext.request.contextPath}/ShowArticleListServlet?member_id=${user_id}&id=-1&pagenum=1"  target="_blank">
-                        <div class="icon">
-                            <i class="fa fa-sliders" aria-hidden="true"></i>
-                        </div>
-                        <div class="title">我的博客</div>
-                    </a>
-                </li>
-                
-				<li class="dropdown">
-                    <a href="${pageContext.request.contextPath}/CategoryServlet">
-                        <div class="icon">
-                            <i class="fa fa-sliders" aria-hidden="true"></i>
-                        </div>
-                        <div class="title">分类管理</div>
-                    </a>
-                </li>
                 
                 <li class="dropdown">
+                    <a href="${pageContext.request.contextPath}/ShowArticleListServlet?member_id=${user_id}&id=-1&pagenum=1" target="_blank">
+                        <div class="icon">
+                            <i class="fa fa-sliders" aria-hidden="true"></i>
+                        </div>
+                        <div class="title">查看我的博客</div>
+                    </a>
+                   
+                </li>
+                
+                
+                 <li class="dropdown">
                     <a href="#">
                         <div class="icon">
                             <i class="fa fa-sliders" aria-hidden="true"></i>
@@ -53,10 +49,34 @@
                     <div class="dropdown-menu">
                         <ul>
                             <li><a href="${pageContext.request.contextPath}/ArticleServlet?pagenum=1">博客列表</a></li>
-                            <li><a href="${pageContext.request.contextPath}/view/article/newArticle.jsp">更新博客</a></li>
+                            <li><a href="${pageContext.request.contextPath}/CategoryServlet">分类列表</a></li>
+                            <li><a href="${pageContext.request.contextPath}/view/article/newArticle.jsp">撰写博客</a></li>
+                             <%-- <li><a href="${pageContext.request.contextPath}/ShowArticleListServlet?member_id=${user_id}&id=-1&pagenum=1" target="_blank">查看我的博客</a></li> --%>
                         </ul>
                     </div> 
                 </li>
+                
+                
+                
+  			<li class="dropdown">
+                    <a href="#">
+                        <div class="icon">
+                            <i class="fa fa-sliders" aria-hidden="true"></i>
+                        </div>
+                        <div class="title">站点管理</div>
+                    </a>
+                     <div class="dropdown-menu">
+                        <ul>
+					<%-- 		<li><a href="${pageContext.request.contextPath}/ShowArticleListServlet?member_id=${user_id}&id=-1&pagenum=1" target="_blank">查看我的博客</a></li> --%> 
+							<li><a href="${pageContext.request.contextPath}/MessageServlet" >留言管理</a></li> 
+							<li><a href="${pageContext.request.contextPath}/view/web/index.jsp" >站点基本信息管理</a></li>
+                        </ul>
+                    </div> 
+           </li> 
+                
+			
+                
+               
   				<li class="dropdown">
                     <a href="${pageContext.request.contextPath}/FileServlet?pagenum=1">
                         <div class="icon">
@@ -65,14 +85,7 @@
                         <div class="title">文件管理</div>
                     </a>
                 </li>
-                <li class="dropdown">
-                    <a href="${pageContext.request.contextPath}/MessageServlet">
-                        <div class="icon">
-                            <i class="fa fa-sliders" aria-hidden="true"></i>
-                        </div>
-                        <div class="title">留言管理</div>
-                    </a>
-                </li>
+               <c:if test="${rank == 1}">
                 <li class="dropdown">
                     <a href="${pageContext.request.contextPath}/UserServlet">
                         <div class="icon">
@@ -81,15 +94,7 @@
                         <div class="title">用户管理</div>
                     </a>               
                 </li>
-                
-                <li class="dropdown">
-                    <a href="${pageContext.request.contextPath}/view/web/index.jsp">
-                        <div class="icon">
-                            <i class="fa fa-sliders" aria-hidden="true"></i>
-                        </div>
-                        <div class="title">网站基本信息</div>
-                    </a>               
-                </li>
+               </c:if> 
             </ul>
         </div>
     </aside>

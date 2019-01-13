@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import sdut.blog.daos.*;
+import sdut.blog.domain.Article;
 import sdut.blog.domain.Message;
 import sdut.blog.utils.JDBCUtil;
 public class MessageDaoImpl implements MessageDao{
@@ -103,7 +104,7 @@ public class MessageDaoImpl implements MessageDao{
 	}
 
 	@Override
-	public ArrayList<Message> SearchMessages() {
+	public ArrayList<Message> SearchMessages(int  member_id) {
 		// TODO Auto-generated method stub
 		ArrayList<Message> list =new  ArrayList<Message>();
 		
@@ -124,8 +125,12 @@ public class MessageDaoImpl implements MessageDao{
 				m.setId(rs.getInt("id"));
 				m.setJudge(rs.getInt("judge"));
 				m.setTime(rs.getString("date"));
-				list.add(m);
-				
+				//根据留言的article_id 找到article，然后判断article中的member_id是否等于参数memberid
+				ArticleDaoImpl op = new ArticleDaoImpl();
+				Article p =  op.SearchArticleByID(m.getArticleId());
+				if(p.getMember_id() == member_id) {
+					list.add(m);
+				}
 			}
 			//System.out.println(m.getUsername()+"#"+m.getEmail()+"#"+m.getArticleId()+"#"+m.getContent()+"#"+rs);
 			//3.关闭数据库
@@ -192,7 +197,6 @@ public class MessageDaoImpl implements MessageDao{
 	public ArrayList<Message> SearchMessageByIndex(int index, int pagesize, int articleId) {
 		// TODO Auto-generated method stub
         ArrayList<Message> list =new  ArrayList<Message>();
-		
 		JDBCUtil dbutil = new JDBCUtil();
 		try {
 			//1、连接数据库

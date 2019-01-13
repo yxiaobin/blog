@@ -214,7 +214,7 @@ public class ArticleDaoImpl implements ArticleDao{
 	}
 
 	@Override
-	public int SearchArticleCount() {
+	public int SearchArticleCount(int member_id) {
 		// TODO Auto-generated method stub
 		int count = 0;
 		JDBCUtil dbutil = new JDBCUtil();
@@ -222,8 +222,9 @@ public class ArticleDaoImpl implements ArticleDao{
 			//1、连接数据库
 			Connection con = dbutil.getConn();
 			//2.查询语句
-			String sql = "select count(0) as count1 from article ";
+			String sql = "select count(0) as count1 from article where member_id = ? ";
 			PreparedStatement pstmt =con.prepareStatement(sql) ;
+			pstmt.setInt(1, member_id);
 			ResultSet rs =pstmt.executeQuery();
 			//3.处理结果集
 			rs.next();

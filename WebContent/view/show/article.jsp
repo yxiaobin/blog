@@ -113,12 +113,26 @@
                     </tr>
                       <tr>
                     	<td><label>邮箱：</label> </td>
-                        <td><input type = "text" class = "input-text" name = "email"/></td>
+                        <td><input id = "email"  type = "text" class = "input-text" name = "email"/><span id=myspan style="text-size:21px;color:red;"></span></td>
                     </tr> 
                      <tr><td><label>评论：</label> </td><td ><textarea placeholder = "发表评论" name = "content"></textarea></td></tr>
                     </table>
                     </div> 
-                    <button type = "submit"“ class = "text-button">发表评论</button>
+                    <button type = "submit" onclick="return checkEmail()" class = "text-button">发表评论</button>
+                  	<script>
+                  		function checkEmail(){
+                  		   var myemail=document.getElementById("email").value;
+                  		　　 var myReg=/^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org)$/;
+                  		　　 if(myReg.test(myemail)){
+                  		　　　　return true;
+                  		　　}else{
+                  		　　　　myspan.innerText="请输入正确的邮箱";
+                  		　　　　return false;
+                  		   }
+                  			
+                  		}
+                  	
+                  	</script>
                   </form>
                   </div>
                    <br/>

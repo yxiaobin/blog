@@ -37,7 +37,8 @@ public class MessageServlet extends HttpServlet {
 		response.setHeader("Content-Type", "text/html;charset=UTF-8");//设置UTF-8的显示页面的类型和字符集
 		MessageDaoImpl  op = new MessageDaoImpl();
 		ArrayList<Message> list = new ArrayList<Message>();
-				list = (ArrayList<Message>) op.SearchMessages();
+		int member_id = Integer.parseInt(request.getSession().getAttribute("user_id").toString()) ;
+		list = (ArrayList<Message>) op.SearchMessages(member_id);
 		request.setAttribute("list", list);
 		System.out.println(list.size());
 		request.setAttribute("tab", 1);

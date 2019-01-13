@@ -361,4 +361,24 @@
     <servlet-name>MessageModifyServlet</servlet-name>
     <url-pattern>/MessageModifyServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MakeImgServlet</display-name>
+    <servlet-name>MakeImgServlet</servlet-name>
+    <servlet-class>sdut.blog.utils.MakeImgServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MakeImgServlet</servlet-name>
+    <url-pattern>/MakeImgServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RegisterServlet</display-name>
+    <servlet-name>RegisterServlet</servlet-name>
+    <servlet-class>sdut.blog.controller.RegisterServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RegisterServlet</servlet-name>
+    <url-pattern>/RegisterServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

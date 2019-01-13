@@ -10,7 +10,7 @@ public interface MessageDao {
 	//通过文章id查询留言
 	public ArrayList<Message> SearchMessageByArticleId(int articleId);
 	//查询所有的留言
-	public ArrayList<Message> SearchMessages();
+	public ArrayList<Message> SearchMessages(int member_id);
 	//通过文章Id查询留言数目
 	public int SearchMessageByArticleIdCount(int articleId);
 	//通过留言id找到该条留言

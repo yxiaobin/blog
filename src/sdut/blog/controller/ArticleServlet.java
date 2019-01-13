@@ -39,8 +39,7 @@ public class ArticleServlet extends HttpServlet {
 		String pagenum = request.getParameter("pagenum");
 		ArticleDaoImpl  op = new ArticleDaoImpl();
 		//获取当前所有的文章数量
-		int total = op.SearchArticleCount();
-		System.out.println(total);
+		int total = op.SearchArticleCount(Integer.parseInt(request.getSession().getAttribute("user_id").toString()));
 		Page page = new Page(Integer.parseInt(pagenum),total);
 		request.setAttribute("page", page);
 		int start =page.getStartindex();
