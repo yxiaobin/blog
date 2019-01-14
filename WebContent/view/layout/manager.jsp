@@ -104,9 +104,9 @@ th::after {
 	<!-- 超级用户显示内容 -->
 	
 	<c:if test = "${rank==1 }">
-	<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 		<a class="card card-banner card-yellow-light"
-			href="${rooturl}/MessageServlet">
+			href="${pageContext.request.contextPath}/UserServlet">
 			<div class="card-body">
 				<i class="icon fa fa-user-plus fa-4x"></i>
 				<div class="content" >
@@ -123,7 +123,7 @@ th::after {
 			</div>
 		</a>
 	</div>
-		<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 		<a class="card card-banner card-blue-light"
 			href="${rooturl }/ArticleServlet?pagenum=1">
 			<div class="card-body">
@@ -221,6 +221,16 @@ th::after {
 </div>
 <!--补充slide.jsp 的 div  -->
 </div>
+<script type="text/javascript">
+window.onload = function(){
+			var url=document.location.href;  //获取浏览器访问栏里的地址
+	console.log(url);        
+	if( url.indexOf("r=")==-1 ){    //判断地址后面是否多了某些值，没有就进方法里进行刷新
+	  			var t = new Date();
+				window.location.href = url + "?r=" + t.getTime();     
+	        }
+	    } 
+</script>
 
 <!--引用js  -->
 <script type="text/javascript"

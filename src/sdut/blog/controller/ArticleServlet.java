@@ -1,7 +1,7 @@
 package sdut.blog.controller;
 
 import java.io.IOException;
-
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -37,15 +37,17 @@ public class ArticleServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String pagenum = request.getParameter("pagenum");
-		System.out.println("页数"+pagenum);
+		//System.out.println("页数"+pagenum);
 		ArticleDaoImpl  op = new ArticleDaoImpl();
 		int rank =  (int) request.getSession().getAttribute("rank");
 		ArrayList<Article> article_list = new ArrayList<Article>();
 		int total;
 		Page page;
+		
 		//普通用户(rank为0)显示当前所有个人文章，超级用户(rank为1)显示当前所用未审核通过的文章
 		if(rank==1) {
 			total = op.SearchUnjudgeArticleCount();
+			System.out.print(total);
 			 page = new Page(Integer.parseInt(pagenum),total);
 			 article_list = op.SearchUnjudgeArticleByStartIndex(page.getStartindex(), page.getPagesize());
 			
