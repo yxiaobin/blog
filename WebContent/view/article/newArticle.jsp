@@ -10,7 +10,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>用户管理</title>
+	<title>更新博客</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="${rooturl}/resource/assets/css/vendor.css">
     <link rel="stylesheet" type="text/css" href="${rooturl}/resource/assets/css/flat-admin.css">

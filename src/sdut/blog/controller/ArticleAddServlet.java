@@ -47,7 +47,7 @@ public class ArticleAddServlet extends HttpServlet {
 			out.write("<script>alert('请保证输入的数据完全')</script>");
 			out.write("<script>window.location.href=' " +request.getContextPath()+"/ArticleServlet' "+ " </script>");
 		}else {
-			Article p = new Article(member_id, category_id, title, content, keyword);
+			Article p = new Article(member_id, category_id, title, content, keyword,0);
 			ArticleDaoImpl op = new ArticleDaoImpl();
 			op.AddArticle(p);
 			response.sendRedirect(request.getContextPath()+"/ArticleServlet?pagenum=1");

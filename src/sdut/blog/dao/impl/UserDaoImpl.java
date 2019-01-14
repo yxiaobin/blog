@@ -50,6 +50,7 @@ public class UserDaoImpl implements UserDao{
 			Connection con = dbutil.getConn();
 			//2.≤È—Ø”Ôæ‰
 			String sql = "update user set name=?,username=?,password=?,email=? ,img = ? , isrank = ? where id=?";
+
 			PreparedStatement pstmt =con.prepareStatement(sql) ;
 			pstmt.setString(1, user.getName());
 			pstmt.setString(2, user.getUsername());

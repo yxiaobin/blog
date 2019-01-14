@@ -22,7 +22,7 @@ public class ArticleServiceImpl implements ArticleService{
 			//1、连接数据库
 			Connection con = dbutil.getConn();
 			//2.查询语句
-			String sql = "select  * from article where member_id = ? order by count desc limit 5";
+			String sql = "select  * from article where member_id = ? and judge = 1 order by count desc limit 5";
 			PreparedStatement pstmt =con.prepareStatement(sql);
 			pstmt.setInt(1, member_id);
 			ResultSet rs =pstmt.executeQuery();

@@ -10,7 +10,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>用户管理</title>
+	<title>修改博客</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="${rooturl}/resource/assets/css/vendor.css">
     <link rel="stylesheet" type="text/css" href="${rooturl}/resource/assets/css/flat-admin.css">
@@ -79,7 +79,7 @@
                             <label>关键字</label>
                             <input type="text" class="form-control" name="keyword" value="${p.getKeyword() }">
                         </div>
-                        
+                        <input type="text" class="form-control" name="judge" value="0" hidden>
                         <div class="form-group">
                             <label for="">正文</label>
                             <div id="editor" type="text/plain" style="height: 400px;width: 100%;margin: auto"></div>

@@ -106,7 +106,20 @@
                         <div class="title">用户管理</div>
                     </a>               
                 </li>
-               </c:if> 
+               </c:if>
+               
+               
+               
+                <c:if test="${rank == 1}">
+                <li class="dropdown">
+                    <a href="${pageContext.request.contextPath}/ArticleServlet?pagenum=1">
+                        <div class="icon">
+                            <i class="fa fa-sliders" aria-hidden="true"></i>
+                        </div>
+                        <div class="title">博客审核</div>
+                    </a>               
+                </li>
+               </c:if>  
             </ul>
         </div>
     </aside>

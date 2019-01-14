@@ -37,39 +37,40 @@ public class ShowArticleListServlet extends HttpServlet {
 		response.setHeader("Content-Type", "text/html;charset=UTF-8");//设置UTF-8的显示页面的类型和字符集
 		String h1 = request.getParameter("id");
 		String  h2= request.getParameter("member_id");
-		String pagenum = request.getParameter("pagenum");
+		String h3= request.getParameter("pagenum");
+		int category_id = Integer.parseInt(h1);
+		int member_id = Integer.parseInt(h2);
+		int pagenum = Integer.parseInt(h3);
+		//id不为-1，则显示该用户的分类文章，id为-1，显示该用户的所有文章
 		if(Integer.parseInt(h1)!=-1) {
 			int id = Integer.parseInt(h1);
-			ArticleServiceImpl op = new ArticleServiceImpl();
+			ArticleDaoImpl op = new ArticleDaoImpl();
 			ArrayList<Article> list = new ArrayList<Article>();
-			ArrayList<Article> list1 = new ArrayList<Article>();
-//			获取当前分类的所有的文章
-			//list = op.SearchArticleByCategoryId(id);
-			int total = op.SearchArticleByCategoryId(id).size();
+			int total = op.SearchArticleCountByCategoryId(member_id, category_id);
 			//分页
-			Page page = new Page(Integer.parseInt(pagenum),total);
+			Page page = new Page(pagenum,total);
 //			查询list
-			list = op.SearchArticlesByCategoryIdandPage(id, page);
+			list = op.SearchArticleByCategoryIdAndMemberIdAndStartIndex(category_id, member_id, page.getStartindex(), page.getPagesize());
 			request.setAttribute("page", page);
 			request.setAttribute("pagecategoryid", id);
 			Category p = new Category();
 			p.setId(id);
 			request.setAttribute("categoryname", p.getCategoryName());
-			request.setAttribute("pagenum", Integer.parseInt(pagenum));
+			request.setAttribute("pagenum", pagenum);
 			request.setAttribute("showarticlelist", list);
 		}else {
-			ArticleServiceImpl op = new ArticleServiceImpl();
+			ArticleDaoImpl op = new ArticleDaoImpl();
 			ArrayList<Article> list = new ArrayList<Article>();
 			//获取当前分类的所有的文章
 			//list = op.SearchArticleByCategoryId(id);
-			int total = op.SearchArticles().size();
+			int total = op.SearchMemberArticleCount(member_id);
 			//分页
-			Page page = new Page(Integer.parseInt(pagenum),total);
+			Page page = new Page(pagenum,total);
 //			查询list
-			list = op.SearchArticlesandPage( page);
+			list = op.SearchArticleByMemberIdAndStartIndex(member_id, page.getStartindex(), page.getPagesize());
 			request.setAttribute("page", page);
 			request.setAttribute("pagecategoryid", -1);
-			request.setAttribute("pagenum", Integer.parseInt(pagenum));
+			request.setAttribute("pagenum", pagenum);
 			request.setAttribute("showarticlelist", list);
 		}
 		

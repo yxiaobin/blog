@@ -37,16 +37,27 @@ public class ArticleServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String pagenum = request.getParameter("pagenum");
+		System.out.println("页数"+pagenum);
 		ArticleDaoImpl  op = new ArticleDaoImpl();
-		//获取当前所有的文章数量
-		int total = op.SearchArticleCount(Integer.parseInt(request.getSession().getAttribute("user_id").toString()));
-		Page page = new Page(Integer.parseInt(pagenum),total);
+		int rank =  (int) request.getSession().getAttribute("rank");
+		ArrayList<Article> article_list = new ArrayList<Article>();
+		int total;
+		Page page;
+		//普通用户(rank为0)显示当前所有个人文章，超级用户(rank为1)显示当前所用未审核通过的文章
+		if(rank==1) {
+			total = op.SearchUnjudgeArticleCount();
+			 page = new Page(Integer.parseInt(pagenum),total);
+			 article_list = op.SearchUnjudgeArticleByStartIndex(page.getStartindex(), page.getPagesize());
+			
+		}else {
+			 total = op.SearchArticleCount(Integer.parseInt(request.getSession().getAttribute("user_id").toString()));
+			 page = new Page(Integer.parseInt(pagenum),total);
+			 int id = (int) request.getSession().getAttribute("user_id");
+		     article_list = (ArrayList<Article>) op.SearchArticleByStartIndex( id , page.getStartindex(), page.getPagesize());
+				
+		}
 		request.setAttribute("page", page);
-		int start =page.getStartindex();
-		int id = (int) request.getSession().getAttribute("user_id");
-		ArrayList<Article> article_list = (ArrayList<Article>) op.SearchArticleByStartIndex( id , page.getStartindex(), page.getPagesize());
 		request.setAttribute("article_list", article_list);
-		System.out.println(article_list.size()+"###");
 		request.getRequestDispatcher("/view/article/index.jsp?pagenum="+page.getPagenum()).forward(request, response);
 		//response.sendRedirect(request.getContextPath()+"/view/article/index.jsp?pagenum="+page.getPagenum());
 	}
