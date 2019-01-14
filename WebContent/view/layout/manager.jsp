@@ -173,6 +173,16 @@ th::after {
 </div>
 <!--补充slide.jsp 的 div  -->
 </div>
+<script type="text/javascript">
+window.onload = function(){
+			var url=document.location.href;  //获取浏览器访问栏里的地址
+	console.log(url);        
+	if( url.indexOf("r=")==-1 ){    //判断地址后面是否多了某些值，没有就进方法里进行刷新
+	  			var t = new Date();
+				window.location.href = url + "?r=" + t.getTime();     
+	        }
+	    } 
+</script>
 
 <!--引用js  -->
 <script type="text/javascript"

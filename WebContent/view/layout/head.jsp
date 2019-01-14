@@ -13,57 +13,35 @@
                         <li class="navbar-title">后台管理系统</li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
+                    	<c:if test="${rank==1 }">
                     	<li class="dropdown notification warning">
 				          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 				            <div class="icon"><i class="fa fa-comments" aria-hidden="true"></i></div>
+				            
 				            <div class="title">Unread Messages</div>
-				            <div class="count">99</div>
+				            <div class="count" id ="messagetotal1" style="display:none;"></div>
 				          </a>
 				          <div class="dropdown-menu">
 				            <ul>
 				              <li class="dropdown-header">Message</li>
 				              <li>
-				                <a href="#">
-				                  <span class="badge badge-warning pull-right">10</span>
+				                <a href="${pageContext.request.contextPath}/ArticleServlet?pagenum=1">
+				                  <span class="badge badge-warning pull-right" id ="messagetotal2"></span>
 				                  <div class="message">
 				                    <img class="profile" src="https://placehold.it/100x100">
 				                    <div class="content">
-				                      <div class="title">"Payment Confirmation.."</div>
-				                      <div class="description">Alan Anderson</div>
+				                      <div class="title">待审核的文章..</div>
+				                      <div class="description">用户的文章经过您的审核才能发表</div>
 				                    </div>
 				                  </div>
 				                </a>
 				              </li>
-				              <li>
-				                <a href="#">
-				                  <span class="badge badge-warning pull-right">5</span>
-				                  <div class="message">
-				                    <img class="profile" src="https://placehold.it/100x100">
-				                    <div class="content">
-				                      <div class="title">"Hello World"</div>
-				                      <div class="description">Marco  Harmon</div>
-				                    </div>
-				                  </div>
-				                </a>
-				              </li>
-				              <li>
-				                <a href="#">
-				                  <span class="badge badge-warning pull-right">2</span>
-				                  <div class="message">
-				                    <img class="profile" src="https://placehold.it/100x100">
-				                    <div class="content">
-				                      <div class="title">"Order Confirmation.."</div>
-				                      <div class="description">Brenda Lawson</div>
-				                    </div>
-				                  </div>
-				                </a>
-				              </li>
-				              <li class="dropdown-footer">
-				                <a href="#">View All <i class="fa fa-angle-right" aria-hidden="true"></i></a>
-				              </li>
+				              
+				            
 				            </ul>
 				          </div>
 				        </li>
+				        </c:if>
                         <li class="dropdown profile">
                             <a href="/html/pages/profile.html" class="dropdown-toggle"  data-toggle="dropdown">
                                <img class="profile-img" src="data:image/jpg;base64,<%=request.getSession().getAttribute("user_img")%>">

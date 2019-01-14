@@ -119,6 +119,29 @@
                         <div class="title">博客审核</div>
                     </a>               
                 </li>
+                
+                	<!-- 定时器 -->
+                	<script>
+                	var t2 = window.setInterval("listen()",1000);
+                	 function listen() {
+                		 $.post("${pageContext.request.contextPath}/CountServlet",function(data){
+                			 //console.log(data.total);
+                			 data = eval('(' + data + ')');
+                			 //console.log(data.total);
+                			 var num = data.total;
+                			 if(num >0){
+                				 document.getElementById("messagetotal1").style.display="block";
+        		            	 document.getElementById("messagetotal1").innerText =num;
+        		            	 document.getElementById("messagetotal2").innerText =num;	 
+                			 }
+                			 
+    		            	 console.log(num);
+                		 });  
+		            	 
+           		     }
+                	</script>
+                
+      
                </c:if>  
             </ul>
         </div>

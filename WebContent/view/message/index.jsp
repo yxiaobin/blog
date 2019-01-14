@@ -68,37 +68,12 @@ th::after {
 
 								<c:forEach var="item" items="${list}">
 									<tr>
-
 										<td>${item.getArticleByArticleId() }</td>
 										<td>${item.getUsername() }</td>
 										<td>${item.getEmail()}</td>
 										<td>${item.getTime() }</td>
-										<td><a class="btn btn-success btn-xs" data-toggle="modal"
-											data-target="#myModal" role="button"> 预览 </a>
-
-											<div class="modal fade" id="myModal" tabindex="-1"
-												role="dialog" aria-labelledby="myModalLabel"
-												aria-hidden="true">
-												<div class="modal-dialog">
-													<div class="modal-content" style="width: 400px;">
-														<div class="modal-header"
-															style="height: 110px; background: #00000024;">
-															<button type="button" class="close" data-dismiss="modal"
-																aria-hidden="true">&times;</button>
-															<span style="font-size: 10px;">
-																昵称：${item.getUsername() }<br />评论文章：${item.getArticleByArticleId() }<br />时间：${item.getTime() }
-															</span>
-														</div>
-														<div class="modal-body">${item.getContent() }</div>
-														<div class="modal-footer">
-															<button type="button" class="btn btn-default"
-																data-dismiss="modal">关闭</button>
-															<button type="button" class="btn btn-primary">确认</button>
-														</div>
-													</div>
-													<!-- /.modal-content -->
-												</div>
-												<!-- /.modal -->
+										<td><a class="btn btn-success btn-xs" role="button"  data-toggle="modal" data-target="#messageModal"
+											onclick="fun${item.getId()}()"> 预览 </a>
 											</div> <c:if test="${item.getJudge()==0}">
 												<a
 													href="${rooturl }/MessageModifyServlet?id=${item.getId()}"
@@ -111,7 +86,32 @@ th::after {
 												<input type="button" class="btn btn-xs btn-danger"
 												onclick="return confirm('确认要删除吗？')" value="删除">
 										</a></td>
+
 									</tr>
+									<script>
+										function fun${item.getId()}() {
+											var username = "${item.getUsername()}";
+											console.log(username);
+											
+											var time = "${item.getTime()}";
+											console.log(time);
+											
+											var article = "${item.getArticleByArticleId() }";
+											console.log(article);
+											
+											var content = "${item.getContent() }";
+											console.log(content);
+											
+											var item1 = document.getElementById("content");//.innerHtml = content;
+											item1.innerHTML = content;
+											
+											var item2 = document.getElementById("span");
+											console.log(item2);
+											var str =  "昵称:" + username+"\n"+"评论文章:"+ article +"\n时间:"+time;
+											console.log(str);
+											item2.innerText =str;
+										}
+									</script>
 								</c:forEach>
 							</tbody>
 						</table>
@@ -125,11 +125,33 @@ th::after {
 	<!--补充slide.jsp 的 div  -->
 	</div>
 
-	<!--引用js  -->
-	<script type="text/javascript"
-		src="${rooturl}/resource/assets/js/vendor.js"></script>
-	<script type="text/javascript"
-		src="${rooturl}/resource/assets/js/app.js"></script>
+	<div class="modal fade" id="messageModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content" style="width: 400px;">
+				<div class="modal-header"
+					style="height: 110px; background: #00000024;">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<span style="font-size: 10px;" id="span"></span>
+				</div>
+				<div class="modal-body" id = "content">${item.getContent() }</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal">确认</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal -->
 
+
+
+
+		<!--引用js  -->
+		<script type="text/javascript"
+			src="${rooturl}/resource/assets/js/vendor.js"></script>
+		<script type="text/javascript"
+			src="${rooturl}/resource/assets/js/app.js"></script>
 </body>
 </html>
