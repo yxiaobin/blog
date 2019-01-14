@@ -35,5 +35,4 @@ public interface ArticleDao {
 		//用于超级管理员显示当前页的文章
 		public ArrayList<Article>  SearchUnjudgeArticleByStartIndex(int startindex,int pagesize);
 		
-		
 }

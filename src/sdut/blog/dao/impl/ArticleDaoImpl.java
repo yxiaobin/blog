@@ -211,7 +211,7 @@ public class ArticleDaoImpl implements ArticleDao{
 		JDBCUtil dbutil = new JDBCUtil();
 		try {
 			Connection conn = dbutil.getConn();
-			String sql = "select * from article where member_id = ?  limit ?,?";
+			String sql = "select * from article where member_id = ? order by id desc limit ?,? ";
 			PreparedStatement pstmt =conn.prepareStatement(sql);
 		    pstmt.setInt(2, startindex);
 		    pstmt.setInt(3, pagesize);
@@ -374,7 +374,7 @@ public class ArticleDaoImpl implements ArticleDao{
 		JDBCUtil dbutil = new JDBCUtil();
 		try {
 			Connection conn = dbutil.getConn();
-			String sql = "select * from article where judge = 1 and  member_id = ? limit ?,?";
+			String sql = "select * from article where judge = 1 and  member_id = ? order by id desc limit ?,?";
 			PreparedStatement pstmt =conn.prepareStatement(sql);
 			pstmt.setInt(1, member_id);
 			pstmt.setInt(2, startindex);
@@ -412,7 +412,7 @@ public class ArticleDaoImpl implements ArticleDao{
 			//1、连接数据库
 			Connection con = dbutil.getConn();
 			//2.查询语句
-			String sql = "select count(0) as count1 from article where judge = 1 and member_id = ? and category_id = ?";
+			String sql = "select count(0) as count1 from article where judge = 1 and member_id = ? and category_id = ? ";
 			PreparedStatement pstmt =con.prepareStatement(sql) ;
 			ResultSet rs =pstmt.executeQuery();
 			//3.处理结果集
@@ -428,4 +428,38 @@ public class ArticleDaoImpl implements ArticleDao{
 		return count;
 	}
 
+	public ArrayList<Article> SearchArticleByMemberIdAndStartIndexwithoutJudge(int member_id, int startindex, int pagesize) {
+		// TODO Auto-generated method stub
+		ArrayList<Article> list = new ArrayList<Article>();
+		JDBCUtil dbutil = new JDBCUtil();
+		try {
+			Connection conn = dbutil.getConn();
+			String sql = "select * from article where  member_id = ? order by id desc limit ?,? ";
+			PreparedStatement pstmt =conn.prepareStatement(sql);
+			pstmt.setInt(1, member_id);
+			pstmt.setInt(2, startindex);
+		    pstmt.setInt(3, pagesize);
+		    ResultSet rs = pstmt.executeQuery();
+		    while(rs.next()) {
+		    	Article article = new Article();
+				article.setId(rs.getInt("id"));
+				article.setJudge(rs.getInt("judge"));
+				article.setCategory_id(rs.getInt("category_id"));
+				article.setContent(rs.getString("content"));
+				article.setMember_id(rs.getInt("member_id"));
+				article.setTitle(rs.getString("title"));
+				article.setNowtime(rs.getString("date"));
+				article.setKeyword(rs.getString("keyword"));
+				article.setCount(rs.getInt("count"));
+				list.add(article);
+		    }
+		    //关闭连接池
+		    dbutil.closeConn(conn);;
+			pstmt.close();
+		}catch(Exception e){
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
 }
