@@ -2,11 +2,11 @@
     pageEncoding="utf-8"%>
 <!DOCTYPE html>
 
- <div class="app-container">
+ <div class="app-container" >
 
 <nav class="navbar navbar-default" id="navbar">
-            <div class="container-fluid">
-                <div class="navbar-collapse collapse in">
+            <div class="container-fluid" >
+                <div class="navbar-collapse collapse in" style="background-color:gray;">
                    
                     <ul class="nav navbar-nav navbar-left">
                        

@@ -10,7 +10,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>分类管理</title>
+	<title>站点基本信息管理</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="${rooturl}/resource/assets/css/vendor.css">
     <link rel="stylesheet" type="text/css" href="${rooturl}/resource/assets/css/flat-admin.css">
@@ -24,7 +24,7 @@
         }
     </style>
 </head>
-<body>
+<body >
 <!--侧边栏  -->
 
 <%@include file="../layout/slide.jsp" %>
@@ -33,18 +33,18 @@
 <%@include file="../layout/head.jsp" %>
 
 <!-- 主要内容 -->
-  <div class="row">
+  <div class="row" >
         <div class="col-lg-12">
-            <div class="card card-tab">
-                <div class="card-header">
+            <div class="card card-tab" >
+                <div class="card-header" >
                     <ul class="nav nav-tabs">
-                        <li role="tab1" class = "active">
-                            <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">博客信息修改</a>
+                        <li role="tab1" class = "active" style = "width:200px;">
+                            <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab" style = "width:200px;">博客信息修改</a>
                         </li>
                     </ul>
                 </div>
                   
-                <div class="card-body no-padding tab-content">
+                <div class="card-body no-padding tab-content" >
                     <div role="tabpanel" class="tab-pane active" id="tab2">
                         <div class="row">
                           

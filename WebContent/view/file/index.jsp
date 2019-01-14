@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href="${rooturl}/resource/assets/css/theme/red.css">
     <link rel="stylesheet" type="text/css" href="${rooturl}/resource/assets/css/theme/yellow.css">
      <link rel="stylesheet" type="text/css" href="${rooturl}/resource/layui-v2.4.5/layui/css/layui.css">
+    <link rel="stylesheet" href="${rooturl}/resource/font-awesome/css/font-awesome.min.css">
     <style type="text/css">
         th::after{
             content: "" !important;

@@ -41,12 +41,13 @@ th::after {
 
 <!-- 主要的内容  -->
 <div class="row" style="margin: 10px -15px 30px -15px">
+<c:if test = "${rank==0 }">
 	<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
 		<a class="card card-banner card-yellow-light"
 			href="${rooturl}/MessageServlet">
 			<div class="card-body">
 				<i class="icon fa fa-user-plus fa-4x"></i>
-				<div class="content">
+				<div class="content" >
 					<div class="title">留言管理</div>
 					<%
             				int messagecount = 0; 
@@ -55,6 +56,8 @@ th::after {
             				int member_id = Integer.parseInt(request.getSession().getAttribute("user_id").toString());
                         	MessageDaoImpl Messageop = new MessageDaoImpl();
                         	messagecount = Messageop.SearchMessages(member_id).size();
+                        	int rank1 = Integer.parseInt(request.getSession().getAttribute("rank").toString());
+                        	
                         %>
 					<div class="value">
 						<span class="sign"></span><%=messagecount %></div>
@@ -69,11 +72,11 @@ th::after {
 				<i class="icon fa fa-newspaper-o fa-4x"></i>
 				<div class="content">
 					<div class="title">我的文章</div>
-					<%
-            			    ArticleDaoImpl Articleop = new ArticleDaoImpl();
-                            articlecount = Articleop.SearchArticleCount(member_id);
-                        %>
 					<div class="value">
+					<%
+					ArticleDaoImpl Articleop = new ArticleDaoImpl();
+                    articlecount = Articleop.SearchArticleCount(member_id);
+					%>
 						<span class="sign"></span><%=articlecount %></div>
 				</div>
 			</div>
@@ -96,12 +99,57 @@ th::after {
 			</div>
 		</a>
 	</div>
+	</c:if>
+	
+	<!-- 超级用户显示内容 -->
+	
+	<c:if test = "${rank==1 }">
+	<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+		<a class="card card-banner card-yellow-light"
+			href="${rooturl}/MessageServlet">
+			<div class="card-body">
+				<i class="icon fa fa-user-plus fa-4x"></i>
+				<div class="content" >
+					<div class="title">用户管理</div>
+					<%
+					int usercount = 0;
+					UserDaoImpl userop = new UserDaoImpl();
+                    usercount  = userop.SearchUsers().size();
+                    %>
+					
+					<div class="value">
+						<span class="sign"></span><%=usercount %></div>
+				</div>
+			</div>
+		</a>
+	</div>
+		<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+		<a class="card card-banner card-blue-light"
+			href="${rooturl }/ArticleServlet?pagenum=1">
+			<div class="card-body">
+				<i class="icon fa fa-newspaper-o fa-4x"></i>
+				<div class="content">
+					<div class="title">待审核文章</div>
+					<%
+					int articlecount1 = 0;
+					ArticleDaoImpl Articleopp = new ArticleDaoImpl();
+                    articlecount1 = Articleopp.SearchUnjudgeArticleCount();
+					%>
+					<div class="value">
+						<span class="sign"></span><%=articlecount1%></div>
+				</div> 
+			</div>
+		</a>
+	</div>
+	</c:if>
+	
 </div>
 <%
-  ArticleDaoImpl  op = new ArticleDaoImpl();
-	ArrayList<Article> article_list = (ArrayList<Article>) op.SearchArticles();
+    ArticleDaoImpl  op = new ArticleDaoImpl();
+	int member_id = Integer.parseInt(request.getSession().getAttribute("user_id").toString());
+	ArrayList<Article> article_list = (ArrayList<Article>) op.SearchArticleByMemberIdAndStartIndexwithoutJudge(member_id, 0, 4);
 	request.setAttribute("article_list", article_list);
-  %>
+ %>
 <div class="row">
 	<div class="col-md-6">
 		<div class="card">
@@ -112,7 +160,7 @@ th::after {
 						<tr>
 							<th>标题</th>
 							<th>时间</th>
-							<th>作者</th>
+							<th>状态</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -121,7 +169,7 @@ th::after {
 								<tr>
 									<td>${item.getTitle() }</td>
 									<td>${item.getNowtime() }</td>
-									<td>${item.getMemberName()}</td>
+									<td>${item.getJudge()}</td>
 								</tr>
 							</c:forEach>
 						</c:if>
