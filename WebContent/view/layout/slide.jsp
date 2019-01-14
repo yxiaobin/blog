@@ -27,7 +27,7 @@
                         </div>
                     </a>
                 </li>
-                
+                <c:if test = "${rank==0 }">
                 <li class="dropdown">
                     <a href="${pageContext.request.contextPath}/ShowArticleListServlet?member_id=${user_id}&id=-1&pagenum=1" target="_blank">
                         <div class="icon">
@@ -37,8 +37,8 @@
                     </a>
                    
                 </li>
-                
-                
+                </c:if>
+                 <c:if test = "${rank==0 }">
                  <li class="dropdown">
                     <a href="#">
                         <div class="icon">
@@ -55,9 +55,10 @@
                         </ul>
                     </div> 
                 </li>
+                </c:if>
                 
                 
-                
+              <c:if test = "${rank==0 }">   
   			<li class="dropdown">
                     <a href="#">
                         <div class="icon">
@@ -73,10 +74,10 @@
                         </ul>
                     </div> 
            </li> 
-                
+                </c:if>
 			
                 
-               
+                <c:if test = "${rank==0 }">
   				<li class="dropdown">
                     <a href="${pageContext.request.contextPath}/FileServlet?pagenum=1">
                         <div class="icon">
@@ -85,6 +86,17 @@
                         <div class="title">文件管理</div>
                     </a>
                 </li>
+                </c:if>
+                
+                
+                
+              <!--   下面是管理员的功能菜单-->                
+                
+                
+                
+     
+                
+                
                <c:if test="${rank == 1}">
                 <li class="dropdown">
                     <a href="${pageContext.request.contextPath}/UserServlet">

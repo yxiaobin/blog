@@ -35,7 +35,7 @@
 <!-- 主要的内容  --> 
    <div class="row" style="margin: 10px -15px 30px -15px">
         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-            <a class="card card-banner card-yellow-light" href="${rooturl}/UserServlet">
+            <a class="card card-banner card-yellow-light" href="${rooturl}/MessageServlet">
                 <div class="card-body">
                     <i class="icon fa fa-user-plus fa-4x"></i>
                     <div class="content">

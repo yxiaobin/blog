@@ -22,7 +22,7 @@ public class UserDaoImpl implements UserDao{
 			//1、连接数据库
 			Connection con = dbutil.getConn();
 			//2.查询语句
-			String sql = "insert into user(name,username,password,email,rank) values(?,?,?,?,?)";
+			String sql = "insert into user(name,username,password,email,isrank) values(?,?,?,?,?)";
 			PreparedStatement pstmt =con.prepareStatement(sql) ;
 			pstmt.setString(1, user.getName());
 			pstmt.setString(2, user.getUsername());
@@ -49,7 +49,7 @@ public class UserDaoImpl implements UserDao{
 			//1、连接数据库
 			Connection con = dbutil.getConn();
 			//2.查询语句
-			String sql = "update user set name=?,username=?,password=?,email=? ,img = ? , rank = ? where id=?";
+			String sql = "update user set name=?,username=?,password=?,email=? ,img = ? , isrank = ? where id=?";
 			PreparedStatement pstmt =con.prepareStatement(sql) ;
 			pstmt.setString(1, user.getName());
 			pstmt.setString(2, user.getUsername());
@@ -114,7 +114,7 @@ public class UserDaoImpl implements UserDao{
 				user.setPassword(rs.getString("password"));
 				user.setEmail(rs.getString("email"));
 				user.setImg(rs.getString("img"));
-				user.setRank(rs.getInt("rank"));
+				user.setRank(rs.getInt("isrank"));
 			}
 			//4.关闭数据库
 			dbutil.closeConn(con);
@@ -149,7 +149,7 @@ public class UserDaoImpl implements UserDao{
 				user.setPassword(rs.getString("password"));
 				user.setEmail(rs.getString("email"));
 				user.setImg(rs.getString("img"));
-				user.setRank(rs.getInt("rank"));
+				user.setRank(rs.getInt("isrank"));
 			}
 			//4.关闭数据库
 			dbutil.closeConn(con);
@@ -184,7 +184,7 @@ public class UserDaoImpl implements UserDao{
 				user.setPassword(rs.getString("password"));
 				user.setEmail(rs.getString("email"));
 				user.setImg(rs.getString("img"));
-				user.setRank(rs.getInt("rank"));
+				user.setRank(rs.getInt("isrank"));
 				list.add(user);
 			}
 			//4.关闭数据库
