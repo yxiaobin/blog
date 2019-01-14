@@ -56,60 +56,64 @@
 <!-- 模态框（Modal） -->
 <div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content" style = "">
+            
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title" id="myModalLabel">注册账号</h4>
             </div>
-            <div class="modal-body">
-            <form class="col-md-7" action="${rooturl }/RegisterServlet" method="post">
+            <div class="modal-body" style = "margin-left:110px;margin-right:110px;">
+            <form class="" action="${rooturl }/RegisterServlet" method="post">
 	             		<div class="form-group">
 	                        <i class="fa fa-user fa-lg"></i>
-	                        <input class="form-control required" type="text" placeholder="请输入你的账号" id="musername" name="username" autofocus="autofocus" maxlength="20"/>
+	                        <input class="form-control required" type="text" placeholder="请输入您的账号" id="musername" name="username" autofocus="autofocus" maxlength="20"/>
 	                    	<span id=usernamespan style="text-size:21px;color:red;"></span>
 	                    </div>
 	                    
 	                    <div class="form-group">
 	                        <i class="fa fa-user fa-lg"></i>
-	                        <input class="form-control required" type="text" placeholder="请输入你的真实姓名" id="mname" name="name" autofocus="autofocus" maxlength="20"/>
+	                        <input class="form-control required" type="text" placeholder="请输入您的真实姓名" id="mname" name="name" autofocus="autofocus" maxlength="20"/>
 	                   		<span id=namespan style="text-size:21px;color:red;"></span>
 	                    </div>
 	                    
 	                    <div class="form-group">
 	                            <i class="fa fa-lock fa-lg"></i>
-	                            <input class="form-control required" type="password" placeholder="请输入你的密码" id="mpassword" name="password" />
+	                            <input class="form-control required" type="password" placeholder="请输入您的密码" id="mpassword" name="password" />
 	                    		<span id=passwordspan style="text-size:21px;color:red;"></span>
 	                    </div>
 	                    
 	                    <div class="form-group">
 	              
 	                            <i class="fa fa-lock fa-lg"></i>
-	                            <input class="form-control required" type="password" placeholder="请再次输入你的密码" id="mpassword2" name="password2" />
+	                            <input class="form-control required" type="password" placeholder="请再次输入密码" id="mpassword2" name="password2" />
 	                    		<span id=password2span style="text-size:21px;color:red;"></span>
 	                    </div>
 	                    
 	                    <div class="form-group">
 	                    	
 	                            <i class="fa fa-email fa-lg"></i>
-	                            <input class="form-control required" type="text" placeholder="请再次输入你的邮箱" id="memail" name="email" />
+	                            <input class="form-control required" type="text" placeholder="请输入您的邮箱" id="memail" name="email" />
 	                   			<span id=emailspan style="text-size:21px;color:red;"></span>
 	                    </div>
+	                    <br/>
 	                    <div class="form-group">
 	                    	
 	                            <i class="fa fa-email fa-lg"></i>
-	                            <input  type = "text" id="mcheckcode" name="checkcode" />
+	                            <input  type = "text" id="mcheckcode" name="checkcode" style = "width:100px;"/>
 	                            <img alt="验证码看不清，换一张" src="${pageContext.request.contextPath}/MakeImgServlet" id="validateCodeImg" onclick="changeImg()">
 	                    		<a href="javascript:void(0)" onclick="changeImg()">看不清，换一张</a>	
 	                    		<span id="checkcodespan" style="text-size:21px;color:red;"></span>
 	                    </div>
-	                    
-	                    <div class ="form-footer">
+	                    <br/>
+	                     <div style = "float:right;">
 	                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+	                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 		 <button type="submit" onclick="return check()" class="btn btn-primary">提交</button>
 	                    </div>
 	            </form>
+	            <br/>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer" style = "height:40px;">
               <!--   <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                 <button type="button" class="btn btn-primary">提交</button> -->
             </div>

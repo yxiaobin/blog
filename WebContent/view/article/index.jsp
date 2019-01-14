@@ -10,7 +10,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>用户管理</title>
+	<title>博客列表</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="${rooturl}/resource/assets/css/vendor.css">
     <link rel="stylesheet" type="text/css" href="${rooturl}/resource/assets/css/flat-admin.css">
@@ -42,8 +42,13 @@
                         <thead>
 						<tr>
                         <th>标题</th>
+                        <c:if test = "${rank==0 }">
                         <th>分类</th>
+                        </c:if>
                         <th>时间</th>
+                        <c:if test = "${rank==0 }">
+                        <th>状态</th>
+                        </c:if>
                         <th>操作</th>
                         </tr>
                         </thead>
@@ -54,20 +59,38 @@
                                 <td>
                                    ${item.getTitle() }
                                 </td>
+                                 <c:if test = "${rank==0 }">
                                 <td>
                                    ${item.getCategoryName()}
                                 </td>
+                                </c:if>
                                 <td>
                                     ${item.getNowtime() }
                                 </td>
+                                 <c:if test = "${rank==0 }">
                                 <td>
-                                    <a href="${rooturl }/view/show/article.jsp?id=${item.getId()}&pagenum=1" target="view_window" class="btn btn-primary btn-xs" role="button">
+                                <c:if test = "${item.getJudge()==0 }">待审核</c:if>
+                                <c:if test = "${item.getJudge()==1 }">审核通过</c:if>
+                                </td>
+                                </c:if>
+                                <td>
+                                    <a href="${rooturl }/view/show/article.jsp?member_id=${item.getMember_id()}&id=${item.getId()}&pagenum=1" target="view_window" class="btn btn-primary btn-xs" role="button">
                                      		   预览
                                     </a>
+                                    <c:if test = "${rank==0 }">
                                     <a href="${rooturl }/view/article/edit.jsp?id=${item.getId()}&pagenum=${page.getPagenum()}" class="btn btn-primary btn-xs" role="button">
                                       		  编辑
                                     </a>
-
+                                    </c:if>
+                                    <c:if test = "${rank==1 }">
+                                    <a 
+                                    	<c:if test = "${page.getTotalrecords()%page.getPagesize()==1 && page.getPagenum()==page.getEndPage()}">href="${rooturl }/ArticleUpdateServlet?id=${item.getId()}&pagenum=${page.getPagenum()-1}&judge=1"</c:if>
+                                     	<c:if test = "${page.getTotalrecords()%page.getPagesize()==1 && page.getPagenum()<page.getEndPage()}">href="${rooturl }/ArticleUpdateServlet?id=${item.getId()}&pagenum=${page.getPagenum()}&judge=1"</c:if>
+                                     	<c:if test = "${page.getTotalrecords()%page.getPagesize()!=1}">href="${rooturl }/ArticleUpdateServlet?id=${item.getId()}&pagenum=${page.getPagenum()}&judge=1"</c:if>
+                                        class="btn btn-success btn-xs" role="button">
+                                      		  待审核
+                                    </a>
+                                    </c:if>
                                     <a 
                                     	<c:if test = "${page.getTotalrecords()%page.getPagesize()==1 && page.getPagenum()==page.getEndPage()}">href="${rooturl }/ArticleDeletServlet?id=${item.getId()}&pagenum=${page.getPagenum()-1}"</c:if>
                                      	<c:if test = "${page.getTotalrecords()%page.getPagesize()==1 && page.getPagenum()<page.getEndPage()}">href="${rooturl }/ArticleDeletServlet?id=${item.getId()}&pagenum=${page.getPagenum()}"</c:if>
@@ -81,11 +104,18 @@
                             </tr>
                        </c:forEach>
                        </c:if>
+                       
+                       </tbody>
+                    
                     </table>
+                    <c:if test = "${article_list.size()==0 }">
+                             <p style = "margin-left:400px;">当前没有数据！</div>
+                       </c:if>
+                        <c:if test = "${article_list.size()>0 }">
                     <div class="bottom" style = "float:right;">
 						<div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">
     					</div>
-    					<div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">			 	
+    					<div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
     						<ul class="pagination">
     						  <c:if test = "${page.getPagenum()==1}" >
     						  <li class="paginate_button previous  "><a  href="" disabled aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">上一页</a></li> 
@@ -107,13 +137,18 @@
     					<div class="clear">
     					</div>
 					</div>
+					</c:if>
+					
                 </div>
                 
                 <div class="card-header">
+                   <c:if test = "${rank==0 }">
                     <a href="${pageContext.request.contextPath}/view/article/newArticle.jsp">
                         <input type="button" class="btn btn-primary" value="添加">
                     </a>
+                    </c:if>
                 </div>
+               
             </div>
         </div>
     </div>

@@ -66,9 +66,26 @@
                                     <td>${item.getEmail()}</td>
                                     <td>${item.getTime() }</td>
                                     <td>
-                                       <a href="#" target="view_window" class="btn btn-success btn-xs" role="button">
+                                       <a   class="btn btn-success btn-xs" data-toggle="modal" data-target="#myModal" role="button">
                                      		   预览
                                        </a>
+                                   
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" style = "width:400px;">
+            <div class="modal-header" style = "height:110px;background:#00000024;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <span style = "font-size:10px;">  昵称：${item.getUsername() }<br/>评论文章：${item.getArticleByArticleId() }<br/>时间：${item.getTime() }</span>
+            </div>
+            <div class="modal-body">${item.getContent() }</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary">确认</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>                                
+                                       
                                        <c:if test = "${item.getJudge()==0}">
                                        <a href="${rooturl }/MessageModifyServlet?id=${item.getId()}" class="btn btn-primary btn-xs" role="button">
                                       		  待审核

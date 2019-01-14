@@ -141,7 +141,7 @@ obj.style.display="none";
 		<br/>
 		</c:if>
 			<c:if test="${pagecategoryid != -1}" >
-        	<div class = "cate">${categoryname }</div></a>
+        	<div class = "cate">${categoryname}</div></a>
             <HR style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="80%"  SIZE=3>
             
             <br/>

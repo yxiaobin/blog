@@ -9,7 +9,14 @@ public class Article {
 	private  int  member_id;
 	private  int  category_id;
 	private int count ;
+	private int judge;
 
+	public int getJudge() {
+		return judge;
+	}
+	public void setJudge(int judge) {
+		this.judge = judge;
+	}
 	private String title;
 	private String content;
 	private String keyword;
@@ -17,12 +24,13 @@ public class Article {
 	public Article() {
 		
 	}
-	public Article(int member_id, int category_id, String title, String content, String keyword) {
+	public Article(int member_id, int category_id, String title, String content, String keyword,int judge) {
 		this.member_id=member_id;
 		this.category_id=category_id;
 		this.title = title;
 		this.content = content;
 		this.keyword=keyword;
+		this.judge = judge;
 	}
 	public int getId() {
 		return id;
