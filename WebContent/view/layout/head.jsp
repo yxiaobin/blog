@@ -6,11 +6,11 @@
 
 <nav class="navbar navbar-default" id="navbar">
             <div class="container-fluid" >
-                <div class="navbar-collapse collapse in" style="background-color:gray;">
+                <div class="navbar-collapse collapse in" <c:if test = "${rank==1 }">style = "background-color:gray;"</c:if>">
                    
                     <ul class="nav navbar-nav navbar-left">
                        
-                        <li class="navbar-title">后台管理系统</li>
+                        <li class="navbar-title" <c:if test = "${rank==1 }">style = "color:white;"</c:if>>后台管理系统</li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                     	<c:if test="${rank==1 }">

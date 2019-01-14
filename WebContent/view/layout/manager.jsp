@@ -41,14 +41,15 @@ th::after {
 
 <!-- 主要的内容  -->
 <div class="row" style="margin: 10px -15px 30px -15px">
-	<c:if test="${rank==0 }">
-		<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-			<a class="card card-banner card-yellow-light"
-				href="${rooturl}/MessageServlet">
-				<div class="card-body">
-					<i class="icon fa fa-user-plus fa-4x"></i>
-					<div class="content">
-						<div class="title">留言管理</div>
+	<c:if test = "${rank==0 }">
+	<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+		<a class="card card-banner card-yellow-light"
+			href="${rooturl}/MessageServlet">
+			<div class="card-body">
+				<i class="icon fa fa-list-alt fa-4x"></i>
+				<div class="content" >
+					<div class="title">留言管理</div>
+					
 						<%
             				int messagecount = 0; 
             				int categorycount = 0;
@@ -79,17 +80,19 @@ th::after {
 					%>
 							<span class="sign"></span><%=articlecount %></div>
 					</div>
-				</div>
-			</a>
-		</div>
-		<div class="col-lg-4 col-md-8col-sm-6 col-xs-12">
-			<a class="card card-banner card-green-light"
-				href="${rooturl }/CategoryServlet">
-				<div class="card-body">
-					<i class="icon fa fa-star fa-4x"></i>
-					<div class="content">
-						<div class="title">我的分类</div>
-						<% 
+				
+			</div>
+		</a>
+	</div>
+	
+	<div class="col-lg-4 col-md-8col-sm-6 col-xs-12">
+		<a class="card card-banner card-green-light"
+			href="${rooturl }/CategoryServlet">
+			<div class="card-body">
+				<i class="icon fa fa-tags"></i>
+				<div class="content">
+					<div class="title">我的分类</div>
+					 <% 
 							CategoryDaoImpl Categoryop = new CategoryDaoImpl();
                             categorycount  = Categoryop.SearchCategorys(member_id).size();
                         %>
@@ -144,6 +147,8 @@ th::after {
 	</c:if>
 
 </div>
+
+
 <%
     ArticleDaoImpl  op = new ArticleDaoImpl();
 	int member_id = Integer.parseInt(request.getSession().getAttribute("user_id").toString());
@@ -157,7 +162,9 @@ th::after {
 	}
 	
  %>
+
 <div class="row">
+
 	<div class="col-md-6">
 		<div class="card">
 			<div class="card-header">Last Statuses</div>
@@ -187,7 +194,7 @@ th::after {
 							</c:forEach>
 						</c:if>
 				</table>
-				
+
 			</div>
 		</div>
 	</div>
@@ -202,7 +209,7 @@ th::after {
 						style="margin-left: 10%;">给大家提供一个记录自己成长的平台</span></li>
 
 					<li class="list-group-item"><label>运营时间</label><span
-						style="margin-left: 10%;" id = "timespan"></span></li>
+						style="margin-left: 10%;" id="timespan"></span></li>
 					<li class="list-group-item"><label>运营者</label><span
 						style="margin-left: 13%;">杨小宾 </span><span
 						style="margin-left: 2%;">周旋</span></li>

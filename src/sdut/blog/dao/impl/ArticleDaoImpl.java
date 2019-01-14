@@ -205,7 +205,7 @@ public class ArticleDaoImpl implements ArticleDao{
 	}
 
 	@Override
-	public ArrayList<Article> SearchArticleByStartIndex(int id, int startindex, int pagesize) {
+	public ArrayList<Article> SearchArticleByStartIndex(int member_id, int startindex, int pagesize) {
 		// TODO Auto-generated method stub
 		ArrayList<Article> list = new ArrayList<Article>();
 		JDBCUtil dbutil = new JDBCUtil();
@@ -215,7 +215,7 @@ public class ArticleDaoImpl implements ArticleDao{
 			PreparedStatement pstmt =conn.prepareStatement(sql);
 		    pstmt.setInt(2, startindex);
 		    pstmt.setInt(3, pagesize);
-		    pstmt.setInt(1, id);
+		    pstmt.setInt(1, member_id);
 		    ResultSet rs = pstmt.executeQuery();
 		    while(rs.next()) {
 		    	Article article = new Article();
@@ -335,7 +335,7 @@ public class ArticleDaoImpl implements ArticleDao{
 		JDBCUtil dbutil = new JDBCUtil();
 		try {
 			Connection conn = dbutil.getConn();
-			String sql = "select * from article where judge = 1 and category_id = ? and member_id = ? limit ?,?";
+			String sql = "select * from article where judge = 1 and category_id = ? and member_id = ? order by id desc limit ?,? ";
 			PreparedStatement pstmt =conn.prepareStatement(sql);
 			pstmt.setInt(1, category_id);
 			pstmt.setInt(2, member_id);
