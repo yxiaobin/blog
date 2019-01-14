@@ -46,7 +46,7 @@ th::after {
 		<a class="card card-banner card-yellow-light"
 			href="${rooturl}/MessageServlet">
 			<div class="card-body">
-				<i class="icon fa fa-user-plus fa-4x"></i>
+				<i class="icon fa fa-list-alt fa-4x"></i>
 				<div class="content" >
 					<div class="title">留言管理</div>
 					<%
@@ -86,7 +86,7 @@ th::after {
 		<a class="card card-banner card-green-light"
 			href="${rooturl }/CategoryServlet">
 			<div class="card-body">
-				<i class="icon fa fa-star fa-4x"></i>
+				<i class="icon fa fa-tags"></i>
 				<div class="content">
 					<div class="title">我的分类</div>
 					<% 
@@ -142,15 +142,18 @@ th::after {
 		</a>
 	</div>
 	</c:if>
-	
 </div>
+
+
 <%
     ArticleDaoImpl  op = new ArticleDaoImpl();
 	int member_id = Integer.parseInt(request.getSession().getAttribute("user_id").toString());
 	ArrayList<Article> article_list = (ArrayList<Article>) op.SearchArticleByMemberIdAndStartIndexwithoutJudge(member_id, 0, 4);
 	request.setAttribute("article_list", article_list);
  %>
+
 <div class="row">
+
 	<div class="col-md-6">
 		<div class="card">
 			<div class="card-header">Last Statuses</div>

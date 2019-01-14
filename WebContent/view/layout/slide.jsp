@@ -11,21 +11,21 @@
     
 <div id="managerslide">
 
-<aside class="app-sidebar" id="sidebar" style="height: auto;background-color:gray;" >
+<aside class="app-sidebar" id="sidebar" style="height: auto;<c:if test = "${rank==1 }">background-color:gray;</c:if>" >
         <div class="sidebar-header" >
-            <a class="sidebar-brand" href="#"><span class="highlight">后台管理</span></a>
-            <button type="button" class="sidebar-toggle">
+            <a class="sidebar-brand" href="#"><span class="highlight" <c:if test = "${rank==1 }">style = "background-color:#3045a2;"</c:if>>后台管理</span></a>
+            <button type="button" class="sidebar-toggle" >
                 <i class="fa fa-times"></i>
             </button>
         </div>
-        <div class="sidebar-menu" style="background-color:gray;">
+        <div class="sidebar-menu" <c:if test = "${rank==1 }">background-color:gray;</c:if>">
             <ul class="sidebar-nav" >
                 <li >
                     <a href="${rooturl }/view/layout/manager.jsp">
-                        <div class="icon" style="background-color:white; color:pink;">
+                        <div class="icon"  <c:if test = "${rank==1 }">style="background-color:white; color:pink;"</c:if>>
                             <i class="fa fa-tasks" aria-hidden="true"></i>
                         </div>
-                        <div class="title">
+                        <div class="title" <c:if test = "${rank==1 }">style = "color:white;"</c:if>>
                         	控制台首页
                         </div>
                     </a>
@@ -47,7 +47,7 @@
                         <div class="icon">
                             <i class="fa fa-file-text-o" aria-hidden="true"></i>
                         </div>
-                        <div class="title">博客管理</div>
+                        <div class="title" >博客管理</div>
                     </a>
                     <div class="dropdown-menu">
                         <ul>
@@ -93,10 +93,10 @@
                <c:if test="${rank == 1}">
                 <li class="dropdown">
                     <a href="${pageContext.request.contextPath}/UserServlet">
-                        <div class="icon">
+                        <div class="icon" style="background-color:white; color:pink;">
                             <i class="fa fa-user-o" aria-hidden="true"></i>
                         </div>
-                        <div class="title">用户管理</div>
+                        <div class="title" style = "color:white;">用户管理</div>
                     </a>               
                 </li>
                </c:if>
@@ -106,10 +106,10 @@
                 <c:if test="${rank == 1}">
                 <li class="dropdown">
                     <a href="${pageContext.request.contextPath}/ArticleServlet?pagenum=1">
-                        <div class="icon">
+                        <div class="icon" style="background-color:white; color:pink;">
                             <i class="fa fa-window-maximize" aria-hidden="true"></i>
                         </div>
-                        <div class="title">博客审核</div>
+                        <div class="title"  style = "color:white;">博客审核</div>
                     </a>               
                 </li>
                 
