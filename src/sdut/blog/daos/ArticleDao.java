@@ -28,8 +28,8 @@ public interface ArticleDao {
 		public int SearchArticleCountByCategoryId(int member_id,int category_id);
 		//查找用户审核通过的的文章数量
 		public int SearchMemberArticleCount(int member_id);
-		//查找当前页显示的文章
-		public ArrayList<Article> SearchArticleByStartIndex(int id , int startindex,int pagesize);
+		//查找普通成员当前页显示的文章，包括审核通过的和未审核通过的。
+		public ArrayList<Article> SearchArticleByStartIndex(int member_id , int startindex,int pagesize);
 		//查找未审核通过的文章的数量，用于显示超级管理员显示文章列表分页
 		public int SearchUnjudgeArticleCount();
 		//用于超级管理员显示当前页的文章
