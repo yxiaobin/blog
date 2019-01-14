@@ -69,7 +69,7 @@
                                  <a href="${rooturl }/FileDownServlet?filename=${item.getName()}" class="btn btn-success btn-xs" role="button">
                                         	下载
                                   </a>
-                                  <c:if test = "${item.getMember_id()==user_id }">
+                                  <c:if test = "${item.getMember_id()==user_id&&rank==0}">
 									<a href="${rooturl }/FileUpdateServlet?id=${item.getId()}&pagenum=${page.getPagenum()}" class="btn btn-primary btn-xs" role="button" >
                                     	
                                     	<c:if test="${item.getIsshare()==0}">设为私有</c:if>
@@ -77,7 +77,7 @@
                                     	 	
                                   </a>
                                   </c:if>
-                                    <c:if test = "${item.getMember_id()!=user_id }">
+                                    <c:if test = "${item.getMember_id()!=user_id&&rank==0}">
 									<a href="#" class="btn btn-primary btn-xs" role="button" disabled>
                                     	
                                     	<c:if test="${item.getIsshare()==0}">设为私有</c:if>
@@ -85,7 +85,9 @@
                                     	 	
                                   </a>
                                   </c:if>
-                                  <c:if test = "${item.getMember_id()==user_id }">
+                                  
+                                  
+                                  <c:if test = "${item.getMember_id()==user_id||rank==1 }">
 	                                   	<c:if test = "${page.getTotalrecords()%page.getPagesize()==1&& page.getPagenum() == page.getEndPage()}">  
 	                                  		<a   href = "${rooturl}/FileDeleteServlet?filename=${item.getName()}&pagenum=${page.getPagenum()-1 }"   class="btn btn-danger btn-xs" role="button" onclick="return confirm('确认要删除吗？')">
 	                                        	删除
@@ -103,7 +105,7 @@
 	                                  	</c:if> 
                                   </c:if>
                                   
-                                  <c:if test = "${item.getMember_id()!=user_id }">
+                                  <c:if test = "${item.getMember_id()!=user_id&&rank==0 }">
 	                                  <a href="#" disabled class="btn btn-danger btn-xs" role="button" >
 	                                        	删除
 	                                  </a> 

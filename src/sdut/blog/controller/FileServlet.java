@@ -43,12 +43,22 @@ public class FileServlet extends HttpServlet {
         //存储要下载的文件名
         Map<String,String> fileNameMap = new HashMap<String,String>();
         FileDaoImpl op = new FileDaoImpl();
-        int total = op.SearchFileCount(id);
-       
-        Page page = new Page(Integer.parseInt(pagenum),total);
-        ArrayList<MyFile> list = (ArrayList<MyFile>) op.SearchMyFileByStartIndex(id,page.getStartindex(), page.getPagesize());
-        request.setAttribute("file_list", list);
-        request.setAttribute("page", page);
+        int  rank = (int) request.getSession().getAttribute("rank");
+        if(rank == 1) {
+        	int total = op.SearchAllFiles().size();
+            Page page = new Page(Integer.parseInt(pagenum),total);
+            ArrayList<MyFile> list = (ArrayList<MyFile>) op.SearchMyFileByStartIndex(page.getStartindex(), page.getPagesize());
+            request.setAttribute("file_list", list);
+            request.setAttribute("page", page);
+        }else {
+        	int total = op.SearchFileCount(id);
+            Page page = new Page(Integer.parseInt(pagenum),total);
+            ArrayList<MyFile> list = (ArrayList<MyFile>) op.SearchMyFileByStartIndex(id,page.getStartindex(), page.getPagesize());
+            request.setAttribute("file_list", list);
+            request.setAttribute("page", page);
+        }
+        
+        
         request.getRequestDispatcher("/view/file/index.jsp?pagenum="+pagenum).forward(request, response);
 	}
 
