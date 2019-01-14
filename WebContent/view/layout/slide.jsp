@@ -141,10 +141,10 @@
 					<c:if test="${rank == 1}">
 					<li class="dropdown"><a
 						href="${pageContext.request.contextPath}/FileServlet?pagenum=1">
-							<div class="icon">
-								<i class="fa fa-user-o" aria-hidden="true"></i>
+							<div class="icon" style="background-color:white; color:pink;">
+								<i class="fa fa-folder" aria-hidden="true"></i>
 							</div>
-							<div class="title">资源管理</div>
+							<div class="title" style = "color:white;">资源管理</div>
 					</a></li>
 				</c:if>
 				

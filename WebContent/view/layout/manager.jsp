@@ -183,7 +183,10 @@ th::after {
 						<c:if test="${article_list.size()>0 }">
 							<c:forEach var="item" items="${article_list }" end="3">
 								<tr>
-									<td>${item.getTitle() }</td>
+									<td>
+									<a style="color:#444;" href="${rooturl }/view/show/article.jsp?member_id=${item.getMember_id()}&id=${item.getId()}&pagenum=1"> ${item.getTitle() } </a>
+									
+									</td>
 									<td>${item.getNowtime() }</td>
 									<td><c:if test="${rank==0 }">
 

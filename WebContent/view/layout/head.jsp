@@ -16,7 +16,7 @@
                     	<c:if test="${rank==1 }">
                     	<li class="dropdown notification warning">
 				          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-				            <div class="icon"><i class="fa fa-comments" aria-hidden="true"></i></div>
+				            <div class="icon" style="background-color:white;color:#ffbc11;"><i class="fa fa-lightbulb-o" aria-hidden="true" ></i></div>
 				            
 				            <div class="title">Unread Messages</div>
 				            <div class="count" id ="messagetotal1" style="display:none;"></div>
