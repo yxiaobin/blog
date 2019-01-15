@@ -253,3 +253,12 @@ p{
 	margin-left:50px;
 	
 }
+.input-text{
+	background-color:rgba(255,204,204,0.3);
+	width:330px;
+	height:20px;
+	border-radius:8px;
+	border:#63C;
+	font-size:15px;
+	color:black;
+	}

@@ -14,6 +14,20 @@
 #showlist a:hover{
 	background:pink;
 	}
+.input-textt{
+	background-color:rgba(255,204,204,0.5);
+	width:170px;
+	height:25px;
+	border-radius:8px;
+	border:#63C;
+	font-size:15px;
+	color:#ce2a2a;
+	}
+.search{
+	height:20px;
+	width:230px;
+	margin-left:40px;
+}
 </style>
 <html>
 <%
@@ -215,6 +229,14 @@ obj.style.display="none";
         
         <div class = "main-right">
         	<br/><br/>
+        	
+        	<div class = "search">
+        	<form action = "" method = "">
+        	  <input name = "" class = "input-textt" placeholder = "搜索..."/>
+        	  <button type = "submit"  style = "float:right;">搜索</button>
+        	</form>
+        	</div>
+            
             <HR style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="80%" color=black SIZE=3>
             <br/>
             <div class = "main-right-top">
